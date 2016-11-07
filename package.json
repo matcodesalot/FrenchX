@@ -84,6 +84,7 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
+<<<<<<< HEAD
     "babel-preset-react": "^6.16.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
@@ -95,5 +96,11 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "router": "^1.1.4"
+=======
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "isomorphic-fetch": "^2.2.1",
+    "mongoose": "^4.6.6"
+>>>>>>> 3679e06220234fbe99d4710cbccbc4e57997f98f
   }
 }
