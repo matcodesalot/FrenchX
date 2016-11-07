@@ -15,6 +15,7 @@ var Question = React.createClass({
     render: function() {
         return (
             <div>
+                <h1>French</h1>
                 <French frenchWord={/*this.frenchWord*/"je suis"} />
             </div>
         );
