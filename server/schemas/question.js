@@ -11,7 +11,7 @@ var QuestionSchema = new mongoose.Schema({
 	},
 	//weight starts at a value of 1
 	weight: {
-		type: number,
+		type: Number,
 		required: true
 	}
 });
