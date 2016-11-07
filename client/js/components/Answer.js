@@ -1,10 +1,11 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var submitAnswer = require("");
 
 var Answer = React.createClass({
-  getInitialState: function(props) {
+  getInitialState: function() {
     return {
-     value: "Hello!"
+     show: false
     };
   },
   
@@ -19,6 +20,7 @@ var Answer = React.createClass({
         <div>
             <h1>English</h1>
             <input value={this.state.value} onChange={this.handleChange} />
+            
         </div>
     );
   }
