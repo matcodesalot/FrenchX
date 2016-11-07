@@ -1,9 +1,10 @@
 import 'babel-polyfill';
 import express from 'express';
+import mongoose from 'mongoose';
 import User from './schemas/user';
 import Question from './schemas/question';
 import usersRoutes from './endpoints/users-routes';
-//import questionsRoutes from './endpoints/questions-routes';
+import questionsRoutes from './endpoints/questions-routes';
 
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 8080;
@@ -14,6 +15,7 @@ const app = express();
 exports.app = app;
 
 app.use('/users', usersRoutes);
+app.use('/questions', questionsRoutes);
 
 app.use(express.static(process.env.CLIENT_PATH));
 
