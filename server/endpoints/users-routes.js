@@ -18,11 +18,28 @@ usersRouter.get('/', function(req, res) {
 
 //POST a new user into the db
 usersRouter.post('/', jsonParser, function(req, res) {
-	User.save(function(err, user) {
+	let email = req.body.email;
+
+	if(!req.body) {
+		return res.status(400).json({message: 'No request body'});
+	}
+
+	User.create(function(err, user) {
 		if(err) {
 			errorHandler(res);
 		}
-		return res.status(201).json({});
+
+		let newUser = new User({
+			email: email
+		});
+
+		newUser.save(function(err) {
+			if(err) {
+				errorHandler(res);
+			}
+
+			return res.status(201).json(newUser);
+		});
 	});
 });
 
