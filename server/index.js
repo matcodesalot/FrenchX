@@ -1,5 +1,7 @@
 import 'babel-polyfill';
 import express from 'express';
+//import User from './schemas/user';
+//import Question from './schemas/question';
 
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 8080;
