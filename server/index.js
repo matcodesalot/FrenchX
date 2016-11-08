@@ -23,6 +23,8 @@ app.use('/questions', questionsRoutes);
 
 app.use(express.static(process.env.CLIENT_PATH));
 
+app.get('/', function(req, res) { res.sendFile('index.html'); });
+
 function seedData() {
     let questions = [
         {
