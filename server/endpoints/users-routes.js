@@ -43,7 +43,18 @@ usersRouter.post('/', jsonParser, function(req, res) {
 	});
 });
 
+//DELETE a user in the db
+usersRouter.delete('/:userId', function(req, res) {
+	let theUser = req.params.userId;
 
+	User.findByIdAndRemove(theUser, function(err, user) {
+		if(err) {
+			errorHandler(res);
+		};
+
+		return res.json({});
+	});
+});
 
 
 function errorHandler(res) {
