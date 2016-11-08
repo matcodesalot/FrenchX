@@ -33,4 +33,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-module.exports = connect(mapDispatchToProps)(Answer);
+module.exports = connect(null, mapDispatchToProps)(Answer);
