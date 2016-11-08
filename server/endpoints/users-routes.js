@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 const jsonParser = bodyParser.json();
 import User from '../schemas/user';
+import seedData from '../factories/seed-data';
 
 var usersRouter = express.Router();
 //usersRouter.use(jsonParser);
@@ -30,7 +31,8 @@ usersRouter.post('/', jsonParser, function(req, res) {
 		}
 
 		let newUser = new User({
-			email: email
+			email: email,
+			queue: seedData()
 		});
 
 		newUser.save(function(err) {
@@ -43,7 +45,18 @@ usersRouter.post('/', jsonParser, function(req, res) {
 	});
 });
 
+//DELETE a user in the db
+usersRouter.delete('/:userId', function(req, res) {
+	let theUser = req.params.userId;
 
+	User.findByIdAndRemove(theUser, function(err, user) {
+		if(err) {
+			errorHandler(res);
+		};
+
+		return res.json({});
+	});
+});
 
 
 function errorHandler(res) {
