@@ -1,4 +1,4 @@
-function seedData() {
+export function seedData() {
     let questions = [
         {
             question: "Bonjour",
@@ -49,4 +49,9 @@ function seedData() {
     return questions;
 }
 
-module.exports = seedData;
+export function errorHandler(err, res) {
+    if(!err) return false;
+    console.error(err);
+    res.status(500).json({message: 'Internal server error :('});
+    return true;
+}
