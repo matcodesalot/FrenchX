@@ -2,7 +2,6 @@ import 'babel-polyfill';
 import express from 'express';
 import mongoose from 'mongoose';
 import User from './schemas/user';
-import Question from './schemas/question';
 import usersRoutes from './endpoints/users-routes';
 import questionsRoutes from './endpoints/questions-routes';
 
@@ -21,55 +20,6 @@ app.use('/questions', questionsRoutes);
 
 app.use(express.static(process.env.CLIENT_PATH));
 
-function seedData() {
-    let questions = [
-        {
-            question: "Bonjour",
-            answer: "Hello",
-        },
-        {
-            question: "Au revoir",
-            answer: "Goodbye",
-        },
-        {
-            question: "Je suis",
-            answer: "I am",
-        },
-        {
-            question: "fromage",
-            answer: "cheese",
-        },
-        {
-            question: "visage",
-            answer: "face",
-        },
-        {
-            question: "entrepreneur",
-            answer: "businessman",
-        },
-        {
-            question: "je ne sais quoi",
-            answer: "special something",
-        },
-        {
-            question: "meurtre",
-            answer: "murder",
-        },
-        {
-            question: "chein",
-            answer: "dog",
-        },
-        {
-            question: "femme",
-            answer: "woman",
-        }
-    ];
-
-    for (var i = 0; i < questions.length; i++) {
-        Question.create(questions[i]);
-    }
-}
-
 function runServer() {
     return new Promise((resolve, reject) => {
         let databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/lefrench';
@@ -77,15 +27,6 @@ function runServer() {
         .connect(databaseUri)
         .then(function() {
             console.log('db connected...');
-
-            Question.find({}, function(err, questions) {
-                if(err) {
-                    console.error(err);
-                }
-                if(questions.length === 0) {
-                    seedData();
-                }
-            });
 
             app.listen(PORT, HOST, (err) => {
                 if (err) {

@@ -5,8 +5,15 @@ var UserSchema = new mongoose.Schema({
 	//that token is what you're going to pass to every endpoint you create
 	email: {
 		type: String,
-		required: true
-	}
+		required: true,
+		unique: true
+	},
+	//handles each user queue as well as weight
+	queue: [{
+		question: String,
+		answer: String,
+		weight: Number
+	}]
 });
 
 module.exports = mongoose.model('User', UserSchema);

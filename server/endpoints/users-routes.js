@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 const jsonParser = bodyParser.json();
 import User from '../schemas/user';
+import seedData from '../factories/seed-data';
 
 var usersRouter = express.Router();
 //usersRouter.use(jsonParser);
@@ -30,7 +31,8 @@ usersRouter.post('/', jsonParser, function(req, res) {
 		}
 
 		let newUser = new User({
-			email: email
+			email: email,
+			queue: seedData()
 		});
 
 		newUser.save(function(err) {
