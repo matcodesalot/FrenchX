@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var submitAnswer = require("../action/actions");
+var submitAnswer = require("../action/actions").submitAnswer;
 var connect = require('react-redux').connect;
 
 
@@ -16,9 +16,9 @@ var Answer = React.createClass({
     return (
         <div>
             <h1>English</h1>
-            <form>
+            <form onSubmit={this.onSubmit}>
               <input type="text" ref="answerInput" />
-              <input type="submit" value="Submit" onSubmit={this.onSubmit}/>
+              <input type="submit" value="Submit"/>
             </form>
         </div>
     );
