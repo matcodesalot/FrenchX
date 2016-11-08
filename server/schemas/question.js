@@ -10,10 +10,10 @@ var QuestionSchema = new mongoose.Schema({
 		required: true
 	},
 	//weight starts at a value of 1
-	weight: {
-		type: Number,
-		required: true
-	}
+	// weight: {
+	// 	type: Number,
+	// 	required: true
+	// }
 });
 
 module.exports = mongoose.model('Question', QuestionSchema);
