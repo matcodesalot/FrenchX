@@ -1,5 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var connect = require('react-redux').connect;
+
 var French = function(prop) {
    return (
     <div className="frenchWord">
@@ -7,14 +9,22 @@ var French = function(prop) {
     </div>
     );
 };
+
 var Question = React.createClass({
     render: function() {
         return (
             <div>
                 <h1>French</h1>
-                <French frenchWord={/*this.frenchWord*/"je suis"} />
+                <French frenchWord={this.props.currentQuestion} />
             </div>
         );
     }
 });
-module.exports = Question;
+
+function mapStateToProps(state) {
+    return {
+        currentQuestion: state.currentQuestion
+    }
+}
+
+module.exports = connect(mapStateToProps)(Question);

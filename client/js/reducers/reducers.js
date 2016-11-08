@@ -5,6 +5,28 @@ var FETCH_QUESTION = actions.FETCH_QUESTION;
 var SUBMIT_ANSWER = actions.SUBMIT_ANSWER;
 var GENERATE_FEEDBACK = actions.GENERATE_FEEDBACK;
 
+var french = [
+	{
+		question: "bonjour",
+		answer: "hello",
+		weight: 1
+	},
+	{
+		question: "Je suis",
+		answer: "I am",
+		weight: 1
+	},
+	{
+		question: "fromage",
+		answer: "cheese",
+		weight: 1
+	}
+]
+
+//"Au revoir", "Je suis", "fromage", "visage", "entrepreneur","je ne sais quoi", "meurtre", "chien", " femme"]
+
+//var English = ["Hello", "Goodbye", "I am", "cheese", "face", "businessman", "special something", "murder", "dog", "woman"]
+
 var initialState = {
 	currentUser: null, //useremail
 	currentQuestion: null, //bonjour
@@ -16,28 +38,31 @@ var initialState = {
 }
 
 function questionsReducer(state, action) {
-	var newstate = {};
+	var newState = {};
 	state = state || initialState;
 
 	switch (action.type) {
 		
 		case 'FETCH_QUESTION':
 			newState = Object.assign({}, state, {
-				currentQuestion: action.question,
-				correctAnswer: action.correctAnswer
+				// currentQuestion: action.question, <--should be this below
+				currentQuestion: french[0].question,
+				// correctAnswer: action.correctAnswer
+				correctAnswer: french[0].answer
 			});
 			return newState;
 
 		case 'SUBMIT_ANSWER':
-			console.log(action)
+			console.log('answer submitted')
 			newState = Object.assign({}, state, {
 				currentAnswerInput: action.answer
 			});
+			console.log(newState);
 			return newState;
 
 		case 'GENERATE_FEEDBACK':
 			//if submitted answer === correctAnswer
-			if (5 === state.currentAnswerInput) {
+			if (state.correctAnswer === state.currentAnswerInput) {
 				newState = Object.assign({}, state, {
 					currentFeedback: 'Correct!'
 				})
