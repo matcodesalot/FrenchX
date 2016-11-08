@@ -18,10 +18,11 @@ questionsRouter.get('/:userId', function(req, res) {
 	});
 });
 
+//This handles the algorithm and moves the question back the appropriate amount of space
 questionsRouter.post('/:userId/:isCorrect', function(req, res) {
 	const userId = req.params.userId
 	const isCorrect = req.params.isCorrect === "true";
-	console.log(userId, isCorrect);
+
 	User.findById(userId, function(err, user) {
 		if(err) {
 			return errorHandler(res);
