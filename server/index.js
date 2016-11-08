@@ -1,11 +1,13 @@
 import 'babel-polyfill';
 import express from 'express';
+
 import mongoose from 'mongoose';
 import User from './schemas/user';
 import usersRoutes from './endpoints/users-routes';
 import questionsRoutes from './endpoints/questions-routes';
 
 mongoose.Promise = global.Promise;
+
 
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 8080;
