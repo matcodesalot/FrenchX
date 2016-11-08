@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 const jsonParser = bodyParser.json();
 import User from '../schemas/user';
+import {errorHandler} from '../factories/utils';
 
 var questionsRouter = express.Router();
 
@@ -10,22 +11,20 @@ questionsRouter.get('/:userId', function(req, res) {
 	const userId = req.params.userId;
 
 	User.findById(userId, function(err, user) {
-		if(err) {
-			return errorHandler(res);
-		}
+		if(errorHandler(err, res)) return;
+
 		//returns the first question in the list
 		return res.json(user.queue[0]);
 	});
 });
 
-questionsRouter.post('/:userId/:isCorrect', function(req, res) {
+//This handles the algorithm and moves the question back the appropriate amount of space
+questionsRouter.post('/:userId', jsonParser, function(req, res) {
 	const userId = req.params.userId
-	const isCorrect = req.params.isCorrect === "true";
-	console.log(userId, isCorrect);
+	const isCorrect = req.body.isCorrect === "true";
+
 	User.findById(userId, function(err, user) {
-		if(err) {
-			return errorHandler(res);
-		}
+		if(errorHandler(err, res)) return;
 
 		const question = user.queue.shift(); //the current question
 
@@ -46,9 +45,7 @@ questionsRouter.post('/:userId/:isCorrect', function(req, res) {
 		}
 
 		user.save(function(err) {
-			if(err) {
-				errorHandler(res);
-			}
+			if(errorHandler(err, res)) return;
 
 			return res.sendStatus(200);
 		});
@@ -64,9 +61,5 @@ questionsRouter.post('/:userId/:isCorrect', function(req, res) {
 	*/
 })
 
-
-function errorHandler(res) {
-	return res.status(500).json({message: 'Internal server error :('});
-}
 
 module.exports = questionsRouter;
