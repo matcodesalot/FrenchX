@@ -5,7 +5,7 @@ var RegisterLogIn = require("./RegisterLogIn");
 var Homepage = React.createClass({
     render: function(){
         return (
-            <div>
+            <div id = "homepage">
                 <h1>French X</h1>
                 <h2>Learn Languages Through Spaced Repetition</h2>
                 <RegisterLogIn />
