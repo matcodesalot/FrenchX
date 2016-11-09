@@ -1,13 +1,19 @@
 var React = require('react');
 
 var Feedback = function (props) {
-	console.log(props)
 	
+
+
+
+	if(!props.showNextQuestionButton) {
+		return null;
+	}
 	return (
 		<div>
-			<button onClick={props.fetchNextQuestion.bind(this)}>Next</button>
+			<div>{props.currentFeedback}</div>
+			<button onClick={e => props.fetchNextQuestion(props.isCorrect)}>Next</button>
 		</div>
-		)
+	)
 }
 
 module.exports = Feedback;

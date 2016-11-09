@@ -55,13 +55,21 @@ function submitAnswer(answer) {
 	}
 }
 
-function fetchNextQuestion(/*questionId, isCorrect*/) {
+function fetchNextQuestion(isCorrect) {
 	return function (dispatch) {
 		// var url = '/questions/58223e47f14cc779f9b3de5c/' + isCorrect 
-		var url = '/questions/58223e47f14cc779f9b3de5c/' + 'true' 
+		var url = '/questions/58223e47f14cc779f9b3de5c/' 
 
 		return fetch(url, {
-			method: 'POST'
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				isCorrect: isCorrect
+			}),
+
 		})
 		.then(function(response) {
 			if (response.status < 200 || response.status >= 300) {

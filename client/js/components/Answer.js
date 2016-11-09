@@ -9,7 +9,7 @@ var connect = require('react-redux').connect;
 var Answer = React.createClass({
    onSubmit: function (event) {
         event.preventDefault();
-        this.props.onAddSubmit();
+        this.props.onAddSubmit(this.refs.answerInput.value);
         this.refs.answerInput.value = "";
    },
   
@@ -29,8 +29,8 @@ var Answer = React.createClass({
 
 function mapDispatchToProps(dispatch) {
     return {
-        onAddSubmit: function() {
-            dispatch(submitAnswer());
+        onAddSubmit: function(answerInput) {
+            dispatch(submitAnswer(answerInput));
         }
     };
 }

@@ -18,7 +18,8 @@ var initialState = {
 	currentFeedback: null, //Correct or 'incorrect' + currentAnswerInput
 	isCorrect: false,
 	showNextQuestionButton: false,
-	fetchQuestionError: false
+	fetchQuestionError: false,
+	nextQuestion: null
 }
 
 function questionsReducer(state, action) {
@@ -48,13 +49,13 @@ function questionsReducer(state, action) {
 				currentAnswerInput: action.answer
 			});
 
-			if(newState.correctAnswer === newState.currentAnswerInput) {
+			if(newState.correctAnswer.toString().toLowerCase() === newState.currentAnswerInput.toString().toLowerCase()) {
 				newState = Object.assign({}, state, {
 					currentFeedback: 'Correct!',
 					isCorrect: true,
 					showNextQuestionButton: true
 				})
-			} 	
+			}	
 			else {
 				newState = Object.assign({}, state, {
 					currentFeedback: 'Incorrect, please try again.',
