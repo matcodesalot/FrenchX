@@ -22,8 +22,8 @@ var Question = React.createClass({
     render: function() {
         console.log(this.props)
         return (
-            <div>
-                <h1>French</h1>
+            <div id = "french top-half" className = "half-width">
+                <h1 id = "french-heading" className ="language">French</h1>
                 <French frenchWord={this.props.currentQuestion} />
             </div>
         );
