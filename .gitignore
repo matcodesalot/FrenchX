@@ -2,3 +2,5 @@
 node_modules/
 build
 *.log
+mongo_data
+run_mongod
