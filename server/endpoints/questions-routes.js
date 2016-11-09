@@ -47,7 +47,8 @@ questionsRouter.post('/:userId', jsonParser, function(req, res) {
 		user.save(function(err) {
 			if(errorHandler(err, res)) return;
 
-			return res.sendStatus(200);
+			//return res.sendStatus(200);
+			return res.status(200).json({response: 'OK'});
 		});
 	});
 
