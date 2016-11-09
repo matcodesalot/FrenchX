@@ -13,7 +13,7 @@ passport.use(new GoogleStrategy({
 	callbackURL: "http://" + secrets.devHostName + "/auth/google/callback"
 	},
 	function(accessToken, refreshToken, profile, cb) {
-		User.findOrCreate({googleId: profile.id}, function(err, user) {
+		User.findOrCreate(profile.id, function(err, user) {
 			return cb(err, user);
 		});
 	}
