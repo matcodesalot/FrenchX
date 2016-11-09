@@ -1,4 +1,4 @@
-function seedData() {
+export function seedData() {
     let questions = [
         {
             question: "Bonjour",
@@ -49,4 +49,25 @@ function seedData() {
     return questions;
 }
 
-module.exports = seedData;
+export function errorHandler(err, res) {
+    if(!err) return false;
+    console.error(err);
+    res.status(500).json({message: 'Internal server error :('});
+    return true;
+}
+
+export function customAuth(req, res, next) {
+    if (!req.headers.bearerToken) {
+        return res.sendStatus(401);
+    }
+
+    User.findOne({bearerToken: req.headers.bearerToken}, (err, user) => {
+        console.log(user);
+        if (!user) {
+            return res.sendStatus(401);
+        }
+
+        req.currentUser = user;
+        next();
+    });
+}

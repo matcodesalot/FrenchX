@@ -2,17 +2,15 @@ import express from 'express';
 import bodyParser from 'body-parser';
 const jsonParser = bodyParser.json();
 import User from '../schemas/user';
-import seedData from '../factories/seed-data';
+import {seedData, errorHandler} from '../factories/utils';
 
 var usersRouter = express.Router();
-//usersRouter.use(jsonParser);
 
 //GET all the users from the db
 usersRouter.get('/', function(req, res) {
 	User.find({}, function(err, users) {
-		if(err) {
-			errorHandler(res);
-		}
+		if(errorHandler(err, res)) return;
+		
 		return res.json(users);
 	});
 });
@@ -26,9 +24,7 @@ usersRouter.post('/', jsonParser, function(req, res) {
 	}
 
 	User.create(function(err, user) {
-		if(err) {
-			errorHandler(res);
-		}
+		if(errorHandler(err, res)) return;
 
 		let newUser = new User({
 			email: email,
@@ -36,9 +32,7 @@ usersRouter.post('/', jsonParser, function(req, res) {
 		});
 
 		newUser.save(function(err) {
-			if(err) {
-				errorHandler(res);
-			}
+			if(errorHandler(err, res)) return;
 
 			return res.status(201).json(newUser);
 		});
@@ -50,17 +44,11 @@ usersRouter.delete('/:userId', function(req, res) {
 	let theUser = req.params.userId;
 
 	User.findByIdAndRemove(theUser, function(err, user) {
-		if(err) {
-			errorHandler(res);
-		};
+		if(errorHandler(err, res)) return;
 
 		return res.json({});
 	});
 });
 
-
-function errorHandler(res) {
-	return res.status(500).json({message: 'Internal server error :('});
-}
 
 module.exports = usersRouter;
