@@ -1,13 +1,14 @@
 var React = require("react");
 var Question = require("./Question");
 var Answer = require("./Answer");
+var Feedback = require('./Feedback');
+var fetchNextQuestion = require("../action/actions").fetchNextQuestion;
 var connect = require('react-redux').connect;
 
 //make app function that renders jsx element
 var App = React.createClass({
 
-    render: function(){
-        
+    render: function(props){
 
         return (
             <div>
@@ -18,6 +19,13 @@ var App = React.createClass({
                 <div>
                     <Answer />
                 </div>
+
+                <div>
+                    <Feedback 
+                        fetchNextQuestion={this.props.fetchNextQuestion} 
+                        showNextQuestionButton={this.props.showNextQuestionButton}
+                    />
+                </div>
             </div>
         );
     }
@@ -26,7 +34,14 @@ var App = React.createClass({
 
 function mapStateToProps(state) {
     return {
-        currentAnswerInput: state.currentAnswerInput
+        currentAnswerInput: state.currentAnswerInput,
+        showNextQuestionButton: state.showNextQuestionButton
     }
 }
-module.exports = App;
+
+function mapDispatchToProps(dispatch) {
+    return {
+        fetchNextQuestion: dispatch(fetchNextQuestion)
+    }
+}
+module.exports = connect(mapStateToProps, mapDispatchToProps)(App);
