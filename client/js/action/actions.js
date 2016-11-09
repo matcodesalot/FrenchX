@@ -6,8 +6,8 @@ function fetchQuestion() {
 	return function(dispatch) {
 		//var url = '/questions/:userId' 
 			//this id should be removed
-		var url = '/questions/582358ad3a5aa71165be0cb3'
-		// var url = '/questions/5821f72bf0aa44715522f6ae' 
+		// var url = '/questions/582358ad3a5aa71165be0cb3'
+		var url = '/questions/58223e47f14cc779f9b3de5c'
 		return fetch(url).then(function(response) {
 			if (response.status < 200 || response.status >= 300) {
 				var error = new Error(response.statusText);
@@ -58,9 +58,9 @@ function submitAnswer(answer) {
 
 function fetchNextQuestion(isCorrect) {
 	return function (dispatch) {
-		// var url = '/questions/58223e47f14cc779f9b3de5c/' + isCorrect 
+		var url = '/questions/58223e47f14cc779f9b3de5c/'
 		//this id should be removed
-		var url = '/questions/582358ad3a5aa71165be0cb3/' 
+		// var url = '/questions/582358ad3a5aa71165be0cb3/' 
 
 		return fetch(url, {
 			method: 'POST',
