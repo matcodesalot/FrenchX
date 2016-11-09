@@ -1,31 +1,14 @@
 var actions = require('../action/actions');
 var update = require('react-addons-update');
 
-var FETCH_QUESTION = actions.FETCH_QUESTION;
+var FETCH_QUESTION_SUCESS = actions.FETCH_QUESTION_SUCESS;
+var FETCH_QUESTION_ERROR = actions.FETCH_QUESTION_ERROR;
+
 var SUBMIT_ANSWER = actions.SUBMIT_ANSWER;
-var GENERATE_FEEDBACK = actions.GENERATE_FEEDBACK;
 
-var french = [
-	{
-		question: "bonjour",
-		answer: "hello",
-		weight: 1
-	},
-	{
-		question: "Je suis",
-		answer: "I am",
-		weight: 1
-	},
-	{
-		question: "fromage",
-		answer: "cheese",
-		weight: 1
-	}
-]
+var FETCH_NEXT_QUESTION_SUCESS = actions.FETCH_NEXT_QUESTION_SUCESS;
+var FETCH_NEXT_QUESTION_ERROR = actions.FETCH_NEXT_QUESTION_ERROR;
 
-//"Au revoir", "Je suis", "fromage", "visage", "entrepreneur","je ne sais quoi", "meurtre", "chien", " femme"]
-
-//var English = ["Hello", "Goodbye", "I am", "cheese", "face", "businessman", "special something", "murder", "dog", "woman"]
 
 var initialState = {
 	currentUser: null, //useremail
@@ -33,8 +16,10 @@ var initialState = {
 	correctAnswer: null,
 	currentAnswerInput: null, //hello
 	currentFeedback: null, //Correct or 'incorrect' + currentAnswerInput
-	showResult: false, //either display question state or display result state
 	isCorrect: false,
+	showNextQuestionButton: false,
+	fetchQuestionError: false,
+	nextQuestion: null
 }
 
 function questionsReducer(state, action) {
@@ -43,37 +28,63 @@ function questionsReducer(state, action) {
 
 	switch (action.type) {
 		
-		case 'FETCH_QUESTION':
+		case 'FETCH_QUESTION_SUCESS':
 			newState = Object.assign({}, state, {
-				// currentQuestion: action.question, <--should be this below
-				currentQuestion: french[0].question,
-				// correctAnswer: action.correctAnswer
-				correctAnswer: french[0].answer
+				currentQuestion: action.payload.question,
+				correctAnswer: action.payload.answer
 			});
 			return newState;
+
+		case 'FETCH_QUESTION_ERROR':
+			newState = Object.assign({}, state, {
+				currentQuestion: null,
+				error: action.payload
+			});
+			return newState;
+		
 
 		case 'SUBMIT_ANSWER':
 			console.log('answer submitted')
 			newState = Object.assign({}, state, {
 				currentAnswerInput: action.answer
 			});
-			console.log(newState);
-			return newState;
 
-		case 'GENERATE_FEEDBACK':
-			//if submitted answer === correctAnswer
-			if (state.correctAnswer === state.currentAnswerInput) {
+			if(newState.correctAnswer.toString().toLowerCase() === newState.currentAnswerInput.toString().toLowerCase()) {
 				newState = Object.assign({}, state, {
-					currentFeedback: 'Correct!'
+					currentAnswerInput: action.answer,
+					currentFeedback: 'Correct!',
+					isCorrect: true,
+					showNextQuestionButton: true
 				})
-			} 
+			}	
 			else {
 				newState = Object.assign({}, state, {
-					currentFeedback: 'Incorrect, please try again.'
+					currentAnswerInput: action.answer,
+					currentFeedback: 'Incorrect, please try again.',
+					isCorrect: false,
+					showNextQuestionButton: true
 				})
 			}
-			
+
+			console.log(newState);
+
 			return newState;
+
+		case 'FETCH_NEXT_QUESTION_SUCESS':
+			console.log('next question success');
+
+			//should reset the state again
+			newState = Object.assign({}, state, initialState);
+
+			return newState;
+
+		case 'FETCH_NEXT_QUESTION_ERROR':
+
+			newState = Object.assign({}, state, {
+				thisError: action.payload
+			});
+			return newState;
+
 
 		default: 
 			return state;

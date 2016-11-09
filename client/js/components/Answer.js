@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var submitAnswer = require("../action/actions").submitAnswer;
+// var fetchNextQuestion = require('../action/actions').fetchNextQuestion;
 var connect = require('react-redux').connect;
 
 
@@ -14,8 +15,8 @@ var Answer = React.createClass({
   
   render: function() {
     return (
-        <div>
-            <h1>English</h1>
+        <div id = "english" className = "bottom-half half-width">
+            <h1 id = "english-heading" className = "language">English</h1>
             <form onSubmit={this.onSubmit}>
               <input type="text" ref="answerInput" />
               <input type="submit" value="Submit"/>
