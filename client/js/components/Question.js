@@ -1,8 +1,15 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var fetchQuestion = require("../action/actions").fetchQuestion;
 var connect = require('react-redux').connect;
+var store = require("../store");
 
 var French = function(prop) {
+    
+    if (prop.frenchWord === null) {
+        return <div></div>
+    }
+   
    return (
     <div className="frenchWord">
         {prop.frenchWord}
@@ -11,7 +18,9 @@ var French = function(prop) {
 };
 
 var Question = React.createClass({
+
     render: function() {
+        console.log(this.props)
         return (
             <div>
                 <h1>French</h1>
@@ -27,4 +36,10 @@ function mapStateToProps(state) {
     }
 }
 
-module.exports = connect(mapStateToProps)(Question);
+function mapDispatchToProps(dispatch) {
+    return {
+        fetchQuestion: dispatch(fetchQuestion())
+    }
+}
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(Question);

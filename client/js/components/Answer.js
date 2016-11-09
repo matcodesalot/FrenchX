@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var submitAnswer = require("../action/actions").submitAnswer;
+// var fetchNextQuestion = require('../action/actions').fetchNextQuestion;
 var connect = require('react-redux').connect;
 
 
@@ -8,7 +9,7 @@ var connect = require('react-redux').connect;
 var Answer = React.createClass({
    onSubmit: function (event) {
         event.preventDefault();
-        this.props.onAddSubmit(this.refs.answerInput.value);
+        this.props.onAddSubmit();
         this.refs.answerInput.value = "";
    },
   
@@ -17,6 +18,7 @@ var Answer = React.createClass({
         <div>
             <h1>English</h1>
             <form onSubmit={this.onSubmit}>
+            
               <input type="text" ref="answerInput" />
               <input type="submit" value="Submit"/>
             </form>
@@ -27,8 +29,8 @@ var Answer = React.createClass({
 
 function mapDispatchToProps(dispatch) {
     return {
-        onAddSubmit: function(answerInput) {
-            dispatch(submitAnswer(answerInput));
+        onAddSubmit: function() {
+            dispatch(submitAnswer());
         }
     };
 }
