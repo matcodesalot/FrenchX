@@ -10,7 +10,7 @@ const googleRouter = express.Router();
 passport.use(new GoogleStrategy({
 	clientID: secrets.clientId,
 	clientSecret: secrets.clientSecret,
-	callbackURL: "http://" + secrets.devHostname + "/auth/google/callback"
+	callbackURL: "http://" + secrets.devHostName + "/auth/google/callback"
 	},
 	function(accessToken, refreshToken, profile, cb) {
 		User.findOrCreate({googleId: profile.id}, function(err, user) {
