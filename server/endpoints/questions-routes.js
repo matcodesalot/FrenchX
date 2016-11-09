@@ -21,7 +21,7 @@ questionsRouter.get('/:userId', customAuth, function(req, res) {
 //This handles the algorithm and moves the question back the appropriate amount of space
 questionsRouter.post('/:userId', [customAuth, jsonParser], function(req, res) {
 	const userId = req.params.userId
-	const isCorrect = req.body.isCorrect === "true";
+	const isCorrect = req.body.isCorrect;
 
 	User.findById(userId, function(err, user) {
 		if(errorHandler(err, res)) return;

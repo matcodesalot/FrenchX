@@ -7,7 +7,6 @@ import googleRoutes from './endpoints/google-oauth';
 
 mongoose.Promise = global.Promise;
 
-
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 8080;
 
@@ -16,12 +15,11 @@ console.log(`Server running in ${process.env.NODE_ENV} mode`);
 const app = express();
 exports.app = app;
 
-app.use(
-    (express.static(process.env.CLIENT_PATH)),
-    ('/users', usersRoutes),
-    ('/questions', questionsRoutes),
-    ('/auth/google', googleRoutes)
-);
+app.use(express.static(process.env.CLIENT_PATH));
+app.use('/users', usersRoutes);
+app.use('/questions', questionsRoutes);
+app.use('/auth/google', googleRoutes);
+
 
 
 function runServer() {
