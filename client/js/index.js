@@ -2,6 +2,7 @@ require('babel-polyfill');
 var React = require("react"); 
 var ReactDOM = require("react-dom"); 
 var App = require("./components/App");
+var Homepage = require("./components/Homepage")
 var store = require("./store");
 var Provider = require('react-redux').Provider;
 
@@ -20,28 +21,16 @@ var Link = router.Link;
 
 var routes = (
 	<Router history={browserHistory}>
-		<Route path='/' component={App}></Route>
+		<Route path="/" component={Homepage}/>
+		<Route path="/home" component={App}/>
 	</Router>
-);
+)
 
-	//homepage should display company banner and login button
-		// <Route path="/" component={Homepage}>
-		// 	//clicking login button and sucessfully login should direct user to /home
-		// 	//which displays the questions
-		// 	<Route path="/home" component={App} />
-		// </Route>
 
-//with routes:
 document.addEventListener("DOMContentLoaded", function() { 
 	ReactDOM.render(<Provider store={store}>{routes}</Provider>, document.getElementById("app")); 
 });
 
-
-
-//without routes:
-// document.addEventListener("DOMContentLoaded", function() { 
-// 	ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById("app")); 
-// });
 
 
 module.exports = store;

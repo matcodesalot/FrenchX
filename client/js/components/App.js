@@ -1,9 +1,15 @@
 var React = require("react");
+var Link = require('react-router').Link;
+var connect = require('react-redux').connect;
+
+
 var Question = require("./Question");
 var Answer = require("./Answer");
 var Feedback = require('./Feedback');
 var fetchNextQuestion = require("../action/actions").fetchNextQuestion;
-var connect = require('react-redux').connect;
+
+
+
 
 //make app function that renders jsx element
 var App = React.createClass({
