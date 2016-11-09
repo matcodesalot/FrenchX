@@ -55,9 +55,6 @@ function submitAnswer(answer) {
 	}
 }
 
-
-
-
 function fetchNextQuestion(/*questionId, isCorrect*/) {
 	return function (dispatch) {
 		// var url = '/questions/58223e47f14cc779f9b3de5c/' + isCorrect 
