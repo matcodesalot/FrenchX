@@ -1,9 +1,22 @@
 * {
-    background-color: #696969;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .half-width {
     float: left;
     display: inline-block;
-    width: 50%;
+    width: 45%;
+}
+
+#french {
+    background: linear-gradient(#fff, transparent 45%), linear-gradient(0deg, #fff, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
+    background-size: cover;
+    margin-right: 5%;
+}
+
+#english {
+    background: linear-gradient(#fff, transparent 45%), linear-gradient(0deg, #fff, transparent),#fff url('../assets/img/american-flag.jpg') no-repeat center;
+    background-size: cover;
+    margin-left: 5%;
 }
