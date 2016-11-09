@@ -89,6 +89,7 @@
     "express": "^4.14.0",
     "isomorphic-fetch": "^2.2.1",
     "mongoose": "^4.6.6",
+    "passport-google-oauth20": "^1.0.0",
     "react": "^15.3.2",
     "react-addons-update": "^15.3.2",
     "react-dom": "^15.3.2",
