@@ -5,7 +5,6 @@ import User from '../schemas/user';
 import {seedData, errorHandler} from '../factories/utils';
 
 var usersRouter = express.Router();
-//usersRouter.use(jsonParser);
 
 //GET all the users from the db
 usersRouter.get('/', function(req, res) {
