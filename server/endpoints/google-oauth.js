@@ -5,8 +5,10 @@ import secrets from '../secrets';
 import User from '../schemas/user';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
+const googleRouter = express.Router();
+
 passport.use(new GoogleStrategy({
-	clientId: secrets.clientId,
+	clientID: secrets.clientId,
 	clientSecret: secrets.clientSecret,
 	callbackURL: "http://" + secrets.devHostname + "/auth/google/callback"
 	},
@@ -16,3 +18,16 @@ passport.use(new GoogleStrategy({
 		});
 	}
 ));
+
+googleRouter.use(passport.initialize());
+
+googleRouter.get('/', passport.authenticate('google', {scope: ['profile'], session: false}));
+
+googleRouter.get('/callback', passport.authenticate('google', {failureRedirect: '/login', session: false}),
+	function(req, res) {
+		//successful authentication, redirect home
+		res.redirect('/');
+	}
+);
+
+export default googleRouter;

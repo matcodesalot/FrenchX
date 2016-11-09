@@ -2,12 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 const jsonParser = bodyParser.json();
 import User from '../schemas/user';
-import {errorHandler} from '../factories/utils';
+import {errorHandler, customAuth} from '../factories/utils';
 
 var questionsRouter = express.Router();
 
 //GET the current question the user is on
-questionsRouter.get('/:userId', function(req, res) {
+questionsRouter.get('/:userId', customAuth, function(req, res) {
 	const userId = req.params.userId;
 
 	User.findById(userId, function(err, user) {
@@ -19,7 +19,7 @@ questionsRouter.get('/:userId', function(req, res) {
 });
 
 //This handles the algorithm and moves the question back the appropriate amount of space
-questionsRouter.post('/:userId', jsonParser, function(req, res) {
+questionsRouter.post('/:userId', [customAuth, jsonParser], function(req, res) {
 	const userId = req.params.userId
 	const isCorrect = req.body.isCorrect === "true";
 

@@ -55,3 +55,19 @@ export function errorHandler(err, res) {
     res.status(500).json({message: 'Internal server error :('});
     return true;
 }
+
+export function customAuth(req, res, next) {
+    if (!req.headers.bearerToken) {
+        return res.sendStatus(401);
+    }
+
+    User.findOne({bearerToken: req.headers.bearerToken}, (err, user) => {
+        console.log(user);
+        if (!user) {
+            return res.sendStatus(401);
+        }
+
+        req.currentUser = user;
+        next();
+    });
+}
