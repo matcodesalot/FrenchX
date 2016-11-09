@@ -15,7 +15,7 @@ var Answer = React.createClass({
   
   render: function() {
     return (
-        <div id = "english bottom-half" className = "half-width">
+        <div id = "english" className = "bottom-half half-width">
             <h1 id = "english-heading" className = "language">English</h1>
             <form onSubmit={this.onSubmit}>
               <input type="text" ref="answerInput" />
