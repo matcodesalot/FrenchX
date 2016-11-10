@@ -3,3 +3,5 @@ node_modules/
 build
 *.log
 secrets.js
+mongo_data
+run_mongod
