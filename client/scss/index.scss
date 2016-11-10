@@ -1,28 +1,82 @@
 * {
     box-sizing: border-box;
     text-align: center;
+    margin: 0;
 }
 
-#homepage {
-    background: linear-gradient(#f5f5f5, transparent 45%), linear-gradient(0deg, #f5f5f5, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
+html, body, #app, #homepage {
     height: 100%;
+}
+
+body {
+     opacity: 1;
+}
+
+/*HOME PAGE*/
+#homepage {
+    background: #fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
+#homepage-text, #register-login {
+    height: 50%;
+    width: 100%;
+}
+
+#homepage h1, #homepage h2 {
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
+    color: #000;
+}
+
+#homepage h1 {
+    font-family: 'IM Fell French Canon', serif;
+    font-size: 3em;
+    letter-spacing: 0.05em;
+    top: 35%;
+}
+
+#homepage h2 {
+    font-family: 'Josefin Slab', serif;
+    font-size: 2em;
+    font-weight: 900;
+    top: 45%;
+}
+
+#register-login-button {
+    border: 0.1em solid black;
+    margin-top: 2%;
+}
+
+#register-login-button a, #register-login-button a {
+    color: #000;
+    font-family: 'IM Fell French Canon', serif;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+span {
+    color: red;
+}
+
+/*QUIZ PAGE*/
 .half-width {
     float: left;
     display: inline-block;
     width: 45%;
+    height: 100%;
 }
 
 #french {
-    background: linear-gradient(#fff, transparent 45%), linear-gradient(0deg, #fff, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
+    background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
     background-size: cover;
     margin-right: 5%;
 }
 
 #english {
-    background: linear-gradient(#fff, transparent 45%), linear-gradient(0deg, #fff, transparent),#fff url('../assets/img/american-flag.jpg') no-repeat center;
+    background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/american-flag.jpg') no-repeat center;
     background-size: cover;
     margin-left: 5%;
 }

@@ -29,7 +29,7 @@ var App = React.createClass({
 
                 <div>
                     <Feedback 
-                        fetchNextQuestion={this.props.fetchNextQuestion} 
+                        fetchNextQuestion={this.props.fetchNextQuestion}
                         showNextQuestionButton={this.props.showNextQuestionButton}
                         currentFeedback={this.props.currentFeedback}
                         isCorrect={this.props.isCorrect}
