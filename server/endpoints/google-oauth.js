@@ -4,6 +4,7 @@ import passport from 'passport';
 import secrets from '../secrets';
 import User from '../schemas/user';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const BearerStrategy = require('passport-http-bearer').Strategy;
 
 const googleRouter = express.Router();
 
@@ -17,7 +18,7 @@ passport.use(new GoogleStrategy(
 	},
 	function(request, accessToken, refreshToken, profile, cb) {
 		request.accessToken = accessToken;
-
+		console.log("Welcome", profile.name.givenName + ".");
 		User.findOrCreate(profile.id, function(err, user) {
 			return cb(err, user);
 		});
@@ -25,6 +26,7 @@ passport.use(new GoogleStrategy(
 ));
 
 googleRouter.use(passport.initialize());
+googleRouter.use(passport.session());
 
 
 googleRouter.get('/', passport.authenticate('google', {scope: ['profile'], session: false}));
@@ -36,5 +38,19 @@ googleRouter.get('/callback', passport.authenticate('google', {failureRedirect: 
 		res.redirect('/?auth=' + req.accessToken);
 	}
 );
+
+//token auth setup
+passport.use(new BearerStrategy(function(token, done) {
+	User.findOne({accessToken: token}, function(err, user) {
+		if(err) {
+			return done(err);
+		}
+		if(!user) {
+			return done(null, false);
+		}
+		console.log("TOKEN", accessToken);
+		return done(null, user, {scope: all});
+	});
+}));
 
 export default googleRouter;
