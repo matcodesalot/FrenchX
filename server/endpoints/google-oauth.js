@@ -8,7 +8,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const googleRouter = express.Router();
 
 passport.use(new GoogleStrategy({
-	clientID: secrets.clientId,
+	clientID: secrets.clientID,
 	clientSecret: secrets.clientSecret,
 	callbackURL: "http://" + secrets.devHostName + "/auth/google/callback"
 	},
