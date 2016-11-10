@@ -10,9 +10,10 @@ const googleRouter = express.Router();
 
 passport.use(new GoogleStrategy(
 	{
-		clientID: secrets.clientID,
-		clientSecret: secrets.clientSecret,
-		callbackURL: "http://" + secrets.devHostName + "/auth/google/callback",
+		//process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/the_frogs'
+		clientID: process.env.CLIENT_ID || secrets.clientID,
+		clientSecret: process.env.CLIENT_SECRET || secrets.clientSecret,
+		callbackURL: process.env.DEV_HOST_NAME || "http://" + secrets.devHostName + "/auth/google/callback",
 		passReqToCallback: true
 
 	},
