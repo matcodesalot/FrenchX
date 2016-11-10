@@ -1,3 +1,5 @@
+import User from '../schemas/user';
+
 export function seedData() {
     let questions = [
         {
@@ -62,6 +64,7 @@ export function customAuth(req, res, next) {
     }
 
     User.findOne({bearerToken: req.headers.bearerToken}, (err, user) => {
+        if(errorHandler(err, res)) return;
         console.log(user);
         if (!user) {
             return res.sendStatus(401);
