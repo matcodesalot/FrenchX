@@ -1,7 +1,9 @@
 import 'babel-polyfill';
 import express from 'express';
 import passport from 'passport';
-import secrets from '../secrets';
+//import secrets from '../secrets';
+var secrets;
+if (!process.env.CLIENT_ID) secrets = require('../secrets');
 import User from '../schemas/user';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 var BearerStrategy = require('passport-http-bearer').Strategy;
