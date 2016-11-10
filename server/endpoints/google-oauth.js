@@ -31,9 +31,9 @@ passport.deserializeUser(function(id, done) {
 
 passport.use(new GoogleStrategy(
 	{
-		clientID: secrets.clientID,
-		clientSecret: secrets.clientSecret,
-		callbackURL: "http://" + secrets.devHostName + "/auth/google/callback",
+		clientID: process.env.CLIENT_ID || secrets.clientID,
+        clientSecret: process.env.CLIENT_SECRET || secrets.clientSecret,
+        callbackURL: process.env.DEV_HOST_NAME || "http://" + secrets.devHostName + "/auth/google/callback",
 		passReqToCallback: true
 
 	},
