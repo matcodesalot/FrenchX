@@ -24,7 +24,7 @@ app.use('/auth/google', googleRoutes);
 
 function runServer() {
     return new Promise((resolve, reject) => {
-        let databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/the_frogs';
+        let databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/frenchapp';
         mongoose
         .connect(databaseUri)
         .then(function() {

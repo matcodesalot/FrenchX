@@ -9,8 +9,11 @@ var UserSchema = new mongoose.Schema({
 		required: true,
 		unique: true
 	},
-	accessToken: {
-		type: String
+
+	access_token: {
+		type: String,
+		required: true,
+		unique: true
 	},
 	//handles each user queue as well as weight
 	queue: [{
@@ -20,16 +23,29 @@ var UserSchema = new mongoose.Schema({
 	}]
 });
 
-UserSchema.statics.findOrCreate = function(googleId, callback) {
-	this.findOne({googleId}, (err, user) => {
+UserSchema.statics.findOrCreate = function(userInfo, callback) {
+	this.findOne({googleId: userInfo.googleId}, (err, user) => {
+		
 		if(err) return callback(err);
 		if (user) {
+			
+			this.findOneAndUpdate(
+				{
+					googleId: userInfo.googleId
+				},
+				{
+					access_token: userInfo.access_token
+				}
+			)
+
+			console.log('user after access_token updated', user);
+
 			return callback(null, user);
 		}
 		//create a user
-		this.create({googleId, queue: seedData()}, (err, user) => {
+		this.create({googleId: userInfo.googleId, access_token: userInfo.access_token, queue: seedData()}, (err, user) => {
 			if(err) return callback(err);
-			
+			console.log('user created in db');
 			return callback(null, user);
 		});
 	});

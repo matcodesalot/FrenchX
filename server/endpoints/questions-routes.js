@@ -6,8 +6,11 @@ import {errorHandler, customAuth} from '../factories/utils';
 
 var questionsRouter = express.Router();
 
+import passport from 'passport';
+
+
 //GET the current question the user is on
-questionsRouter.get('/:userId', customAuth, function(req, res) {
+questionsRouter.get('/:userId', jsonParser, passport.authenticate('bearer', { session: false }), function(req, res) {
 	const userId = req.params.userId;
 
 	User.findById(userId, function(err, user) {
@@ -19,7 +22,7 @@ questionsRouter.get('/:userId', customAuth, function(req, res) {
 });
 
 //This handles the algorithm and moves the question back the appropriate amount of space
-questionsRouter.post('/:userId', [customAuth, jsonParser], function(req, res) {
+questionsRouter.post('/:userId', jsonParser, passport.authenticate('bearer', { session: false }), function(req, res) {
 	const userId = req.params.userId;
 	const isCorrect = req.body.isCorrect;
 
