@@ -9,14 +9,12 @@ html, body, #app, #homepage {
 }
 
 body {
-    /*background: #fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
-    background-size: cover;*/
-     opacity: 0.8;
+     opacity: 1;
 }
 
 /*HOME PAGE*/
 #homepage {
-    background: /*linear-gradient(#dcdcdc, transparent 10%), linear-gradient(180deg, #dcdcdc, transparent),*/#fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
+    background: #fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -29,6 +27,8 @@ body {
     left: 50%;
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
+    text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
+    color: #000;
 }
 
 #homepage h1 {
@@ -52,7 +52,7 @@ body {
     margin-top: 2%;
 }
 
-#register-login-button a {
+#register-login-button a, #register-login-button a {
     color: #000;
     font-family: 'IM Fell French Canon', serif;
     font-size: 1.5em;
