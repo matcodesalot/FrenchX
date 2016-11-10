@@ -4,28 +4,52 @@
     margin: 0;
 }
 
+html, body, #app, #homepage {
+    height: 100%;
+}
+
 body {
     background: #fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
-    height: 100%;
     background-size: cover;
 }
 
+/*HOME PAGE*/
 #homepage {
-    margin: 0 auto;
-    /*background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
-    height: auto;
-    background-size: cover;*/
+    //margin: 0 auto;
+    background: linear-gradient(#dcdcdc, transparent 15%), /*linear-gradient(90deg, #dcdcdc, transparent),*/#fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin-top: 1px solid black;
+}
+
+#homepage-text {
+    height: 45%;
+    margin-bottom: 5%;
+    border: 1px solid black;
 }
 
 #homepage h1 {
     font-family: 'Lobster Two', cursive;
     font-size: 3em;
+    letter-spacing: 0.05em;
 }
 
+#homepage h2 {
+    font-family: 'Slabo 27px', serif;
+    font-size: 1.5em;
+}
+
+#register-login{
+    height: 45%
+    margin-top: 5%;
+    border: 1px solid black;
+}
+
+/*QUIZ PAGE*/
 .half-width {
     float: left;
     display: inline-block;
     width: 45%;
+    height: 100%;
 }
 
 #french {
