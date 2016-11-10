@@ -9,39 +9,54 @@ html, body, #app, #homepage {
 }
 
 body {
-    background: #fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
-    background-size: cover;
+    /*background: #fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
+    background-size: cover;*/
+     opacity: 0.8;
 }
 
 /*HOME PAGE*/
 #homepage {
-    //margin: 0 auto;
-    background: linear-gradient(#dcdcdc, transparent 15%), /*linear-gradient(90deg, #dcdcdc, transparent),*/#fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
+    background: /*linear-gradient(#dcdcdc, transparent 10%), linear-gradient(180deg, #dcdcdc, transparent),*/#fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
     background-size: cover;
-    margin-top: 1px solid black;
 }
 
-#homepage-text {
-    height: 45%;
-    margin-bottom: 5%;
-    border: 1px solid black;
+#homepage-text, #register-login {
+    height: 50%;
+    width: 100%;
+}
+
+#homepage h1, #homepage h2 {
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
 }
 
 #homepage h1 {
-    font-family: 'Lobster Two', cursive;
+    font-family: 'IM Fell French Canon', serif;
     font-size: 3em;
     letter-spacing: 0.05em;
+    top: 35%;
 }
 
 #homepage h2 {
-    font-family: 'Slabo 27px', serif;
-    font-size: 1.5em;
+    font-family: 'Josefin Slab', serif;
+    font-size: 2em;
+    font-weight: 900;
+    top: 45%;
 }
 
-#register-login{
-    height: 45%
-    margin-top: 5%;
-    border: 1px solid black;
+#register-login-button {
+    background-color: rbga(255, 0, 0, 0.5);
+    border: 0.05em solid black;
+    border-radius: 0.938em;
+    margin-top: 2%;
+}
+
+#register-login-button a {
+    color: #000;
+    font-family: 'IM Fell French Canon', serif;
+    font-size: 1.5em;
+    text-decoration: none;
 }
 
 /*QUIZ PAGE*/
