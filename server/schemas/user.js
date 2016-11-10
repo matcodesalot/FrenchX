@@ -9,6 +9,9 @@ var UserSchema = new mongoose.Schema({
 		required: true,
 		unique: true
 	},
+	accessToken: {
+		type: String
+	},
 	//handles each user queue as well as weight
 	queue: [{
 		question: String,
