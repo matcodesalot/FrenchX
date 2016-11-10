@@ -46,9 +46,7 @@ body {
 }
 
 #register-login-button {
-    background-color: rbga(255, 0, 0, 0.5);
-    border: 0.05em solid black;
-    border-radius: 0.938em;
+    border: 0.1em solid black;
     margin-top: 2%;
 }
 
@@ -57,6 +55,10 @@ body {
     font-family: 'IM Fell French Canon', serif;
     font-size: 1.5em;
     text-decoration: none;
+}
+
+span {
+    color: red;
 }
 
 /*QUIZ PAGE*/
