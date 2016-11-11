@@ -3,11 +3,9 @@
     text-align: center;
     margin: 0;
 }
-
 html, body, #app, #homepage {
     height: 100%;
 }
-
 #footer {
     bottom: 0;
     font-size: 1em;
@@ -19,25 +17,21 @@ html, body, #app, #homepage {
     text-align: center;
     z-index: 1;
 }
-
 #top-level-component > h1 {
     font-family: 'IM Fell French Canon', serif;
     position: fixed;
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
     top: 0; width: 100%; margin: auto;
 }
-
 /*HOME PAGE*/
 #homepage {
     background:  linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
     background-size: cover;
 }
-
 #homepage-text, #register-login {
     height: 50%;
     width: 100%;
 }
-
 #homepage h1, #homepage h2 {
     left: 50%;
     position: absolute;
@@ -45,37 +39,31 @@ html, body, #app, #homepage {
     /*text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;*/
     color: #000;
 }
-
 #homepage h1 {
     font-family: 'IM Fell French Canon', serif;
     font-size: 3em;
     letter-spacing: 0.05em;
     top: 35%;
 }
-
 #homepage h2 {
     font-family: 'Josefin Slab', serif;
     font-size: 2em;
     font-weight: 900;
     top: 45%;
 }
-
 #register-login-button {
     border: 0.1em solid black;
     margin-top: 2%;
 }
-
-#register-login-button a, #register-login-button a {
+#register-login-button a, #logout-button a {
     color: #000;
     font-family: 'IM Fell French Canon', serif;
     font-size: 1.5em;
     text-decoration: none;
 }
-
 span {
     color: red;
 }
-
 /*QUIZ PAGE*/
 .half-width {
     float: left;
@@ -83,32 +71,26 @@ span {
     height: 770px;
     width: 50%;
 }
-
 /*.hide {
     display: none;
 }*/
-
 #french {
     background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
     background-size: cover;
 }
-
 #english {
     background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/american-flag.jpg') no-repeat center;
     background-size: cover;
 }
-
 .language {
     font-family: 'Josefin Slab', serif;
     font-size: 2.5em;
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
 }
-
 #french-heading {
     margin-top: 25%;
     right: 25%;
 }
-
 .frenchWord {
     font-size: 2em;
     left: 21.5%;
@@ -117,49 +99,49 @@ span {
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
     top: 41%;
 }
-
 #english-heading {
     left: 25%;
     margin-top: 25%;
 }
-
 #answer-input, #submit {
     font-size: 1.2em;
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
     border: 1px solid #000;
 }
-
 #answer-input {
     top: 45%;
     height: 3em;
+    width: 11em;
 }
-
 #submit {
-    height: 2.5em;
+    height: 3em;
     top: 56%;
-    width: 4em;
+    width: 11em;
+    border: 2px solid #696969;
 }
-
 #next-button, #logout-button {
-    height: 2.5em;
+    
+    border: 2px solid #696969;
     position: absolute;
-    width: 10em;
+    width: 11em;
     z-index: 1;
 }
-
 #next-button {
+    height: 5em;
+    width: 11em;
     left: 72%;
     top: 45%;
 }
-
 #logout-button {
-    left: 90%;
-    top: 3%;
+    width: 11em;
+    height: 5em;
+    left: 42.5%;
+    top: 10%;
+    width: 13em;
+    border: 2px solid #696969;
 }
-
 /*MEDIA QUERIES*/
-
 /* ----------- iPhone 5 and 5S ----------- */
 @media only screen 
   and (min-device-width: 320px) 
@@ -174,7 +156,6 @@ span {
           margin-top: 45%;
       }
 }
-
 /* ----------- iPhone 6 ----------- */
 @media only screen 
   and (min-device-width: 375px) 
@@ -189,7 +170,6 @@ span {
           margin-top: 35%;
       }
 }
-
 /* ----------- iPhone 6+ ----------- */
 /* Portrait */
 @media only screen 
@@ -204,5 +184,4 @@ span {
       #register-login-button {
           margin-top: 30%;
       }
-
 }
