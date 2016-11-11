@@ -15,30 +15,6 @@ usersRouter.get('/', function(req, res) {
 	});
 });
 
-//POST a new user into the db
-// usersRouter.post('/', jsonParser, function(req, res) {
-// 	let email = req.body.email;
-
-// 	if(!req.body) {
-// 		return res.status(400).json({message: 'No request body'});
-// 	}
-
-// 	User.create(function(err, user) {
-// 		if(errorHandler(err, res)) return;
-
-// 		let newUser = new User({
-// 			email: email,
-// 			queue: seedData()
-// 		});
-
-// 		newUser.save(function(err) {
-// 			if(errorHandler(err, res)) return;
-
-// 			return res.status(201).json(newUser);
-// 		});
-// 	});
-// });
-
 //DELETE a user in the db
 usersRouter.delete('/:userId', function(req, res) {
 	let theUser = req.params.userId;
