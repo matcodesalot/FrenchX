@@ -1,9 +1,4 @@
 var React = require('react');
-var Feedback = require('./Feedback');
-// var ReactDOM = require('react-dom');
-// var fetchQuestion = require("../action/actions").fetchQuestion;
-// var connect = require('react-redux').connect;
-
 
 var Question = function(props) {
     if (!props || !props.currentQuestion) {
