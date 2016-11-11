@@ -10,10 +10,21 @@ import passport from 'passport';
 
 
 //GET the current question the user is on
-questionsRouter.get('/:userId', jsonParser, passport.authenticate('bearer', { session: false }), function(req, res) {
-	const userId = req.params.userId;
+// questionsRouter.get('/:userId', jsonParser, passport.authenticate('bearer', { session: false }), function(req, res) {
+// 	const userId = req.params.userId;
 
-	User.findById(userId, function(err, user) {
+// 	User.findById(userId, function(err, user) {
+// 		if(errorHandler(err, res)) return;
+
+// 		//returns the first question in the list
+// 		return res.json(user.queue[0]);
+// 	});
+// });
+
+questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: false }), function(req, res) {
+	const accessToken = req.params.accessToken;
+
+	User.findOne({accessToken: User.access_token}, function(err, user) {
 		if(errorHandler(err, res)) return;
 
 		//returns the first question in the list
