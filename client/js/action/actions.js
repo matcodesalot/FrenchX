@@ -2,12 +2,14 @@ var fetch = require('isomorphic-fetch');
 var store = require('../store');
 
 //fetch API, no need to declare it as reducer case
-function fetchQuestion() {
+function fetchQuestion(accessToken) {
+
+
 	return function(dispatch) {
 		//var url = '/questions/:userId' 
 			//this id should be removed
 		// var url = '/questions/582358ad3a5aa71165be0cb3'
-		var url = '/questions/58223e47f14cc779f9b3de5c'
+		var url = '/questions/' + accessToken
 		return fetch(url).then(function(response) {
 			if (response.status < 200 || response.status >= 300) {
 				var error = new Error(response.statusText);
@@ -56,9 +58,9 @@ function submitAnswer(answer) {
 	}
 }
 
-function fetchNextQuestion(isCorrect) {
+function fetchNextQuestion(accessToken, isCorrect) {
 	return function (dispatch) {
-		var url = '/questions/58223e47f14cc779f9b3de5c/'
+		var url = '/questions/' + accessToken;
 		//this id should be removed
 		// var url = '/questions/582358ad3a5aa71165be0cb3/' 
 
@@ -69,7 +71,7 @@ function fetchNextQuestion(isCorrect) {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				isCorrect: isCorrect
+				isCorrect: isCorrect.toString()
 			}),
 
 		})
@@ -115,6 +117,16 @@ function fetchNextQuestionError(error) {
 }
 
 
+var SUBMIT_ACCESS_TOKEN = 'SUBMIT_ACCESS_TOKEN';
+function submitAcessToken(accessToken) {
+	return {
+		type: SUBMIT_ACCESS_TOKEN,
+		payload: accessToken
+	}
+}
+
+
+
 exports.fetchQuestion = fetchQuestion;
 
 exports.FETCH_QUESTION_SUCESS = FETCH_QUESTION_SUCESS;
@@ -133,3 +145,6 @@ exports.fetchQuestionSucess = fetchNextQuestionSucess;
 
 exports.FETCH_NEXT_QUESTION_ERROR = FETCH_NEXT_QUESTION_ERROR;
 exports.fetchNextQuestionError = fetchNextQuestionError;
+
+exports.SUBMIT_ACCESS_TOKEN = SUBMIT_ACCESS_TOKEN;
+exports.submitAcessToken = submitAcessToken;

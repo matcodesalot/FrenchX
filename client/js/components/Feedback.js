@@ -11,7 +11,7 @@ var Feedback = function (props) {
 	return (
 		<div>
 			<div>{props.currentFeedback}</div>
-			<button onClick={e => props.fetchNextQuestion(props.isCorrect)}>Next</button>
+			<button onClick={e => props.fetchNextQuestion(this.props.location.query.auth, props.isCorrect)}>Next</button>
 		</div>
 	)
 }
