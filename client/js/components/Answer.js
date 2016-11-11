@@ -18,8 +18,8 @@ var Answer = React.createClass({
         <div id = "english" className = "bottom-half half-width">
             <h1 id = "english-heading" className = "language">English</h1>
             <form onSubmit={this.onSubmit}>
-              <input type="text" ref="answerInput" />
-              <input type="submit" value="Submit"/>
+              <input id ="answer-input" type="text" ref="answerInput" />
+              <input id ="submit" type="submit" value="Submit"/>
             </form>
         </div>
     );
