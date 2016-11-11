@@ -27,6 +27,7 @@ var App = React.createClass({
    },
 
    onClickLogout: function() {
+        console.log('clicked logout');
         this.props.onClickLogoutUser(this.props.location.query.auth);
    },
 
@@ -62,8 +63,8 @@ var App = React.createClass({
         return (
             <div id="top-level-component">
                 <h1>French X</h1>
-                <div>
-                    <button id="logout-button" className="hide show" onClick={this.onClickLogout}>Logout</button>
+                <div id="logout-button" className="hide show">
+                    <Link  to="/" onClick={this.onClickLogout} >Logout</Link>
                 </div>
 
                 <div>

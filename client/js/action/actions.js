@@ -127,7 +127,7 @@ var logoutUser = function(accessToken) {
 			var url = '/auth/google/logout';
 			return fetch(url, {
 	      headers: {
-	      	method: 'POST',
+	      	method: 'PUT',
 	        'Authorization': `Bearer ${accessToken}`
 	      }
 	    })}
