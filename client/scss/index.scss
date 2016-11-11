@@ -65,18 +65,45 @@ span {
 .half-width {
     float: left;
     display: inline-block;
-    width: 45%;
-    height: 100%;
+    height: 660px;
+    width: 50%;
 }
 
 #french {
     background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
     background-size: cover;
-    margin-right: 5%;
 }
 
 #english {
     background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/american-flag.jpg') no-repeat center;
     background-size: cover;
-    margin-left: 5%;
+}
+
+.language {
+    font-family: 'Josefin Slab', serif;
+    position: absolute;
+    top: 15%;
+}
+
+#french-heading {
+    left: 20%;
+}
+
+#english-heading {
+    left: 75%;
+}
+
+#answer-input, #submit {
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#answer-input {
+      top: 45%;
+      height: 2em;
+}
+
+#submit {
+      top: 60%;
+      height: 1.5em;
 }
