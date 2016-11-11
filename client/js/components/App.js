@@ -2,6 +2,9 @@ var React = require("react");
 var Link = require('react-router').Link;
 var connect = require('react-redux').connect;
 
+var Logout = require("./Logout");
+var Question = require('./Question');
+
 var fetchNextQuestion = require("../action/actions").fetchNextQuestion;
 var submitAcessToken = require("../action/actions").submitAcessToken;
 var fetchQuestion = require("../action/actions").fetchQuestion;
@@ -53,6 +56,10 @@ var App = React.createClass({
         return (
             <div id="top-level-component">
                 <h1>French X</h1>
+                <div>
+                    <Logout/>
+                </div>
+
                 <div>
                     <Question 
                         currentQuestion={this.props.currentQuestion}
