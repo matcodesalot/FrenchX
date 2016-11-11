@@ -12,7 +12,7 @@ var questionsRouter = express.Router();
 questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: false }), function(req, res) {
 	const accessToken = req.params.accessToken;
 
-	User.findOne({accessToken: User.access_token}, function(err, user) {
+	User.findOne({access_token: accessToken}, function(err, user) {
 		if(errorHandler(err, res)) return;
 
 		//returns the first question in the list
@@ -25,7 +25,7 @@ questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer'
 	const accessToken = req.params.accessToken;
 	const isCorrect = req.body.isCorrect === "true";
 
-	User.findOne({accessToken: User.access_token}, function(err, user) {
+	User.findOne({access_token: accessToken}, function(err, user) {
 		if(errorHandler(err, res)) return;
 
 		const question = user.queue.shift(); //the current question

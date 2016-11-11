@@ -1,14 +1,18 @@
 var fetch = require('isomorphic-fetch');
-var store = require('../store');
+var browserHistory = require('react-router').browserHistory;
+
 
 //fetch API, no need to declare it as reducer case
-function fetchQuestion() {
-	return function(dispatch) {
-		//var url = '/questions/:userId' 
-			//this id should be removed
-		// var url = '/questions/582358ad3a5aa71165be0cb3'
-		var url = '/questions/58223e47f14cc779f9b3de5c'
-		return fetch(url).then(function(response) {
+function fetchQuestion(accessToken) {
+
+
+	return function(dispatch) { 
+		var url = '/questions/' + accessToken
+		return fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    }).then(function(response) {
 			if (response.status < 200 || response.status >= 300) {
 				var error = new Error(response.statusText);
 				error.response = response;
@@ -56,15 +60,13 @@ function submitAnswer(answer) {
 	}
 }
 
-function fetchNextQuestion(isCorrect) {
+function fetchNextQuestion(accessToken, isCorrect) {
 	return function (dispatch) {
-		var url = '/questions/58223e47f14cc779f9b3de5c/'
-		//this id should be removed
-		// var url = '/questions/582358ad3a5aa71165be0cb3/' 
-
+		var url = '/questions/' + accessToken; 
 		return fetch(url, {
 			method: 'POST',
 			headers: {
+				'Authorization': `Bearer ${accessToken}`,
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
@@ -87,13 +89,13 @@ function fetchNextQuestion(isCorrect) {
 			
 		})
 		.then(function(data) {
-			console.log(data);
-			store.dispatch(fetchNextQuestionSucess(data));
-			return store.dispatch(fetchQuestion());
+			 
+			dispatch(fetchNextQuestionSucess(data));
+			return dispatch(fetchQuestion(accessToken));
 		})
 		.catch(function(error) {
-			console.log(error);
-			return store.dispatch(fetchNextQuestionError(error));
+ 
+			return  dispatch(fetchNextQuestionError(error));
 		})
 	}
 }
@@ -115,6 +117,16 @@ function fetchNextQuestionError(error) {
 }
 
 
+var SUBMIT_ACCESS_TOKEN = 'SUBMIT_ACCESS_TOKEN';
+function submitAcessToken(accessToken) {
+	return {
+		type: SUBMIT_ACCESS_TOKEN,
+		payload: accessToken
+	}
+}
+
+
+
 exports.fetchQuestion = fetchQuestion;
 
 exports.FETCH_QUESTION_SUCESS = FETCH_QUESTION_SUCESS;
@@ -133,3 +145,6 @@ exports.fetchQuestionSucess = fetchNextQuestionSucess;
 
 exports.FETCH_NEXT_QUESTION_ERROR = FETCH_NEXT_QUESTION_ERROR;
 exports.fetchNextQuestionError = fetchNextQuestionError;
+
+exports.SUBMIT_ACCESS_TOKEN = SUBMIT_ACCESS_TOKEN;
+exports.submitAcessToken = submitAcessToken;
