@@ -9,10 +9,9 @@ html, body, #app, #homepage {
 }
 
 body {
-     opacity: 1;
 }
 
-#top-level-component h1 {
+#top-level-component > h1 {
     font-family: 'IM Fell French Canon', serif;
     position: fixed;
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
@@ -21,7 +20,7 @@ body {
 
 /*HOME PAGE*/
 #homepage {
-    background: #fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
+    background:  linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
     background-size: cover;
 }
 
@@ -34,7 +33,7 @@ body {
     left: 50%;
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
-    text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
+    /*text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;*/
     color: #000;
 }
 
@@ -72,9 +71,13 @@ span {
 .half-width {
     float: left;
     display: inline-block;
-    height: 700px;
+    height: 770px;
     width: 50%;
 }
+
+/*.hide {
+    display: none;
+}*/
 
 #french {
     background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
@@ -89,28 +92,26 @@ span {
 .language {
     font-family: 'Josefin Slab', serif;
     font-size: 2.5em;
-    position: absolute;
-    padding-top: 15%;
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
 }
 
 #french-heading {
+    margin-top: 25%;
     right: 25%;
 }
 
 .frenchWord {
-    background-color: #fff;
-    border: 2px solid #696969;
     font-size: 2em;
-    height: 57.6px;
-    left: 16.5%;
+    left: 21.5%;
+    overflow: auto;
     position: absolute;
+    text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
     top: 41%;
-    width: 8em;
 }
 
 #english-heading {
     left: 25%;
+    margin-top: 25%;
 }
 
 #answer-input, #submit {
@@ -129,4 +130,20 @@ span {
     height: 2.5em;
     top: 56%;
     width: 4em;
+}
+
+#next-button, #logout-button {
+    height: 2.5em;
+    position: absolute;
+    top: 45%;
+    width: 10em;
+    z-index: 1;
+}
+
+#next-button {
+    left: 72%;
+}
+
+#logout-button {
+    left: 45%;
 }

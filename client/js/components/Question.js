@@ -4,7 +4,7 @@ var Question = function(props) {
     if (!props || !props.currentQuestion) {
         return (
             <div id = "french" className = "top-half half-width">
-                <h1 id = "french-heading" className ="language">French</h1>
+                <h1 id = "french-heading" className = "language">French</h1>
             </div>
         )
     }
@@ -12,8 +12,8 @@ var Question = function(props) {
     if (!props.showNextQuestionButton) {
         return (
             <div id = "french" className = "top-half half-width">
-                <h1 id = "french-heading" className ="language">French</h1>
-                    <div className="frenchWord">
+                <h1 id = "french-heading" className = "language">French</h1>
+                    <div className = "frenchWord">
                             {props.currentQuestion}
                     </div>
             </div>
@@ -22,8 +22,8 @@ var Question = function(props) {
 
     return (
         <div id = "french" className = "top-half half-width">
-            <h1 id = "french-heading" className ="language">French</h1>
-                <div className="frenchWord">
+            <h1 id = "french-heading" className = "language">French</h1>
+                <div className = "frenchWord">
                         {props.currentFeedback}
                 </div>
         </div>
