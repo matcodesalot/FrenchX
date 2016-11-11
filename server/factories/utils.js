@@ -58,6 +58,7 @@ export function errorHandler(err, res) {
     return true;
 }
 
+//pretty sure we're not even using this
 export function customAuth(req, res, next) {
     if (!req.headers.bearerToken) {
         return res.sendStatus(401);
