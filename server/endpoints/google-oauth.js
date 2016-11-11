@@ -73,12 +73,10 @@ var bearerStrategy = new BearerStrategy(function(token, done) {
 
 passport.use(bearerStrategy);
 
-googleRouter.get('/profile', passport.authenticate('bearer', { session: false }), function(req, res) {
-    User.find({}, function(err, users) {
-		if(errorHandler(err, res)) return;
-		return res.json(users);
-	});
-});
+
+googleRouter.get('/logout', passport.authenticate('bearer', {session: false}), function(req, res) {
+	res.redirect('/');
+})
 
 
 export default googleRouter;
