@@ -9,6 +9,8 @@ var SUBMIT_ANSWER = actions.SUBMIT_ANSWER;
 var FETCH_NEXT_QUESTION_SUCESS = actions.FETCH_NEXT_QUESTION_SUCESS;
 var FETCH_NEXT_QUESTION_ERROR = actions.FETCH_NEXT_QUESTION_ERROR;
 
+var SUBMIT_ACCESS_TOKEN = actions.SUBMIT_ACCESS_TOKEN;
+
 
 var initialState = {
 	currentUser: null, //useremail
@@ -19,13 +21,14 @@ var initialState = {
 	isCorrect: false,
 	showNextQuestionButton: false,
 	fetchQuestionError: false,
-	nextQuestion: null
+	nextQuestion: null,
+	accessToken: null,
+	submitBoxShow: true
 }
 
-function questionsReducer(state, action) {
-	var newState = {};
-	state = state || initialState;
-
+function questionsReducer (state, action) {
+	var newState; 
+	
 	switch (action.type) {
 		
 		case 'FETCH_QUESTION_SUCESS':
@@ -53,20 +56,20 @@ function questionsReducer(state, action) {
 				newState = Object.assign({}, state, {
 					currentAnswerInput: action.answer,
 					currentFeedback: 'Correct!',
-					isCorrect: true,
-					showNextQuestionButton: true
+					isCorrect: 'true',
+					showNextQuestionButton: true,
+					submitBoxShow: false
 				})
 			}	
 			else {
 				newState = Object.assign({}, state, {
 					currentAnswerInput: action.answer,
 					currentFeedback: 'Incorrect, please try again.',
-					isCorrect: false,
-					showNextQuestionButton: true
+					isCorrect: 'false',
+					showNextQuestionButton: true,
+					submitBoxShow: false
 				})
 			}
-
-			console.log(newState);
 
 			return newState;
 
@@ -86,9 +89,19 @@ function questionsReducer(state, action) {
 			return newState;
 
 
+		case 'SUBMIT_ACCESS_TOKEN':
+			console.log(action.payload);
+			newState = Object.assign({}, state, {
+				accessToken: 'action.payload'
+			});
+
+			return newState;
+
 		default: 
-			return state;
+
+			return state || initialState;
 	}
 }
+
 
 module.exports = questionsReducer;
