@@ -11,6 +11,18 @@ html, body, #app, #homepage {
 body {
 }
 
+#footer {
+    bottom: 0;
+    font-size: 1em;
+    font-family: 'Josefin Slab', serif;
+    left: 0;
+    padding: 1rem;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    z-index: 1;
+}
+
 #top-level-component > h1 {
     font-family: 'IM Fell French Canon', serif;
     position: fixed;
@@ -135,15 +147,16 @@ span {
 #next-button, #logout-button {
     height: 2.5em;
     position: absolute;
-    top: 45%;
     width: 10em;
     z-index: 1;
 }
 
 #next-button {
     left: 72%;
+    top: 45%;
 }
 
 #logout-button {
-    left: 45%;
+    left: 90%;
+    top: 3%;
 }
