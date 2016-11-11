@@ -2,23 +2,19 @@ var React = require("react");
 var Link = require('react-router').Link;
 var connect = require('react-redux').connect;
 
-
 var Question = require("./Question");
 var Answer = require("./Answer");
-// var Feedback = require('./Feedback');
+
 var fetchNextQuestion = require("../action/actions").fetchNextQuestion;
 var submitAcessToken = require("../action/actions").submitAcessToken;
 var fetchQuestion = require("../action/actions").fetchQuestion;
 var submitAnswer = require("../action/actions").submitAnswer;
+
 //make app function that renders jsx element
 var App = React.createClass({
     componentDidMount: function() {
-        // this.props.accessToken = this.props.location.query.auth;
-        // this.props.submitAcessToken(this.props.location.query.auth);
         this.props.fetchCurrentQuestion(this.props.location.query.auth);
     },
-
-
     shouldComponentUpdate(nextProps, nextState) {
         return true;
     },
@@ -43,7 +39,6 @@ var App = React.createClass({
                 </div>
             )
         }
-
         else {
             return (
                 <div id = "english" className = "bottom-half half-width">
@@ -56,7 +51,6 @@ var App = React.createClass({
             );
         }
     },
-
 
     render: function(){
         return (
@@ -71,29 +65,11 @@ var App = React.createClass({
                 </div>
 
                 {this.showResult()}
-
- 
-
-
             </div>
         );
     }
 
 });
-
-
-
-/*
-                <div>
-                    // <Feedback 
-                    //     fetchNextQuestion={this.props.fetchFollowingQuestion}
-                    //     showNextQuestionButton={this.props.showNextQuestionButton}
-                    //     currentFeedback={this.props.currentFeedback}
-                    //     isCorrect={this.props.isCorrect}
-                    // />
-                </div>
-*/
-
 
 function mapStateToProps(state) {
     console.log(state);
@@ -121,4 +97,5 @@ function mapDispatchToProps(dispatch) {
         }
     }
 }
+
 module.exports = connect(mapStateToProps, mapDispatchToProps)(App);

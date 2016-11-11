@@ -34,9 +34,6 @@ var Question = function(props) {
         </div>
     );
 
-
-    
-
 }
 
 
