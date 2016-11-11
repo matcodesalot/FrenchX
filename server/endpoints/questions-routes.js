@@ -78,7 +78,7 @@ questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: 
 
 questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer', { session: false }), function(req, res) {
 	const accessToken = req.params.accessToken;
-	const isCorrect = req.body.isCorrect;
+	const isCorrect = req.body.isCorrect === "true";
 
 	User.findOne({accessToken: User.access_token}, function(err, user) {
 		if(errorHandler(err, res)) return;
