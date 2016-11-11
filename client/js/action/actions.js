@@ -125,7 +125,15 @@ function submitAcessToken(accessToken) {
 	}
 }
 
-
+var logoutAsync = function(accessToken) {
+		return function(dispatch) { 
+			var url = '/auth/google/logout';
+			return fetch(url, {
+	      headers: {
+	        'Authorization': `Bearer ${accessToken}`
+	      }
+	    })}
+}
 
 exports.fetchQuestion = fetchQuestion;
 
@@ -148,3 +156,5 @@ exports.fetchNextQuestionError = fetchNextQuestionError;
 
 exports.SUBMIT_ACCESS_TOKEN = SUBMIT_ACCESS_TOKEN;
 exports.submitAcessToken = submitAcessToken;
+
+exports.logoutAsync = logoutAsync;
