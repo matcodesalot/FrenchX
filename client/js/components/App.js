@@ -14,6 +14,7 @@ var logoutUser = require("../action/actions").logoutUser;
 var App = React.createClass({
     componentDidMount: function() {
         this.props.fetchCurrentQuestion(this.props.location.query.auth);
+        this.props.sendAccessToken(this.props.location.query.auth);
     },
     shouldComponentUpdate(nextProps, nextState) {
         return true;
@@ -26,7 +27,8 @@ var App = React.createClass({
    },
 
    onClickLogout: function() {
-        this.props.onClickLogoutUser(this.props.location.query.auth);
+        console.log('clicked logout');
+        this.props.onClickLogoutUser(this.props.accessToken);
    },
 
     showResult: function() {
@@ -39,7 +41,7 @@ var App = React.createClass({
                         </div>
                     </div>
 
-                    <button id="next-button" onClick={e => this.props.fetchFollowingQuestion(this.props.location.query.auth, this.props.isCorrect)}> Next </button>
+                    <button id="next-button" onClick={e => this.props.fetchFollowingQuestion(this.props.accessToken, this.props.isCorrect)}> Next </button>
                 </div>
             )
         }
@@ -57,11 +59,12 @@ var App = React.createClass({
     },
 
     render: function(){
+        console.log(this.props.accessToken);
         return (
             <div id="top-level-component">
                 <h1>French X</h1>
                 <div>
-                    <button id="logout-button" className="hide show" onClick={this.onClickLogout}>Logout</button>
+                    <button id="logout-button" className="hide show"><Link  to="/" onClick={this.onClickLogout} >Logout</Link></button>
                 </div>
 
                 <div>
@@ -80,14 +83,14 @@ var App = React.createClass({
 });
 
 function mapStateToProps(state) {
-    console.log(state);
+    console.log('msp');
     return {
         currentQuestion: state.currentQuestion,
         currentAnswerInput: state.currentAnswerInput,
         showNextQuestionButton: state.showNextQuestionButton,
         currentFeedback: state.currentFeedback,
         isCorrect: state.isCorrect,
-        acessToken: state.acessToken,
+        accessToken: state.accessToken,
         submitBoxShow: state.submitBoxShow
     }
 }
@@ -105,6 +108,9 @@ function mapDispatchToProps(dispatch) {
         },
         onClickLogoutUser: function(accessToken) {
             dispatch(logoutUser(accessToken));
+        },
+        sendAccessToken: function(accessToken) {
+            dispatch(submitAcessToken(accessToken));
         }
     }
 }

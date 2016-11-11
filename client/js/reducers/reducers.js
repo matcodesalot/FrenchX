@@ -28,7 +28,7 @@ var initialState = {
 
 function questionsReducer (state, action) {
 	var newState; 
-	
+	console.log((state || {}).accessToken, action.type);
 	switch (action.type) {
 		
 		case 'FETCH_QUESTION_SUCESS':
@@ -47,7 +47,6 @@ function questionsReducer (state, action) {
 		
 
 		case 'SUBMIT_ANSWER':
-			console.log('answer submitted')
 			newState = Object.assign({}, state, {
 				currentAnswerInput: action.answer
 			});
@@ -74,8 +73,6 @@ function questionsReducer (state, action) {
 			return newState;
 
 		case 'FETCH_NEXT_QUESTION_SUCESS':
-			console.log('next question success');
-
 			//should reset the state again
 			newState = Object.assign({}, state, initialState);
 
@@ -90,9 +87,8 @@ function questionsReducer (state, action) {
 
 
 		case 'SUBMIT_ACCESS_TOKEN':
-			console.log(action.payload);
 			newState = Object.assign({}, state, {
-				accessToken: 'action.payload'
+				accessToken: action.payload
 			});
 
 			return newState;
