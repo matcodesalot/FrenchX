@@ -41,7 +41,7 @@ var App = React.createClass({
                         </div>
                     </div>
 
-                    <button id="next-button" onClick={e => this.props.fetchFollowingQuestion(this.props.accessToken, this.props.isCorrect)}> Next </button>
+                    <button id="next-button" onClick={e => this.props.fetchFollowingQuestion(this.props.location.query.auth, this.props.isCorrect)}> Next </button>
                 </div>
             )
         }
