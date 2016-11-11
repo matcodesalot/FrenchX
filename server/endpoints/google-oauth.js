@@ -87,7 +87,7 @@ googleRouter.post('/logout', jsonParser, passport.authenticate('bearer', {sessio
 		if(errorHandler(err, res)) return;
 
 		console.log("user logged out. accessToken destroyed.");
-		return res.redirect('/');
+		return res.status(200).json({response: 'OK'});
 	});
 });
 
