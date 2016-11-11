@@ -2,11 +2,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 const jsonParser = bodyParser.json();
 import User from '../schemas/user';
-import {errorHandler, customAuth} from '../factories/utils';
+import {errorHandler} from '../factories/utils';
+import passport from 'passport';
 
 var questionsRouter = express.Router();
-
-import passport from 'passport';
 
 
 //GET the current question the user is on

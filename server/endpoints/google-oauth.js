@@ -15,7 +15,6 @@ googleRouter.use(passport.initialize());
 googleRouter.use(passport.session());
 
 
-
 // used to serialize the user for the session
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -28,9 +27,6 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-
-
-
 passport.use(new GoogleStrategy(
 	{
 		clientID: process.env.CLIENT_ID || secrets.clientID,
@@ -40,12 +36,10 @@ passport.use(new GoogleStrategy(
 
 	},
 	function(request, accessToken, refreshToken, profile, cb) {
-		// console.log('accessToken', accessToken);
 		var userInfo = {
 			googleId: profile.id,
 			access_token: accessToken
 		}
-
 		User.findOrCreate(userInfo, function(err, user) {
 			return cb(err, user);
 		});
@@ -58,54 +52,31 @@ googleRouter.get('/', passport.authenticate('google', {scope: ['profile'], sessi
 googleRouter.get('/callback', passport.authenticate('google', {failureRedirect: '/login', session: false}),
 	function(req, res) {
 		//successful authentication, redirect home
-		// console.log('req.user', req.user);
 		var accessToken = req.user.access_token;
 		var redirectLink = '/home?auth=' + accessToken;
 		res.redirect(redirectLink);
 	}
 );
 
-var bearerStrategy = new BearerStrategy(
-        function(token, done) {
-        	console.log('this is oken', token);
-
-            User.findOne({
-                    access_token: token
-                },
-                function(err, user) {
-
-                	console.log('bearerStrategy: found user', user)
-
-                    if (err) {
-                        return done(err)
-                    }
-                    if (!user) {
-                        return done(null, false)
-                    }
-
-                    return done(null, user, {
-                        scope: 'all'
-                    })
-                }
-            );
+var bearerStrategy = new BearerStrategy(function(token, done) {
+    User.findOne({access_token: token}, function(err, user) {
+        if (err) {
+            return done(err)
         }
-    )
+        if (!user) {
+            return done(null, false)
+        }
+
+        return done(null, user, {scope: 'all'})
+    });
+});
+
 passport.use(bearerStrategy);
 
 
-googleRouter.get(
-    '/profile',
-    passport.authenticate('bearer', { session: false }),
-    function(req, res) {
-    	console.log('this is req', req);
-
-    	User.find({}, function(err, users) {
-		if(errorHandler(err, res)) return;
-		console.log('this is users', users);
-		return res.json(users);
-	});
-    }
-);
+googleRouter.get('/logout', passport.authenticate('bearer', {session: false}), function(req, res) {
+	res.redirect('/');
+})
 
 
 export default googleRouter;
