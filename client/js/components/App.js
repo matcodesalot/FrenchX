@@ -18,7 +18,7 @@ var App = React.createClass({
     render: function(props){
 
         return (
-            <div>
+            <div id="top-level-component">
                 <h1>French X</h1>
                 <div>
                     <Question />
