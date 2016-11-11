@@ -7,7 +7,7 @@ var store = require("../store");
 var French = function(prop) {
     
     if (prop.frenchWord === null) {
-        return <div></div>
+        return <div className="frenchWord">visage</div>
     }
    
    return (

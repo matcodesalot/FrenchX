@@ -12,6 +12,13 @@ body {
      opacity: 1;
 }
 
+#top-level-component h1 {
+    font-family: 'IM Fell French Canon', serif;
+    position: fixed;
+    text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
+    top: 0; width: 100%; margin: auto;
+}
+
 /*HOME PAGE*/
 #homepage {
     background: #fff url('../assets/img/french-x-header.jpg') no-repeat center center fixed;
@@ -65,7 +72,7 @@ span {
 .half-width {
     float: left;
     display: inline-block;
-    height: 660px;
+    height: 700px;
     width: 50%;
 }
 
@@ -81,29 +88,43 @@ span {
 
 .language {
     font-family: 'Josefin Slab', serif;
+    font-size: 2.5em;
     position: absolute;
-    top: 15%;
+    padding-top: 15%;
+    text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
 }
 
 #french-heading {
-    left: 20%;
+    right: 25%;
+}
+
+.frenchWord {
+    font-size: 2em;
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    height: 3em;
+    border: 1px solid #000;
 }
 
 #english-heading {
-    left: 75%;
+    left: 25%;
 }
 
 #answer-input, #submit {
+    font-size: 1.2em;
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
+    border: 1px solid #000;
 }
 
 #answer-input {
-      top: 45%;
-      height: 2em;
+    top: 45%;
+    height: 3em;
 }
 
 #submit {
-      top: 60%;
-      height: 1.5em;
+    height: 2.5em;
+    top: 56%;
+    width: 4em;
 }
