@@ -60,7 +60,7 @@ googleRouter.get('/callback', passport.authenticate('google', {failureRedirect: 
 		//successful authentication, redirect home
 		// console.log('req.user', req.user);
 		var accessToken = req.user.access_token;
-		var redirectLink = '/?auth=' + accessToken;
+		var redirectLink = '/home?auth=' + accessToken;
 		res.redirect(redirectLink);
 	}
 );

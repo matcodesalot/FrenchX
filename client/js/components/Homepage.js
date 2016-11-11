@@ -15,7 +15,11 @@ var Homepage = React.createClass({
                     <h2>Learn Languages Through Space Repetition</h2>
                 </div>
                 <div id = "register-login">
-                	<button id = "register-login-button" ><Link to="/home">Register/Log In with <span>Google</span></Link></button>
+                	<button id = "register-login-button" >
+                        <a href="/auth/google">Register/Log In with <span>Google</span> 
+                        </a>
+                        
+                        </button>
                 </div>
             </div>
         );
