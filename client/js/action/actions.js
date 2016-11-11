@@ -4,8 +4,6 @@ var browserHistory = require('react-router').browserHistory;
 
 //fetch API, no need to declare it as reducer case
 function fetchQuestion(accessToken) {
-
-
 	return function(dispatch) { 
 		var url = '/questions/' + accessToken
 		return fetch(url, {
@@ -24,7 +22,6 @@ function fetchQuestion(accessToken) {
 			return response.json();
 		})
 		.then(function(data) {
-			console.log(data)
 			dispatch(fetchQuestionSucess(data));
 		})
 		.catch(function(error) {
@@ -130,6 +127,7 @@ var logoutUser = function(accessToken) {
 			var url = '/auth/google/logout';
 			return fetch(url, {
 	      headers: {
+	      	method: 'POST',
 	        'Authorization': `Bearer ${accessToken}`
 	      }
 	    })}

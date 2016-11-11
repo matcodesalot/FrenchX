@@ -14,6 +14,7 @@ var logoutUser = require("../action/actions").logoutUser;
 var App = React.createClass({
     componentDidMount: function() {
         this.props.fetchCurrentQuestion(this.props.location.query.auth);
+        this.props.sendAccessToken(this.props.location.query.auth);
     },
     shouldComponentUpdate(nextProps, nextState) {
         return true;
@@ -57,6 +58,7 @@ var App = React.createClass({
     },
 
     render: function(){
+        console.log(this.props.accessToken);
         return (
             <div id="top-level-component">
                 <h1>French X</h1>
@@ -80,14 +82,14 @@ var App = React.createClass({
 });
 
 function mapStateToProps(state) {
-    console.log(state);
+    console.log('msp');
     return {
         currentQuestion: state.currentQuestion,
         currentAnswerInput: state.currentAnswerInput,
         showNextQuestionButton: state.showNextQuestionButton,
         currentFeedback: state.currentFeedback,
         isCorrect: state.isCorrect,
-        acessToken: state.acessToken,
+        accessToken: state.accessToken,
         submitBoxShow: state.submitBoxShow
     }
 }
@@ -105,6 +107,9 @@ function mapDispatchToProps(dispatch) {
         },
         onClickLogoutUser: function(accessToken) {
             dispatch(logoutUser(accessToken));
+        },
+        sendAccessToken: function(accessToken) {
+            dispatch(submitAcessToken(accessToken));
         }
     }
 }
