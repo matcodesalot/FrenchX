@@ -40,7 +40,7 @@ var App = React.createClass({
                         </div>
                     </div>
 
-                    <button onClick={e => this.props.fetchFollowingQuestion(this.props.location.query.auth, this.props.isCorrect)}> Next </button>
+                    <button id="next-button" onClick={e => this.props.fetchFollowingQuestion(this.props.location.query.auth, this.props.isCorrect)}> Next </button>
                 </div>
             )
         }
@@ -63,7 +63,7 @@ var App = React.createClass({
             <div id="top-level-component">
                 <h1>French X</h1>
                 <div>
-                    <button onClick={this.onClickLogout}>Logout</button>
+                    <button id="logout-button" className="hide show" onClick={this.onClickLogout}>Logout</button>
                 </div>
 
                 <div>
