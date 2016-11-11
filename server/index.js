@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 import usersRoutes from './endpoints/users-routes';
 import questionsRoutes from './endpoints/questions-routes';
 import googleRoutes from './endpoints/google-oauth';
+import path from 'path';
+
 
 mongoose.Promise = global.Promise;
 
@@ -16,11 +18,23 @@ const app = express();
 exports.app = app;
 
 app.use(express.static(process.env.CLIENT_PATH));
+console.log(path.resolve(__dirname, '..', process.env.CLIENT_PATH,'/index.html'));
+
+
+// app.use(express.static('client'));
+
+// app.get('/', function(req, res) {
+//    res.sendFile('index.html');
+// });
+
+
 app.use('/users', usersRoutes);
 app.use('/questions', questionsRoutes);
 app.use('/auth/google', googleRoutes);
 
-
+app.get('/*', function(req, res){
+    res.sendFile(path.resolve(__dirname, '../', process.env.CLIENT_PATH,'index.html'))
+})
 
 function runServer() {
     return new Promise((resolve, reject) => {

@@ -27,6 +27,9 @@ var App = React.createClass({
                     <Answer />
                 </div>
 
+                <p>{this.props.location.query.auth}</p>
+             
+
                 <div>
                     <Feedback 
                         fetchNextQuestion={this.props.fetchNextQuestion}

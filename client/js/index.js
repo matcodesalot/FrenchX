@@ -21,6 +21,7 @@ var Link = router.Link;
 
 var routes = (
 	<Router history={browserHistory}>
+		
 		<Route path="/" component={Homepage}/>
 		<Route path="/home" component={App}/>
 	</Router>
