@@ -5,58 +5,119 @@ var connect = require('react-redux').connect;
 
 var Question = require("./Question");
 var Answer = require("./Answer");
-var Feedback = require('./Feedback');
+// var Feedback = require('./Feedback');
 var fetchNextQuestion = require("../action/actions").fetchNextQuestion;
-
-
-
-
+var submitAcessToken = require("../action/actions").submitAcessToken;
+var fetchQuestion = require("../action/actions").fetchQuestion;
+var submitAnswer = require("../action/actions").submitAnswer;
 //make app function that renders jsx element
 var App = React.createClass({
+    componentDidMount: function() {
+        // this.props.accessToken = this.props.location.query.auth;
+        // this.props.submitAcessToken(this.props.location.query.auth);
+        this.props.fetchCurrentQuestion(this.props.location.query.auth);
+    },
 
 
-    render: function(props){
+    shouldComponentUpdate(nextProps, nextState) {
+        return true;
+    },
 
+    onSubmit: function (event) {
+        event.preventDefault();
+        this.props.onAddSubmit(this.refs.answerInput.value);
+        this.refs.answerInput.value = "";
+   },
+
+    showResult: function() {
+        if(this.props.showNextQuestionButton === true) {
+            return (
+                <div>
+                    <div>
+                        <div id = "english" className = "bottom-half half-width">
+                            <h1 id = "english-heading" className = "language">English</h1>
+                        </div>
+                    </div>
+
+                    <button onClick={e => this.props.fetchFollowingQuestion(this.props.location.query.auth, this.props.isCorrect)}> Next </button>
+                </div>
+            )
+        }
+
+        else {
+            return (
+                <div id = "english" className = "bottom-half half-width">
+                    <h1 id = "english-heading" className = "language">English</h1>
+                    <form onSubmit={this.onSubmit}>
+                      <input id ="answer-input" type="text" ref="answerInput" />
+                      <input id ="submit" type="submit" value="Submit"/>
+                    </form>
+                </div>
+            );
+        }
+    },
+
+
+    render: function(){
         return (
             <div id="top-level-component">
                 <h1>French X</h1>
                 <div>
-                    <Question />
-                </div>
-                <div>
-                    <Answer />
-                </div>
-
-                <p>{this.props.location.query.auth}</p>
-             
-
-                <div>
-                    <Feedback 
-                        fetchNextQuestion={this.props.fetchNextQuestion}
+                    <Question 
+                        currentQuestion={this.props.currentQuestion}
                         showNextQuestionButton={this.props.showNextQuestionButton}
                         currentFeedback={this.props.currentFeedback}
-                        isCorrect={this.props.isCorrect}
                     />
                 </div>
+
+                {this.showResult()}
+
+ 
+
+
             </div>
         );
     }
 
 });
 
+
+
+/*
+                <div>
+                    // <Feedback 
+                    //     fetchNextQuestion={this.props.fetchFollowingQuestion}
+                    //     showNextQuestionButton={this.props.showNextQuestionButton}
+                    //     currentFeedback={this.props.currentFeedback}
+                    //     isCorrect={this.props.isCorrect}
+                    // />
+                </div>
+*/
+
+
 function mapStateToProps(state) {
+    console.log(state);
     return {
+        currentQuestion: state.currentQuestion,
         currentAnswerInput: state.currentAnswerInput,
         showNextQuestionButton: state.showNextQuestionButton,
         currentFeedback: state.currentFeedback,
-        isCorrect: state.isCorrect
+        isCorrect: state.isCorrect,
+        acessToken: state.acessToken,
+        submitBoxShow: state.submitBoxShow
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        fetchNextQuestion: function(isCorrect) {
-            dispatch(fetchNextQuestion(isCorrect))
+        fetchFollowingQuestion: function(accessToken, isCorrect) {
+            dispatch(fetchNextQuestion(accessToken, isCorrect));
+        },
+        fetchCurrentQuestion: function(accessToken) {
+            dispatch(fetchQuestion(accessToken));
+        },
+        onAddSubmit: function(answerInput) {
+            dispatch(submitAnswer(answerInput));
         }
     }
 }
