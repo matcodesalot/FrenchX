@@ -13,7 +13,7 @@ function fetchQuestion(accessToken) {
 		var url = '/questions/' + accessToken
 		return fetch(url, {
       headers: {
-        'Authorization': `Bearer ${hash}`
+        'Authorization': `Bearer ${accessToken}`
       }
     }).then(function(response) {
 			if (response.status < 200 || response.status >= 300) {
@@ -72,12 +72,12 @@ function fetchNextQuestion(accessToken, isCorrect) {
 		return fetch(url, {
 			method: 'POST',
 			headers: {
-				'Authorization': `Bearer ${hash}`,
+				'Authorization': `Bearer ${accessToken}`,
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				isCorrect: isCorrect.toString()
+				isCorrect: isCorrect
 			}),
 
 		})
@@ -95,13 +95,13 @@ function fetchNextQuestion(accessToken, isCorrect) {
 			
 		})
 		.then(function(data) {
-			console.log(data);
-			store.dispatch(fetchNextQuestionSucess(data));
-			return store.dispatch(fetchQuestion());
+			 
+			dispatch(fetchNextQuestionSucess(data));
+			return dispatch(fetchQuestion(accessToken));
 		})
 		.catch(function(error) {
-			console.log(error);
-			return store.dispatch(fetchNextQuestionError(error));
+ 
+			return  dispatch(fetchNextQuestionError(error));
 		})
 	}
 }

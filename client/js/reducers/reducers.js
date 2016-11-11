@@ -22,7 +22,8 @@ var initialState = {
 	showNextQuestionButton: false,
 	fetchQuestionError: false,
 	nextQuestion: null,
-	accessToken: null
+	accessToken: null,
+	submitBoxShow: true
 }
 
 function questionsReducer (state, action) {
@@ -56,20 +57,20 @@ function questionsReducer (state, action) {
 				newState = Object.assign({}, state, {
 					currentAnswerInput: action.answer,
 					currentFeedback: 'Correct!',
-					isCorrect: true,
-					showNextQuestionButton: true
+					isCorrect: 'true',
+					showNextQuestionButton: true,
+					submitBoxShow: false
 				})
 			}	
 			else {
 				newState = Object.assign({}, state, {
 					currentAnswerInput: action.answer,
 					currentFeedback: 'Incorrect, please try again.',
-					isCorrect: false,
-					showNextQuestionButton: true
+					isCorrect: 'false',
+					showNextQuestionButton: true,
+					submitBoxShow: false
 				})
 			}
-
-			console.log(newState);
 
 			return newState;
 
