@@ -2,13 +2,13 @@ var React = require("react");
 var Link = require('react-router').Link;
 var connect = require('react-redux').connect;
 
-var Logout = require("./Logout");
 var Question = require('./Question');
 
 var fetchNextQuestion = require("../action/actions").fetchNextQuestion;
 var submitAcessToken = require("../action/actions").submitAcessToken;
 var fetchQuestion = require("../action/actions").fetchQuestion;
 var submitAnswer = require("../action/actions").submitAnswer;
+var logoutUser = require("../action/actions").logoutUser;
 
 //make app function that renders jsx element
 var App = React.createClass({
@@ -23,6 +23,10 @@ var App = React.createClass({
         event.preventDefault();
         this.props.onAddSubmit(this.refs.answerInput.value);
         this.refs.answerInput.value = "";
+   },
+
+   onClickLogout: function() {
+        this.props.onClickLogoutUser(this.props.location.query.auth);
    },
 
     showResult: function() {
@@ -57,7 +61,7 @@ var App = React.createClass({
             <div id="top-level-component">
                 <h1>French X</h1>
                 <div>
-                    <Logout/>
+                    <button onClick={this.onClickLogout}>Logout</button>
                 </div>
 
                 <div>
@@ -98,6 +102,9 @@ function mapDispatchToProps(dispatch) {
         },
         onAddSubmit: function(answerInput) {
             dispatch(submitAnswer(answerInput));
+        },
+        onClickLogoutUser: function(accessToken) {
+            dispatch(logoutUser(accessToken));
         }
     }
 }

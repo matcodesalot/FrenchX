@@ -125,7 +125,7 @@ function submitAcessToken(accessToken) {
 	}
 }
 
-var logoutAsync = function(accessToken) {
+var logoutUser = function(accessToken) {
 		return function(dispatch) { 
 			var url = '/auth/google/logout';
 			return fetch(url, {
@@ -157,4 +157,4 @@ exports.fetchNextQuestionError = fetchNextQuestionError;
 exports.SUBMIT_ACCESS_TOKEN = SUBMIT_ACCESS_TOKEN;
 exports.submitAcessToken = submitAcessToken;
 
-exports.logoutAsync = logoutAsync;
+exports.logoutUser = logoutUser;
