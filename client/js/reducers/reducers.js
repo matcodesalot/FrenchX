@@ -27,9 +27,8 @@ var initialState = {
 }
 
 function questionsReducer (state, action) {
-	var newState;
-	// state = state || initialState;
-
+	var newState; 
+	
 	switch (action.type) {
 		
 		case 'FETCH_QUESTION_SUCESS':

@@ -6,10 +6,7 @@ var browserHistory = require('react-router').browserHistory;
 function fetchQuestion(accessToken) {
 
 
-	return function(dispatch) {
-		//var url = '/questions/:userId' 
-			//this id should be removed
-		// var url = '/questions/582358ad3a5aa71165be0cb3'
+	return function(dispatch) { 
 		var url = '/questions/' + accessToken
 		return fetch(url, {
       headers: {
@@ -65,10 +62,7 @@ function submitAnswer(answer) {
 
 function fetchNextQuestion(accessToken, isCorrect) {
 	return function (dispatch) {
-		var url = '/questions/' + accessToken;
-		//this id should be removed
-		// var url = '/questions/582358ad3a5aa71165be0cb3/' 
-
+		var url = '/questions/' + accessToken; 
 		return fetch(url, {
 			method: 'POST',
 			headers: {
