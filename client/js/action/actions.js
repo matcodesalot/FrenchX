@@ -1,5 +1,6 @@
 var fetch = require('isomorphic-fetch');
-var store = require('../store');
+var browserHistory = require('react-router').browserHistory;
+
 
 //fetch API, no need to declare it as reducer case
 function fetchQuestion(accessToken) {
@@ -10,7 +11,11 @@ function fetchQuestion(accessToken) {
 			//this id should be removed
 		// var url = '/questions/582358ad3a5aa71165be0cb3'
 		var url = '/questions/' + accessToken
-		return fetch(url).then(function(response) {
+		return fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${hash}`
+      }
+    }).then(function(response) {
 			if (response.status < 200 || response.status >= 300) {
 				var error = new Error(response.statusText);
 				error.response = response;
@@ -67,6 +72,7 @@ function fetchNextQuestion(accessToken, isCorrect) {
 		return fetch(url, {
 			method: 'POST',
 			headers: {
+				'Authorization': `Bearer ${hash}`,
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},

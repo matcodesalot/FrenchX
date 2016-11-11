@@ -39,7 +39,7 @@ var App = React.createClass({
     //     this.props.submitAcessToken(this.props.location.query.auth);
     // },
 
-    render: function(props){
+    render: function(){
         console.log(this.props);
         return (
             <div id="top-level-component">
