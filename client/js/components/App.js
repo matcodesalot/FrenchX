@@ -28,7 +28,7 @@ var App = React.createClass({
 
    onClickLogout: function() {
         console.log('clicked logout');
-        this.props.onClickLogoutUser(this.props.location.query.auth);
+        this.props.onClickLogoutUser(this.props.accessToken);
    },
 
     showResult: function() {
@@ -41,7 +41,7 @@ var App = React.createClass({
                         </div>
                     </div>
 
-                    <button id="next-button" onClick={e => this.props.fetchFollowingQuestion(this.props.location.query.auth, this.props.isCorrect)}> Next </button>
+                    <button id="next-button" onClick={e => this.props.fetchFollowingQuestion(this.props.accessToken, this.props.isCorrect)}> Next </button>
                 </div>
             )
         }
@@ -63,8 +63,8 @@ var App = React.createClass({
         return (
             <div id="top-level-component">
                 <h1>French X</h1>
-                <div id="logout-button" className="hide show">
-                    <Link  to="/" onClick={this.onClickLogout} >Logout</Link>
+                <div>
+                    <button id="logout-button" className="hide show"><Link  to="/" onClick={this.onClickLogout} >Logout</Link></button>
                 </div>
 
                 <div>
