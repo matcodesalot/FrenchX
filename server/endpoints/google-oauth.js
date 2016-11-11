@@ -8,6 +8,8 @@ import User from '../schemas/user';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 var BearerStrategy = require('passport-http-bearer').Strategy;
 import {errorHandler} from '../factories/utils';
+import bodyParser from 'body-parser';
+const jsonParser = bodyParser.json();
 
 const googleRouter = express.Router();
 
@@ -61,22 +63,33 @@ googleRouter.get('/callback', passport.authenticate('google', {failureRedirect: 
 var bearerStrategy = new BearerStrategy(function(token, done) {
     User.findOne({access_token: token}, function(err, user) {
         if (err) {
-            return done(err)
+            return done(err);
         }
         if (!user) {
-            return done(null, false)
+            return done(null, false);
         }
 
-        return done(null, user, {scope: 'all'})
+        return done(null, user, {scope: 'all'});
     });
 });
 
 passport.use(bearerStrategy);
 
 
-googleRouter.get('/logout', passport.authenticate('bearer', {session: false}), function(req, res) {
-	res.redirect('/');
-})
+// googleRouter.get('/logout', passport.authenticate('bearer', {session: false}), function(req, res) {
+// 	res.redirect('/');
+// });
+
+googleRouter.post('/logout', jsonParser, passport.authenticate('bearer', {session: false}), function(req, res) {
+	const accessToken = req.body.accessToken;
+
+	User.findOneAndUpdate({access_token: accessToken}, {access_token: ""}, function(err, user) {
+		if(errorHandler(err, res)) return;
+
+		console.log("user logged out. accessToken destroyed.");
+		return res.redirect('/');
+	});
+});
 
 
 export default googleRouter;
