@@ -22,9 +22,9 @@ app.use('/users', usersRoutes);
 app.use('/questions', questionsRoutes);
 app.use('/auth/google', googleRoutes);
 
-// app.get('/*', function(req, res){
-//     res.sendFile(path.resolve(__dirname, '../', process.env.CLIENT_PATH,'index.html'))
-// })
+app.get('/*', function(req, res){
+    res.sendFile(path.resolve(/*__dirname, '../',*/ process.env.CLIENT_PATH,'index.html'))
+})
 
 function runServer() {
     return new Promise((resolve, reject) => {
