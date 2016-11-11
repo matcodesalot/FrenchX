@@ -28,7 +28,6 @@ var initialState = {
 
 function questionsReducer (state, action) {
 	var newState; 
-	console.log((state || {}).accessToken, action.type);
 	switch (action.type) {
 		
 		case 'FETCH_QUESTION_SUCESS':
@@ -90,7 +89,6 @@ function questionsReducer (state, action) {
 			newState = Object.assign({}, state, {
 				accessToken: action.payload
 			});
-
 			return newState;
 
 		default: 

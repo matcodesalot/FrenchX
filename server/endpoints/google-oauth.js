@@ -1,10 +1,16 @@
 import 'babel-polyfill';
 import express from 'express';
 import passport from 'passport';
-//import secrets from '../secrets';
+
+
+
+
 var secrets;
 if (!process.env.CLIENT_ID) secrets = require('../secrets');
 import User from '../schemas/user';
+
+import {seedData} from '../factories/utils';
+
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 var BearerStrategy = require('passport-http-bearer').Strategy;
 import {errorHandler} from '../factories/utils';
@@ -42,8 +48,30 @@ passport.use(new GoogleStrategy(
 			googleId: profile.id,
 			access_token: accessToken
 		}
-		User.findOrCreate(userInfo, function(err, user) {
-			return cb(err, user);
+
+		User.findOne({googleId: userInfo.googleId}, function(err, user) {
+			if(err) return res.status(404);
+			if(user) {
+				User.findOneAndUpdate(
+					{
+						googleId: user.googleId
+					},
+					{
+						access_token: userInfo.access_token
+					}, 
+					{
+						new: true
+					},
+					function(err, user) {
+						return cb(null, user)
+					}
+				)
+			}
+
+			User.create({googleId: userInfo.googleId, access_token: userInfo.access_token, queue: seedData()}, (err, user) => {
+				if(err) return cb(err);
+				return cb(null, user);
+			});
 		});
 	}
 ));
@@ -80,15 +108,19 @@ passport.use(bearerStrategy);
 // 	res.redirect('/');
 // });
 
-googleRouter.post('/logout', jsonParser, passport.authenticate('bearer', {session: false}), function(req, res) {
+googleRouter.put('/logout', jsonParser, passport.authenticate('bearer', {session: false}), function(req, res) {
 	const accessToken = req.body.accessToken;
+	console.log('we are inside logout');
+	User.findOneAndUpdate(
+		{access_token: accessToken}, 
+		{access_token: null},
+		function(err, result) {
+			console.log('inside database finding');
+			console.log(result)
+		}
+	);
 
-	User.findOneAndUpdate({access_token: accessToken}, {access_token: ""}, function(err, user) {
-		if(errorHandler(err, res)) return;
-
-		console.log("user logged out. accessToken destroyed.");
-		return res.status(200).json({response: 'OK'});
-	});
+	return res.status(200).json({response: 'OK'});
 });
 
 

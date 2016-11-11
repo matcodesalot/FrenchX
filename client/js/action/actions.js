@@ -126,11 +126,26 @@ var logoutUser = function(accessToken) {
 		return function(dispatch) { 
 			var url = '/auth/google/logout';
 			return fetch(url, {
+		  method: 'PUT',
 	      headers: {
-	      	method: 'PUT',
-	        'Authorization': `Bearer ${accessToken}`
-	      }
-	    })}
+	        'Authorization': `Bearer ${accessToken}`,
+	        'Accept': 'application/json',
+			'Content-Type': 'application/json'
+	      }, 
+	      body: JSON.stringify({
+				accessToken: accessToken
+		  })
+	    })
+		.then(function(response) {
+			if (response.status < 200 || response.status >= 300) {
+				var error = new Error(response.statusText);
+				error.response = response;
+				throw error;
+			}
+
+			return response.json();
+		})
+	}
 }
 
 exports.fetchQuestion = fetchQuestion;
