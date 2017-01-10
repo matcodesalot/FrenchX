@@ -2,17 +2,14 @@ import 'babel-polyfill';
 import express from 'express';
 import passport from 'passport';
 
-
-
-
-var secrets;
+let secrets;
 if (!process.env.CLIENT_ID) secrets = require('../secrets');
 import User from '../schemas/user';
 
 import {seedData} from '../factories/utils';
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-var BearerStrategy = require('passport-http-bearer').Strategy;
+let BearerStrategy = require('passport-http-bearer').Strategy;
 import {errorHandler} from '../factories/utils';
 import bodyParser from 'body-parser';
 const jsonParser = bodyParser.json();
@@ -44,7 +41,7 @@ passport.use(new GoogleStrategy(
 
 	},
 	function(request, accessToken, refreshToken, profile, cb) {
-		var userInfo = {
+		let userInfo = {
 			googleId: profile.id,
 			access_token: accessToken
 		}
@@ -102,11 +99,6 @@ var bearerStrategy = new BearerStrategy(function(token, done) {
 });
 
 passport.use(bearerStrategy);
-
-
-// googleRouter.get('/logout', passport.authenticate('bearer', {session: false}), function(req, res) {
-// 	res.redirect('/');
-// });
 
 googleRouter.put('/logout', jsonParser, passport.authenticate('bearer', {session: false}), function(req, res) {
 	const accessToken = req.body.accessToken;
