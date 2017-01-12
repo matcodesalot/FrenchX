@@ -26,6 +26,3 @@ document.addEventListener(
 			document.getElementById('app')
 	)}
 );
-
-
-export default store;

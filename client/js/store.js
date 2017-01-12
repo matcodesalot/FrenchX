@@ -1,9 +1,11 @@
-var questionReducer = require('./reducers/reducers');
-var createStore = require('redux').createStore;
-var applyMiddleware = require('redux').applyMiddleware;
-var thunk = require('redux-thunk').default;
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import questionReducer from './reducers/reducers';
 
 
-var store = createStore(questionReducer, applyMiddleware(thunk));
+let store = createStore(
+	questionReducer, 
+	applyMiddleware(thunk)
+);
 
-module.exports = store;
+export default store;
