@@ -1,117 +1,114 @@
-var React = require("react");
-var Link = require('react-router').Link;
-var connect = require('react-redux').connect;
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
-var Question = require('./Question');
+import Question from './Question';
+import * as actions from '../action/actions';
 
-var fetchNextQuestion = require("../action/actions").fetchNextQuestion;
-var submitAcessToken = require("../action/actions").submitAcessToken;
-var fetchQuestion = require("../action/actions").fetchQuestion;
-var submitAnswer = require("../action/actions").submitAnswer;
-var logoutUser = require("../action/actions").logoutUser;
+import English from './English';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
-//make app function that renders jsx element
-var App = React.createClass({
-    componentDidMount: function() {
-        this.props.fetchCurrentQuestion(this.props.location.query.auth);
-        this.props.sendAccessToken(this.props.location.query.auth);
-    },
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onClickLogout = this.onClickLogout.bind(this);
+    }
+
+    componentDidMount () {
+        this.props.dispatch(actions.fetchNextQuestion(this.props.location.query.auth));
+    }
+
     shouldComponentUpdate(nextProps, nextState) {
         return true;
-    },
+    }
 
-    onSubmit: function (event) {
+    onSubmit (event) {
         event.preventDefault();
-        this.props.onAddSubmit(this.refs.answerInput.value);
+        this.props.dispatch(actions.submitAnswer(this.refs.answerInput.value));
         this.refs.answerInput.value = "";
-   },
+   }
 
-   onClickLogout: function() {
+   onClickLogout() {
+        this.props.dispatch(actions.logoutUser(this.props.location.query.auth));
+   }
 
-        this.props.onClickLogoutUser(this.props.accessToken);
-   },
-
-    showResult: function() {
+    showResult() {
         if(this.props.showNextQuestionButton === true) {
             return (
-                <div>
-                    <div>
-                        <div id = "english" className = "bottom-half half-width">
-                            <h1 id = "english-heading" className = "language">English</h1>
-                        </div>
-                    </div>
-
-                    <button id="next-button" onClick={e => this.props.fetchFollowingQuestion(this.props.location.query.auth, this.props.isCorrect)}> Next </button>
+                <div  id = "english" className = "bottom-half half-width">
+                    <English />
+                    <RaisedButton
+                        label="Next"
+                        labelPosition="before"
+                        containerElement="label"
+                        className="hide show"
+                        onClick={
+                            e => this.props.dispatch(actions.fetchNextQuestion(this.props.location.query.auth, this.props.isCorrect))
+                        }
+                    />
                 </div>
             )
         }
         else {
             return (
-                <div id = "english" className = "bottom-half half-width">
-                    <h1 id = "english-heading" className = "language">English</h1>
-                    <form onSubmit={this.onSubmit}>
-                      <input id ="answer-input" type="text" ref="answerInput" />
-                      <input id ="submit" type="submit" value="Submit"/>
-                    </form>
+                <div  id = "english" className = "bottom-half half-width">
+                    <English />
+                    <div>
+                        <form onSubmit={this.onSubmit}>
+                            <input id ="answer-input" type="text" ref="answerInput" />
+                            <RaisedButton
+                                label="Submit"
+                                labelPosition="before"
+                                containerElement="label"
+                                className="hide show"
+                                onClick={this.onSubmit}
+                            />
+                        </form>
+                    </div>
                 </div>
             );
         }
-    },
+    }
 
-    render: function(){
-
+    render() {
+        const styles = {
+          button: {
+            position: 'absolute',
+            'margin-top': '5vw'
+          }
+        }
         return (
-            <div id="top-level-component">
-                <h1>French X</h1>
-                <div>
-                    <button id="logout-button" className="hide show"><Link  to="/" onClick={this.onClickLogout} >Logout</Link></button>
+            <MuiThemeProvider>
+                <div id="top-level-component">
+                    <h1>French X</h1>
+                    <div>
+                        <RaisedButton
+                            label="Logout"
+                            href="/"
+                            labelPosition="before"
+                            containerElement="label"
+                            className="hide show"
+                            onClick={this.onClickLogout}
+                            style={styles.button}
+                        />
+                    </div>
+                    <div>
+                        <Question 
+                            currentQuestion={this.props.currentQuestion}
+                            showNextQuestionButton={this.props.showNextQuestionButton}
+                            currentFeedback={this.props.currentFeedback}
+                        />
+                    </div>
+                    {this.showResult()}
                 </div>
-
-                <div>
-                    <Question 
-                        currentQuestion={this.props.currentQuestion}
-                        showNextQuestionButton={this.props.showNextQuestionButton}
-                        currentFeedback={this.props.currentFeedback}
-                    />
-                </div>
-
-                {this.showResult()}
-            </div>
+            </MuiThemeProvider>
         );
     }
 
-});
+};
 
-function mapStateToProps(state) {
-    return {
-        currentQuestion: state.currentQuestion,
-        currentAnswerInput: state.currentAnswerInput,
-        showNextQuestionButton: state.showNextQuestionButton,
-        currentFeedback: state.currentFeedback,
-        isCorrect: state.isCorrect,
-        accessToken: state.accessToken,
-        submitBoxShow: state.submitBoxShow
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        fetchFollowingQuestion: function(accessToken, isCorrect) {
-            dispatch(fetchNextQuestion(accessToken, isCorrect));
-        },
-        fetchCurrentQuestion: function(accessToken) {
-            dispatch(fetchQuestion(accessToken));
-        },
-        onAddSubmit: function(answerInput) {
-            dispatch(submitAnswer(answerInput));
-        },
-        onClickLogoutUser: function(accessToken) {
-            dispatch(logoutUser(accessToken));
-        },
-        sendAccessToken: function(accessToken) {
-            dispatch(submitAcessToken(accessToken));
-        }
-    }
-}
-
-module.exports = connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+    ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, accessToken, submitBoxShow }) => ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, accessToken, submitBoxShow })
+)(App);

@@ -116,6 +116,7 @@ function fetchNextQuestionError(error) {
 
 var SUBMIT_ACCESS_TOKEN = 'SUBMIT_ACCESS_TOKEN';
 function submitAcessToken(accessToken) {
+	console.log(accessToken);
 	return {
 		type: SUBMIT_ACCESS_TOKEN,
 		payload: accessToken
