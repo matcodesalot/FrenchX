@@ -1,30 +1,21 @@
-var React = require("react");
-var Link = require('react-router').Link;
-
-// var RegisterLogIn = require("./RegisterLogIn");
-
-
-
+import React from 'react';
+import { Link } from 'react-router';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RegisterLogin from './RegisterLogin';
+import HomepageText from './Title';
 
 var Homepage = React.createClass({
     render: function(){
         return (
-            <div id = "homepage">
-                <div id ="homepage-text">
-                    <h1>French X</h1>
-                    <h2>Learn Languages Through Space Repetition</h2>
+            <MuiThemeProvider>
+                <div id = "homepage">
+                    <HomepageText />
+                    <RegisterLogin />
                 </div>
-                <div id = "register-login">
-                	<button id = "register-login-button" >
-                        <a href="/auth/google">Register/Log In with <span>Google</span> 
-                        </a>
-                        
-                        </button>
-                </div>
-            </div>
+            </MuiThemeProvider>
         );
     }
 
 });
 
-module.exports = Homepage
+export default Homepage;
