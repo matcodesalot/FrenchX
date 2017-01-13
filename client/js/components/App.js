@@ -110,5 +110,5 @@ class App extends Component {
 };
 
 export default connect(
-    ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, accessToken, submitBoxShow }) => ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, accessToken, submitBoxShow })
+    ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow }) => ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow })
 )(App);

@@ -111,14 +111,6 @@ const fetchNextQuestionError = (error) => {
 }
 
 
-const SUBMIT_ACCESS_TOKEN = 'SUBMIT_ACCESS_TOKEN';
-const submitAcessToken = (accessToken) => {
-	return {
-		type: SUBMIT_ACCESS_TOKEN,
-		payload: accessToken
-	}
-}
-
 const logoutUser = (accessToken) => {
 		return (dispatch) => { 
 			const url = '/auth/google/logout';
@@ -163,8 +155,5 @@ exports.fetchQuestionSucess = fetchNextQuestionSucess;
 
 exports.FETCH_NEXT_QUESTION_ERROR = FETCH_NEXT_QUESTION_ERROR;
 exports.fetchNextQuestionError = fetchNextQuestionError;
-
-exports.SUBMIT_ACCESS_TOKEN = SUBMIT_ACCESS_TOKEN;
-exports.submitAcessToken = submitAcessToken;
 
 exports.logoutUser = logoutUser;
