@@ -86,13 +86,13 @@ function questionsReducer (state, action) {
 
 
 		case 'SUBMIT_ACCESS_TOKEN':
+			console.log('action.payload', action.payload)
 			newState = Object.assign({}, state, {
 				accessToken: action.payload
 			});
 			return newState;
 
 		default: 
-
 			return state || initialState;
 	}
 }

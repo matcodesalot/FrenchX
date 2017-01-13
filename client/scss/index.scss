@@ -55,12 +55,7 @@ html, body, #app, #homepage {
     border: 0.1em solid black;
     margin-top: 2%;
 }
-#register-login-button a, #logout-button a {
-    color: #000;
-    font-family: 'IM Fell French Canon', serif;
-    font-size: 1.5em;
-    text-decoration: none;
-}
+
 span {
     color: red;
 }
@@ -68,7 +63,7 @@ span {
 .half-width {
     float: left;
     display: inline-block;
-    height: 770px;
+    height: 100vh;
     width: 50%;
 }
 /*.hide {
@@ -120,27 +115,14 @@ span {
     width: 11em;
     border: 2px solid #696969;
 }
-#next-button, #logout-button {
 
-    border: 2px solid #696969;
-    position: absolute;
-    width: 11em;
-    z-index: 1;
-}
 #next-button {
     height: 5em;
     width: 11em;
     left: 72%;
     top: 45%;
 }
-#logout-button {
-    width: 11em;
-    height: 5em;
-    left: 45%;
-    top: 10%;
-    width: 13em;
-    border: 2px solid #696969;
-}
+
 /*MEDIA QUERIES*/
 /* ----------- iPhone 5 and 5S ----------- */
 @media only screen 
