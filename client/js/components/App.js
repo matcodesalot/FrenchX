@@ -75,33 +75,34 @@ class App extends Component {
     render() {
         const styles = {
           button: {
-            position: 'absolute',
             'margin-top': '5vw'
           }
         }
         return (
             <MuiThemeProvider>
-                <div id="top-level-component">
-                    <h1>French X</h1>
-                    <div>
-                        <RaisedButton
-                            label="Logout"
-                            href="/"
-                            labelPosition="before"
-                            containerElement="label"
-                            className="hide show"
-                            onClick={this.onClickLogout}
-                            style={styles.button}
-                        />
+                <div id="main-page">
+                    <div id="top-level-component">
+                        <header id="logout-button">
+                            <h1>French X</h1>
+                            <RaisedButton
+                                label="Logout"
+                                href="/"
+                                labelPosition="before"
+                                containerElement="label"
+                                className="hide show"
+                                onClick={this.onClickLogout}
+                                style={styles.button}
+                            />
+                        </header>
+                        <div>
+                            <Question 
+                                currentQuestion={this.props.currentQuestion}
+                                showNextQuestionButton={this.props.showNextQuestionButton}
+                                currentFeedback={this.props.currentFeedback}
+                            />
+                        </div>
+                        {this.showResult()}
                     </div>
-                    <div>
-                        <Question 
-                            currentQuestion={this.props.currentQuestion}
-                            showNextQuestionButton={this.props.showNextQuestionButton}
-                            currentFeedback={this.props.currentFeedback}
-                        />
-                    </div>
-                    {this.showResult()}
                 </div>
             </MuiThemeProvider>
         );
