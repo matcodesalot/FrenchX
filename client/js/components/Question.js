@@ -1,35 +1,30 @@
-var React = require('react');
+import React from 'react';
 
-var Question = function(props) {
-    if (!props || !props.currentQuestion) {
+export default ({ currentQuestion, showNextQuestionButton, currentFeedback }) => {
+    if (!currentQuestion) {
         return (
             <div id = "french" className = "top-half half-width">
                 <h1 id = "french-heading" className = "language">French</h1>
             </div>
         )
     }
-
-    if (!props.showNextQuestionButton) {
+    if (!showNextQuestionButton) {
         return (
             <div id = "french" className = "top-half half-width">
                 <h1 id = "french-heading" className = "language">French</h1>
                     <div className = "frenchWord">
-                            {props.currentQuestion}
+                            {currentQuestion}
                     </div>
             </div>
         );
     }
-
     return (
         <div id = "french" className = "top-half half-width">
             <h1 id = "french-heading" className = "language">French</h1>
                 <div className = "frenchWord">
-                        {props.currentFeedback}
+                        {currentFeedback}
                 </div>
         </div>
     );
 
 }
-
-
-module.exports = Question;
