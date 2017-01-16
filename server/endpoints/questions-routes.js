@@ -5,8 +5,7 @@ import User from '../schemas/user';
 import {errorHandler} from '../factories/utils';
 import passport from 'passport';
 
-var questionsRouter = express.Router();
-
+let questionsRouter = express.Router();
 
 //GET the current question the user is on
 questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: false }), function(req, res) {

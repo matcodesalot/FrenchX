@@ -1,6 +1,6 @@
 import User from '../schemas/user';
 
-export function seedData() {
+export let seedData = () => {
     let questions = [
         {
             question: "Bonjour",
@@ -51,7 +51,7 @@ export function seedData() {
     return questions;
 }
 
-export function errorHandler(err, res) {
+export let errorHandler = (err, res) => {
     if(!err) return false;
     console.error(err);
     res.status(500).json({message: 'Internal server error :('});

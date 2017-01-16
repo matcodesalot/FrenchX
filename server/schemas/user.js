@@ -1,7 +1,7 @@
 // import {seedData} from '../factories/utils';
 
-var mongoose = require('mongoose');
-var UserSchema = new mongoose.Schema({
+let mongoose = require('mongoose');
+let UserSchema = new mongoose.Schema({
 	googleId: {
 		type: String,
 		required: true,
@@ -22,4 +22,4 @@ var UserSchema = new mongoose.Schema({
 
 
 
-module.exports = mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema);
