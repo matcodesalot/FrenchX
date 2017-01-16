@@ -23,7 +23,7 @@ questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: 
 //This handles the algorithm and moves the question back the appropriate amount of space
 questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer', { session: false }), function(req, res) {
 	const accessToken = req.params.accessToken;
-	const isCorrect = req.body.isCorrect === "true";
+	const isCorrect = req.body.isCorrect === true;
 
 	User.findOne({access_token: accessToken}, function(err, user) {
 		if(errorHandler(err, res)) return;

@@ -26,7 +26,7 @@ class CardAnswer extends Component {
     }
 	render () {
 		return (
-			<div  id="english" className="bottom-half half-width">
+			<div id="english" className="bottom-half half-width">
 			    <English />
 			    <form onSubmit={ this.onSubmitAnswer }>
 			        <div className="card">
@@ -40,6 +40,7 @@ class CardAnswer extends Component {
 			                      ref="answerInput"
 			                      type="text"
 			                      required={ true }
+			                      autoFocus={ true }
 			                    />
 			                </CardHeader>
 			                <CardActions>

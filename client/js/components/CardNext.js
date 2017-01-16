@@ -12,11 +12,12 @@ const style = {
     }
 }
 
-export default ({ onSubmitNextQuestion, currentAnswerInput }) => {
+export default function({ onSubmitNextQuestion, currentAnswerInput }) {
+
 	return (
 		<div id="english" className="bottom-half half-width">
 		    <English />
-		    <form onSubmit={onSubmitNextQuestion}>
+		    <form onSubmit={ onSubmitNextQuestion }>
 		        <div className="card">
 		            <Card>
 		                <CardHeader
@@ -27,8 +28,9 @@ export default ({ onSubmitNextQuestion, currentAnswerInput }) => {
 		                      defaultValue={ currentAnswerInput }
 		                      floatingLabelText="What is it in English?"
 		                      style={ style.cardNext}
-		                      disabled={ true }
-		                    />
+		                      disabled={ false }
+		                      autoFocus={ true }
+							/>
 		                </CardHeader>
 		                <CardActions>
 		                    <RaisedButton
