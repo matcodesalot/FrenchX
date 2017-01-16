@@ -28,7 +28,7 @@ class App extends Component {
 
     componentDidMount () {
         this.props.dispatch(actions.fetchNextQuestion(this.props.location.query.auth));
-    }
+    } 
 
     shouldComponentUpdate(nextProps, nextState) {
         return true;
