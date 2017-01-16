@@ -4,11 +4,11 @@ const jsonParser = bodyParser.json();
 import User from '../schemas/user';
 import {seedData, errorHandler} from '../factories/utils';
 
-var usersRouter = express.Router();
+let usersRouter = express.Router();
 
 //GET all the users from the db
-usersRouter.get('/', function(req, res) {
-	User.find({}, function(err, users) {
+usersRouter.get('/', (req, res) => {
+	User.find({}, (err, users) => {
 		if(errorHandler(err, res)) return;
 		
 		return res.json(users);
@@ -16,10 +16,10 @@ usersRouter.get('/', function(req, res) {
 });
 
 //DELETE a user in the db
-usersRouter.delete('/:userId', function(req, res) {
+usersRouter.delete('/:userId', (req, res) => {
 	let theUser = req.params.userId;
 
-	User.findByIdAndRemove(theUser, function(err, user) {
+	User.findByIdAndRemove(theUser, (err, user) => {
 		if(errorHandler(err, res)) return;
 
 		return res.json({});
@@ -27,4 +27,4 @@ usersRouter.delete('/:userId', function(req, res) {
 });
 
 
-module.exports = usersRouter;
+export default usersRouter;
