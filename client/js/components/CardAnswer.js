@@ -25,7 +25,6 @@ class CardAnswer extends Component {
         this.refs.answerInput.input.value = "";
     }
 	render () {
-		console.log(this)
 		return (
 			<div  id="english" className="bottom-half half-width">
 			    <English />

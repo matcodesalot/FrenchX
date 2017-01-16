@@ -47,8 +47,8 @@ class App extends Component {
             return <CardAnswer/>;
         }
     }
-
     render() {
+        console.log(this.props)
         return (
             <MuiThemeProvider>
                 <div id="main-page">
@@ -60,6 +60,8 @@ class App extends Component {
                             currentQuestion={this.props.currentQuestion}
                             showNextQuestionButton={this.props.showNextQuestionButton}
                             currentFeedback={this.props.currentFeedback}
+                            correctAnswer={this.props.correctAnswer}
+                            isCorrect={this.props.isCorrect}
                         />
                         {this.showResult()}
                     </div>
@@ -71,5 +73,5 @@ class App extends Component {
 };
 
 export default connect(
-    ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow }) => ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow })
+    ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer }) => ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer })
 )(App);

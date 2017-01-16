@@ -4,7 +4,8 @@ import FlatButton from 'material-ui/FlatButton';
 
 
 
-export default ({ currentQuestion, showNextQuestionButton, currentFeedback }) => {
+export default ({ currentQuestion, showNextQuestionButton, currentFeedback, isCorrect, correctAnswer }) => {
+    console.log(typeof isCorrect)
     if (!currentQuestion) {
         return (
             <div id = "french" className = "top-half half-width">
@@ -36,9 +37,12 @@ export default ({ currentQuestion, showNextQuestionButton, currentFeedback }) =>
                     <div className="card">
                         <Card>
                             <CardHeader
-                              className="card-feedback"
-                              title={currentFeedback}
+                                className="card-feedback"
+                                title={currentFeedback}
                             />
+                            <CardText>
+                              {(isCorrect === false) ? "Correct Answer: " + correctAnswer : ""}
+                            </CardText>
                         </Card>
                     </div>
                 </div>

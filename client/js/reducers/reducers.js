@@ -53,7 +53,7 @@ function questionsReducer (state, action) {
 				newState = Object.assign({}, state, {
 					currentAnswerInput: action.answer,
 					currentFeedback: 'Correct!',
-					isCorrect: 'true',
+					isCorrect: true,
 					showNextQuestionButton: true,
 					submitBoxShow: false
 				})
@@ -62,7 +62,7 @@ function questionsReducer (state, action) {
 				newState = Object.assign({}, state, {
 					currentAnswerInput: action.answer,
 					currentFeedback: 'Incorrect, please try again.',
-					isCorrect: 'false',
+					isCorrect: false,
 					showNextQuestionButton: true,
 					submitBoxShow: false
 				})
