@@ -1,11 +1,15 @@
 * {
     box-sizing: border-box;
-    text-align: center;
     margin: 0;
 }
 html, body, #app, #homepage {
     height: 100%;
 }
+header {
+  display: inline;
+  width: 100%;
+}
+
 #footer {
     bottom: 0;
     font-size: 1em;
@@ -27,6 +31,9 @@ html, body, #app, #homepage {
 #homepage {
     background:  linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
     background-size: cover;
+}
+#register-login {
+    text-align: center;
 }
 #homepage-text, #register-login {
     height: 50%;
@@ -65,6 +72,7 @@ span {
     display: inline-block;
     height: 100vh;
     width: 50%;
+    text-align: center;
 }
 /*.hide {
     display: none;
@@ -86,16 +94,7 @@ span {
     margin-top: 25%;
     right: 25%;
 }
-.frenchWord {
-    font-size: 2em;
-    left: 21.5%;
-    overflow: auto;
-    position: absolute;
-    text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
-    top: 41%;
-}
 #english-heading {
-    left: 25%;
     margin-top: 25%;
 }
 #answer-input, #submit {
@@ -121,6 +120,49 @@ span {
     width: 11em;
     left: 72%;
     top: 45%;
+}
+#logout-button {
+    position: absolute;
+    text-align: center;
+    display: inline;
+}
+.card {
+    width: 20em;
+    display: inline-block;
+    margin-top: 3em;
+}
+.card-question {
+    padding-top: 4em !important;
+}
+.card-question div {
+    padding: 0 !important;
+    height: 5em;
+}
+.card-question span {
+    font-size: 2em !important;
+}
+.card-answer div {
+    padding: 0 !important;
+}
+.card-answer span {
+    font-size: 2em !important;
+}
+.card-feedback {
+    padding-top: 4em !important;
+}
+.card-feedback div {
+    padding: 0 !important;
+    height: 5em;
+}
+.card-feedback span {
+    font-size: 1.5em !important;
+}
+.card-next div {
+    padding: 0 !important;
+    opacity: 1 !important;
+}
+.card-next span {
+    font-size: 2em !important;
 }
 
 /*MEDIA QUERIES*/

@@ -1,30 +1,28 @@
-var fetch = require('isomorphic-fetch');
-var browserHistory = require('react-router').browserHistory;
+import fetch from 'isomorphic-fetch';
+import { browserHistory } from 'react-router';
 
-
-//fetch API, no need to declare it as reducer case
-function fetchQuestion(accessToken) {
-	return function(dispatch) { 
-		var url = '/questions/' + accessToken
+const fetchQuestion = (accessToken) => {
+	return (dispatch) => { 
+		const url = '/questions/' + accessToken
 		return fetch(url, {
       headers: {
         'Authorization': `Bearer ${accessToken}`
       }
-    }).then(function(response) {
+    }).then((response) => {
 			if (response.status < 200 || response.status >= 300) {
-				var error = new Error(response.statusText);
+				const error = new Error(response.statusText);
 				error.response = response;
 				throw error;
 			}
 			return response;
 		})
-		.then(function(response) {
+		.then((response) => {
 			return response.json();
 		})
-		.then(function(data) {
+		.then((data) => {
 			dispatch(fetchQuestionSucess(data));
 		})
-		.catch(function(error) {
+		.catch((error) => {
 			return dispatch(
 				fetchQuestionError(error)
 				);
@@ -32,34 +30,33 @@ function fetchQuestion(accessToken) {
 	}
 }
 
-var FETCH_QUESTION_SUCESS = 'FETCH_QUESTION_SUCESS';
-function fetchQuestionSucess(questionArray) {
+const FETCH_QUESTION_SUCESS = 'FETCH_QUESTION_SUCESS';
+const fetchQuestionSucess = (questionArray) => {
 	return {
 		type: FETCH_QUESTION_SUCESS,
 		payload: questionArray
 	}
 }
 
-var FETCH_QUESTION_ERROR = 'FETCH_QUESTION_ERROR';
-function fetchQuestionError(error) {
+const FETCH_QUESTION_ERROR = 'FETCH_QUESTION_ERROR';
+const fetchQuestionError = (error) => {
 	return {
 		type: FETCH_QUESTION_ERROR,
 		payload: error
 	}
 }
 
-//submit answer should be sent to the backend to trigger space repetition algorithm
-var SUBMIT_ANSWER = 'SUBMIT_ANSWER';
-function submitAnswer(answer) {
+const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
+const submitAnswer = (answer) => {
 	return {
 		type: SUBMIT_ANSWER,
 		answer: answer
 	}
 }
 
-function fetchNextQuestion(accessToken, isCorrect) {
-	return function (dispatch) {
-		var url = '/questions/' + accessToken; 
+const fetchNextQuestion = (accessToken, isCorrect) => {
+	return (dispatch) => {
+		const url = '/questions/' + accessToken; 
 		return fetch(url, {
 			method: 'POST',
 			headers: {
@@ -72,41 +69,41 @@ function fetchNextQuestion(accessToken, isCorrect) {
 			}),
 
 		})
-		.then(function(response) {
+		.then((response) => {
 			if (response.status < 200 || response.status >= 300) {
-				var error = new Error(response.statusText);
+				const error = new Error(response.statusText);
 				error.response = response;
 				throw error;
 			}
 			return response;
 		})
-		.then(function(response) {
+		.then((response) => {
 
 			return response.json();
 			
 		})
-		.then(function(data) {
+		.then((data) => {
 			 
 			dispatch(fetchNextQuestionSucess(data));
 			return dispatch(fetchQuestion(accessToken));
 		})
-		.catch(function(error) {
+		.catch((error) => {
  
 			return  dispatch(fetchNextQuestionError(error));
 		})
 	}
 }
 
-var FETCH_NEXT_QUESTION_SUCESS = 'FETCH_NEXT_QUESTION_SUCESS';
-function fetchNextQuestionSucess(data) {
+const FETCH_NEXT_QUESTION_SUCESS = 'FETCH_NEXT_QUESTION_SUCESS';
+const fetchNextQuestionSucess = (data) => {
 	return {
 		type: FETCH_NEXT_QUESTION_SUCESS,
 		payload: data
 	}
 }
 
-var FETCH_NEXT_QUESTION_ERROR = 'FETCH_NEXT_QUESTION_ERROR';
-function fetchNextQuestionError(error) {
+const FETCH_NEXT_QUESTION_ERROR = 'FETCH_NEXT_QUESTION_ERROR';
+const fetchNextQuestionError = (error) => {
 	return {
 		type: FETCH_NEXT_QUESTION_ERROR,
 		payload: error
@@ -114,18 +111,9 @@ function fetchNextQuestionError(error) {
 }
 
 
-var SUBMIT_ACCESS_TOKEN = 'SUBMIT_ACCESS_TOKEN';
-function submitAcessToken(accessToken) {
-	console.log(accessToken);
-	return {
-		type: SUBMIT_ACCESS_TOKEN,
-		payload: accessToken
-	}
-}
-
-var logoutUser = function(accessToken) {
-		return function(dispatch) { 
-			var url = '/auth/google/logout';
+const logoutUser = (accessToken) => {
+		return (dispatch) => { 
+			const url = '/auth/google/logout';
 			return fetch(url, {
 		  method: 'PUT',
 	      headers: {
@@ -137,9 +125,9 @@ var logoutUser = function(accessToken) {
 				accessToken: accessToken
 		  })
 	    })
-		.then(function(response) {
+		.then((response) => {
 			if (response.status < 200 || response.status >= 300) {
-				var error = new Error(response.statusText);
+				const error = new Error(response.statusText);
 				error.response = response;
 				throw error;
 			}
@@ -167,8 +155,5 @@ exports.fetchQuestionSucess = fetchNextQuestionSucess;
 
 exports.FETCH_NEXT_QUESTION_ERROR = FETCH_NEXT_QUESTION_ERROR;
 exports.fetchNextQuestionError = fetchNextQuestionError;
-
-exports.SUBMIT_ACCESS_TOKEN = SUBMIT_ACCESS_TOKEN;
-exports.submitAcessToken = submitAcessToken;
 
 exports.logoutUser = logoutUser;
