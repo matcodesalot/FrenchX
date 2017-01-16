@@ -32,6 +32,9 @@ header {
     background:  linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
     background-size: cover;
 }
+#register-login {
+    text-align: center;
+}
 #homepage-text, #register-login {
     height: 50%;
     width: 100%;
@@ -91,14 +94,6 @@ span {
     margin-top: 25%;
     right: 25%;
 }
-.frenchWord {
-    font-size: 2em;
-    left: 21.5%;
-    overflow: auto;
-    position: absolute;
-    text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
-    top: 41%;
-}
 #english-heading {
     margin-top: 25%;
 }
@@ -127,10 +122,49 @@ span {
     top: 45%;
 }
 #logout-button {
-  position: absolute;
-  text-align: center;
-  display: inline;
+    position: absolute;
+    text-align: center;
+    display: inline;
 }
+.card {
+    width: 20em;
+    display: inline-block;
+    margin-top: 3em;
+}
+.card-question {
+    padding-top: 4em !important;
+}
+.card-question div {
+    padding: 0 !important;
+    height: 5em;
+}
+.card-question span {
+    font-size: 2em !important;
+}
+.card-answer div {
+    padding: 0 !important;
+}
+.card-answer span {
+    font-size: 2em !important;
+}
+.card-feedback {
+    padding-top: 4em !important;
+}
+.card-feedback div {
+    padding: 0 !important;
+    height: 5em;
+}
+.card-feedback span {
+    font-size: 1.5em !important;
+}
+.card-next div {
+    padding: 0 !important;
+    opacity: 1 !important;
+}
+.card-next span {
+    font-size: 2em !important;
+}
+
 
 /*MEDIA QUERIES*/
 /* ----------- iPhone 5 and 5S ----------- */

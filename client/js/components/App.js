@@ -8,12 +8,22 @@ import * as actions from '../action/actions';
 import English from './English';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
+
+const style = {
+    cardNext : {
+        opacity : "1 !important"
+    }
+}
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.onClickLogout = this.onClickLogout.bind(this);
+        this.onSubmitNextQuestion = this.onSubmitNextQuestion.bind(this);
     }
 
     componentDidMount () {
@@ -26,47 +36,84 @@ class App extends Component {
 
     onSubmit (event) {
         event.preventDefault();
-        this.props.dispatch(actions.submitAnswer(this.refs.answerInput.value));
-        this.refs.answerInput.value = "";
-   }
+        this.props.dispatch(actions.submitAnswer(this.refs.answerInput.input.value));
+        this.refs.answerInput.input.value = "";
+    }
 
-   onClickLogout() {
+    onClickLogout() {
         this.props.dispatch(actions.logoutUser(this.props.location.query.auth));
-   }
+    }
+    onSubmitNextQuestion (event) {
+        event.preventDefault();
+        this.props.dispatch(actions.fetchNextQuestion(this.props.location.query.auth, this.props.isCorrect));
+    }
 
     showResult() {
+        console.log(2, this.props.currentAnswerInput)
         if(this.props.showNextQuestionButton === true) {
             return (
                 <div  id = "english" className = "bottom-half half-width">
                     <English />
-                    <RaisedButton
-                        label="Next"
-                        labelPosition="before"
-                        containerElement="label"
-                        className="hide show"
-                        onClick={
-                            e => this.props.dispatch(actions.fetchNextQuestion(this.props.location.query.auth, this.props.isCorrect))
-                        }
-                    />
+                    <form onSubmit={this.onSubmitNextQuestion}>
+                        <div className="card">
+                            <Card>
+                                <CardHeader
+                                    className="card-next"
+                                >
+                                    <TextField
+                                      hintText={this.props.currentAnswerInput}
+                                      defaultValue={this.props.currentAnswerInput}
+                                      floatingLabelText="What is it in English?"
+                                      style={style.cardNext}
+                                      disabled={true}
+                                    />
+                                </CardHeader>
+                                <CardActions>
+                                    <RaisedButton
+                                        label="Next"
+                                        labelPosition="before"
+                                        containerElement="label"
+                                        className="hide show"
+                                        onClick={this.onSubmitNextQuestion}
+                                    />
+                                </CardActions>
+                            </Card>
+                        </div>
+                    </form>
                 </div>
             )
         }
         else {
+            console.log(this.refs.answerInput)
             return (
                 <div  id = "english" className = "bottom-half half-width">
                     <English />
-                    <div>
-                        <form onSubmit={this.onSubmit}>
-                            <input id ="answer-input" type="text" ref="answerInput" />
-                            <RaisedButton
-                                label="Submit"
-                                labelPosition="before"
-                                containerElement="label"
-                                className="hide show"
-                                onClick={this.onSubmit}
-                            />
-                        </form>
-                    </div>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="card">
+                            <Card>
+                                <CardHeader
+                                    className="card-answer"
+                                >
+                                    <TextField
+                                      floatingLabelText="What is it in English?"
+                                      hintText="Type answer here"
+                                      ref="answerInput"
+                                      type="text"
+                                      required={true}
+                                    />
+                                </CardHeader>
+                                <CardActions>
+                                    <RaisedButton
+                                        label="Submit"
+                                        labelPosition="before"
+                                        containerElement="label"
+                                        className="hide show"
+                                        onClick={this.onSubmit}
+                                    />
+                                </CardActions>
+                            </Card>
+                        </div>
+                    </form>
                 </div>
             );
         }
