@@ -39,8 +39,8 @@ class App extends Component {
     showResult() {
         if(this.props.showNextQuestionButton === true) {
             return <CardNext 
-                    onSubmitNextQuestion={this.onSubmitNextQuestion}
-                    currentAnswerInput={this.props.currentAnswerInput}
+                    onSubmitNextQuestion={ this.onSubmitNextQuestion }
+                    currentAnswerInput={ this.props.currentAnswerInput }
                     />
         }
         else {
@@ -48,22 +48,21 @@ class App extends Component {
         }
     }
     render() {
-        console.log(this.props)
         return (
             <MuiThemeProvider>
                 <div id="main-page">
                     <div id="top-level-component">
                         <Logout 
-                            onClickLogout={this.onClickLogout}
+                            onClickLogout={ this.onClickLogout }
                         />
                         <Question 
-                            currentQuestion={this.props.currentQuestion}
-                            showNextQuestionButton={this.props.showNextQuestionButton}
-                            currentFeedback={this.props.currentFeedback}
-                            correctAnswer={this.props.correctAnswer}
-                            isCorrect={this.props.isCorrect}
+                            currentQuestion={ this.props.currentQuestion }
+                            showNextQuestionButton={ this.props.showNextQuestionButton }
+                            currentFeedback={ this.props.currentFeedback }
+                            correctAnswer={ this.props.correctAnswer }
+                            isCorrect={ this.props.isCorrect }
                         />
-                        {this.showResult()}
+                        { this.showResult() }
                     </div>
                 </div>
             </MuiThemeProvider>

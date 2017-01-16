@@ -45,7 +45,6 @@ questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer'
 		else {
 			user.queue.splice(question.weight, 0, question);
 		}
-
 		user.save(function(err) {
 			if(errorHandler(err, res)) return;
 
