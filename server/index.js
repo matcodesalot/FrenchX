@@ -23,10 +23,10 @@ app.use('/questions', questionsRoutes);
 app.use('/auth/google', googleRoutes);
 
 app.get('/*', function(req, res){
-    res.sendFile(path.resolve(/*__dirname, '../',*/ process.env.CLIENT_PATH,'index.html'))
+    res.sendFile(path.resolve(process.env.CLIENT_PATH,'index.html'))
 })
 
-function runServer() {
+let runServer = () => {
     return new Promise((resolve, reject) => {
         let databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/frenchapp';
         mongoose

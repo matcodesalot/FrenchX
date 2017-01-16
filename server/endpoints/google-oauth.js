@@ -2,17 +2,14 @@ import 'babel-polyfill';
 import express from 'express';
 import passport from 'passport';
 
-
-
-
-var secrets;
+let secrets;
 if (!process.env.CLIENT_ID) secrets = require('../secrets');
 import User from '../schemas/user';
 
 import {seedData} from '../factories/utils';
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-var BearerStrategy = require('passport-http-bearer').Strategy;
+let BearerStrategy = require('passport-http-bearer').Strategy;
 import {errorHandler} from '../factories/utils';
 import bodyParser from 'body-parser';
 const jsonParser = bodyParser.json();
@@ -43,13 +40,13 @@ passport.use(new GoogleStrategy(
 		passReqToCallback: true
 
 	},
-	function(request, accessToken, refreshToken, profile, cb) {
-		var userInfo = {
+	(request, accessToken, refreshToken, profile, cb) => {
+		let userInfo = {
 			googleId: profile.id,
 			access_token: accessToken
 		}
 
-		User.findOne({googleId: userInfo.googleId}, function(err, user) {
+		User.findOne({googleId: userInfo.googleId}, (err, user) => {
 			if(err) return res.status(404);
 			if(user) {
 				User.findOneAndUpdate(
@@ -62,7 +59,7 @@ passport.use(new GoogleStrategy(
 					{
 						new: true
 					},
-					function(err, user) {
+					(err, user) => {
 						return cb(null, user)
 					}
 				)
@@ -80,16 +77,16 @@ passport.use(new GoogleStrategy(
 googleRouter.get('/', passport.authenticate('google', {scope: ['profile'], session: false}));
 
 googleRouter.get('/callback', passport.authenticate('google', {failureRedirect: '/login', session: false}),
-	function(req, res) {
+	(req, res) => {
 		//successful authentication, redirect home
-		var accessToken = req.user.access_token;
-		var redirectLink = '/home?auth=' + accessToken;
+		const accessToken = req.user.access_token;
+		const redirectLink = '/home?auth=' + accessToken;
 		res.redirect(redirectLink);
 	}
 );
 
-var bearerStrategy = new BearerStrategy(function(token, done) {
-    User.findOne({access_token: token}, function(err, user) {
+let bearerStrategy = new BearerStrategy((token, done) => {
+    User.findOne({ access_token: token }, (err, user) => {
         if (err) {
             return done(err);
         }
@@ -103,24 +100,15 @@ var bearerStrategy = new BearerStrategy(function(token, done) {
 
 passport.use(bearerStrategy);
 
-
-// googleRouter.get('/logout', passport.authenticate('bearer', {session: false}), function(req, res) {
-// 	res.redirect('/');
-// });
-
-googleRouter.put('/logout', jsonParser, passport.authenticate('bearer', {session: false}), function(req, res) {
+googleRouter.put('/logout', jsonParser, passport.authenticate('bearer', {session: false}), (req, res) => {
 	const accessToken = req.body.accessToken;
-	console.log('we are inside logout');
 	User.findOneAndUpdate(
 		{access_token: accessToken}, 
 		{access_token: null},
-		function(err, result) {
-			console.log('inside database finding');
-			console.log(result)
+		(err, result) => {
+			return res.status(200).json({response: 'OK'});
 		}
-	);
-
-	return res.status(200).json({response: 'OK'});
+	);	
 });
 
 

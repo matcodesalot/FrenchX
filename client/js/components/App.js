@@ -1,117 +1,76 @@
-var React = require("react");
-var Link = require('react-router').Link;
-var connect = require('react-redux').connect;
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import * as actions from '../action/actions';
 
-var Question = require('./Question');
+//child components
+import Question from './Question';
+import English from './English';
+import CardAnswer from './CardAnswer';
+import CardNext from './CardNext';
+import Logout from './Logout';
 
-var fetchNextQuestion = require("../action/actions").fetchNextQuestion;
-var submitAcessToken = require("../action/actions").submitAcessToken;
-var fetchQuestion = require("../action/actions").fetchQuestion;
-var submitAnswer = require("../action/actions").submitAnswer;
-var logoutUser = require("../action/actions").logoutUser;
+//google material UI theme provider 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-//make app function that renders jsx element
-var App = React.createClass({
-    componentDidMount: function() {
-        this.props.fetchCurrentQuestion(this.props.location.query.auth);
-        this.props.sendAccessToken(this.props.location.query.auth);
-    },
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.onClickLogout = this.onClickLogout.bind(this);
+        this.onSubmitNextQuestion = this.onSubmitNextQuestion.bind(this);
+    }
+
+    componentDidMount () {
+        this.props.dispatch(actions.fetchNextQuestion(this.props.location.query.auth));
+    } 
+
     shouldComponentUpdate(nextProps, nextState) {
         return true;
-    },
+    }
 
-    onSubmit: function (event) {
+    onClickLogout() {
+        this.props.dispatch(actions.logoutUser(this.props.location.query.auth));
+    }
+    onSubmitNextQuestion (event) {
         event.preventDefault();
-        this.props.onAddSubmit(this.refs.answerInput.value);
-        this.refs.answerInput.value = "";
-   },
-
-   onClickLogout: function() {
-
-        this.props.onClickLogoutUser(this.props.accessToken);
-   },
-
-    showResult: function() {
+        this.props.dispatch(actions.fetchNextQuestion(this.props.location.query.auth, this.props.isCorrect));
+    }
+    showResult() {
         if(this.props.showNextQuestionButton === true) {
-            return (
-                <div>
-                    <div>
-                        <div id = "english" className = "bottom-half half-width">
-                            <h1 id = "english-heading" className = "language">English</h1>
-                        </div>
-                    </div>
-
-                    <button id="next-button" onClick={e => this.props.fetchFollowingQuestion(this.props.location.query.auth, this.props.isCorrect)}> Next </button>
-                </div>
-            )
+            return <CardNext 
+                    onSubmitNextQuestion={ this.onSubmitNextQuestion }
+                    currentAnswerInput={ this.props.currentAnswerInput }
+                    />
         }
         else {
-            return (
-                <div id = "english" className = "bottom-half half-width">
-                    <h1 id = "english-heading" className = "language">English</h1>
-                    <form onSubmit={this.onSubmit}>
-                      <input id ="answer-input" type="text" ref="answerInput" />
-                      <input id ="submit" type="submit" value="Submit"/>
-                    </form>
-                </div>
-            );
+            return <CardAnswer/>;
         }
-    },
-
-    render: function(){
-
+    }
+    render() {
         return (
-            <div id="top-level-component">
-                <h1>French X</h1>
-                <div>
-                    <button id="logout-button" className="hide show"><Link  to="/" onClick={this.onClickLogout} >Logout</Link></button>
+            <MuiThemeProvider>
+                <div id="main-page">
+                    <div id="top-level-component">
+                        <Logout 
+                            onClickLogout={ this.onClickLogout }
+                        />
+                        <Question 
+                            currentQuestion={ this.props.currentQuestion }
+                            showNextQuestionButton={ this.props.showNextQuestionButton }
+                            currentFeedback={ this.props.currentFeedback }
+                            correctAnswer={ this.props.correctAnswer }
+                            isCorrect={ this.props.isCorrect }
+                        />
+                        { this.showResult() }
+                    </div>
                 </div>
-
-                <div>
-                    <Question 
-                        currentQuestion={this.props.currentQuestion}
-                        showNextQuestionButton={this.props.showNextQuestionButton}
-                        currentFeedback={this.props.currentFeedback}
-                    />
-                </div>
-
-                {this.showResult()}
-            </div>
+            </MuiThemeProvider>
         );
     }
 
-});
+};
 
-function mapStateToProps(state) {
-    return {
-        currentQuestion: state.currentQuestion,
-        currentAnswerInput: state.currentAnswerInput,
-        showNextQuestionButton: state.showNextQuestionButton,
-        currentFeedback: state.currentFeedback,
-        isCorrect: state.isCorrect,
-        accessToken: state.accessToken,
-        submitBoxShow: state.submitBoxShow
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        fetchFollowingQuestion: function(accessToken, isCorrect) {
-            dispatch(fetchNextQuestion(accessToken, isCorrect));
-        },
-        fetchCurrentQuestion: function(accessToken) {
-            dispatch(fetchQuestion(accessToken));
-        },
-        onAddSubmit: function(answerInput) {
-            dispatch(submitAnswer(answerInput));
-        },
-        onClickLogoutUser: function(accessToken) {
-            dispatch(logoutUser(accessToken));
-        },
-        sendAccessToken: function(accessToken) {
-            dispatch(submitAcessToken(accessToken));
-        }
-    }
-}
-
-module.exports = connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+    ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer }) => ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer })
+)(App);

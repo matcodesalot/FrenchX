@@ -5,8 +5,7 @@ import User from '../schemas/user';
 import {errorHandler} from '../factories/utils';
 import passport from 'passport';
 
-var questionsRouter = express.Router();
-
+let questionsRouter = express.Router();
 
 //GET the current question the user is on
 questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: false }), function(req, res) {
@@ -23,7 +22,7 @@ questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: 
 //This handles the algorithm and moves the question back the appropriate amount of space
 questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer', { session: false }), function(req, res) {
 	const accessToken = req.params.accessToken;
-	const isCorrect = req.body.isCorrect === "true";
+	const isCorrect = req.body.isCorrect === true;
 
 	User.findOne({access_token: accessToken}, function(err, user) {
 		if(errorHandler(err, res)) return;
@@ -45,7 +44,6 @@ questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer'
 		else {
 			user.queue.splice(question.weight, 0, question);
 		}
-
 		user.save(function(err) {
 			if(errorHandler(err, res)) return;
 

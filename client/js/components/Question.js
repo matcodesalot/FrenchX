@@ -1,35 +1,52 @@
-var React = require('react');
+import React from 'react';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
-var Question = function(props) {
-    if (!props || !props.currentQuestion) {
+
+
+export default ({ currentQuestion, showNextQuestionButton, currentFeedback, isCorrect, correctAnswer }) => {
+    console.log(typeof isCorrect)
+    if (!currentQuestion) {
         return (
             <div id = "french" className = "top-half half-width">
                 <h1 id = "french-heading" className = "language">French</h1>
             </div>
         )
     }
-
-    if (!props.showNextQuestionButton) {
+    if (!showNextQuestionButton) {
         return (
             <div id = "french" className = "top-half half-width">
                 <h1 id = "french-heading" className = "language">French</h1>
-                    <div className = "frenchWord">
-                            {props.currentQuestion}
+                    <div>
+                        <div className="card">
+                            <Card>
+                                <CardHeader
+                                  className="card-question"
+                                  title={currentQuestion}
+                                />
+                            </Card>
+                        </div>
                     </div>
             </div>
         );
-    }
-
+    } 
     return (
         <div id = "french" className = "top-half half-width">
             <h1 id = "french-heading" className = "language">French</h1>
-                <div className = "frenchWord">
-                        {props.currentFeedback}
+                <div>
+                    <div className="card">
+                        <Card>
+                            <CardHeader
+                                className="card-feedback"
+                                title={currentFeedback}
+                            />
+                            <CardText>
+                              {(isCorrect === false) ? "Correct Answer: " + correctAnswer : ""}
+                            </CardText>
+                        </Card>
+                    </div>
                 </div>
         </div>
     );
 
 }
-
-
-module.exports = Question;

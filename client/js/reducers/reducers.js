@@ -1,33 +1,32 @@
-var actions = require('../action/actions');
-var update = require('react-addons-update');
+import * as actions from '../action/actions';
+import update from 'react-addons-update';
 
-var FETCH_QUESTION_SUCESS = actions.FETCH_QUESTION_SUCESS;
-var FETCH_QUESTION_ERROR = actions.FETCH_QUESTION_ERROR;
+const FETCH_QUESTION_SUCESS = actions.FETCH_QUESTION_SUCESS;
+const FETCH_QUESTION_ERROR = actions.FETCH_QUESTION_ERROR;
 
-var SUBMIT_ANSWER = actions.SUBMIT_ANSWER;
+const SUBMIT_ANSWER = actions.SUBMIT_ANSWER;
 
-var FETCH_NEXT_QUESTION_SUCESS = actions.FETCH_NEXT_QUESTION_SUCESS;
-var FETCH_NEXT_QUESTION_ERROR = actions.FETCH_NEXT_QUESTION_ERROR;
+const FETCH_NEXT_QUESTION_SUCESS = actions.FETCH_NEXT_QUESTION_SUCESS;
+const FETCH_NEXT_QUESTION_ERROR = actions.FETCH_NEXT_QUESTION_ERROR;
 
-var SUBMIT_ACCESS_TOKEN = actions.SUBMIT_ACCESS_TOKEN;
+const SUBMIT_ACCESS_TOKEN = actions.SUBMIT_ACCESS_TOKEN;
 
 
-var initialState = {
-	currentUser: null, //useremail
-	currentQuestion: null, //bonjour
+let initialState = {
+	currentUser: null,
+	currentQuestion: null,
 	correctAnswer: null,
-	currentAnswerInput: null, //hello
-	currentFeedback: null, //Correct or 'incorrect' + currentAnswerInput
+	currentAnswerInput: null, 
+	currentFeedback: null,
 	isCorrect: false,
 	showNextQuestionButton: false,
 	fetchQuestionError: false,
 	nextQuestion: null,
-	accessToken: null,
 	submitBoxShow: true
 }
 
 function questionsReducer (state, action) {
-	var newState; 
+	let newState; 
 	switch (action.type) {
 		
 		case 'FETCH_QUESTION_SUCESS':
@@ -54,7 +53,7 @@ function questionsReducer (state, action) {
 				newState = Object.assign({}, state, {
 					currentAnswerInput: action.answer,
 					currentFeedback: 'Correct!',
-					isCorrect: 'true',
+					isCorrect: true,
 					showNextQuestionButton: true,
 					submitBoxShow: false
 				})
@@ -63,7 +62,7 @@ function questionsReducer (state, action) {
 				newState = Object.assign({}, state, {
 					currentAnswerInput: action.answer,
 					currentFeedback: 'Incorrect, please try again.',
-					isCorrect: 'false',
+					isCorrect: false,
 					showNextQuestionButton: true,
 					submitBoxShow: false
 				})
@@ -84,18 +83,10 @@ function questionsReducer (state, action) {
 			});
 			return newState;
 
-
-		case 'SUBMIT_ACCESS_TOKEN':
-			newState = Object.assign({}, state, {
-				accessToken: action.payload
-			});
-			return newState;
-
 		default: 
-
 			return state || initialState;
 	}
 }
 
 
-module.exports = questionsReducer;
+export default questionsReducer;

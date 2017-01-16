@@ -1,11 +1,15 @@
 * {
     box-sizing: border-box;
-    text-align: center;
     margin: 0;
 }
 html, body, #app, #homepage {
     height: 100%;
 }
+header {
+  display: inline;
+  width: 100%;
+}
+
 #footer {
     bottom: 0;
     font-size: 1em;
@@ -27,6 +31,9 @@ html, body, #app, #homepage {
 #homepage {
     background:  linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
     background-size: cover;
+}
+#register-login {
+    text-align: center;
 }
 #homepage-text, #register-login {
     height: 50%;
@@ -55,12 +62,7 @@ html, body, #app, #homepage {
     border: 0.1em solid black;
     margin-top: 2%;
 }
-#register-login-button a, #logout-button a {
-    color: #000;
-    font-family: 'IM Fell French Canon', serif;
-    font-size: 1.5em;
-    text-decoration: none;
-}
+
 span {
     color: red;
 }
@@ -68,8 +70,9 @@ span {
 .half-width {
     float: left;
     display: inline-block;
-    height: 770px;
+    height: 100vh;
     width: 50%;
+    text-align: center;
 }
 /*.hide {
     display: none;
@@ -91,16 +94,7 @@ span {
     margin-top: 25%;
     right: 25%;
 }
-.frenchWord {
-    font-size: 2em;
-    left: 21.5%;
-    overflow: auto;
-    position: absolute;
-    text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
-    top: 41%;
-}
 #english-heading {
-    left: 25%;
     margin-top: 25%;
 }
 #answer-input, #submit {
@@ -120,13 +114,7 @@ span {
     width: 11em;
     border: 2px solid #696969;
 }
-#next-button, #logout-button {
 
-    border: 2px solid #696969;
-    position: absolute;
-    width: 11em;
-    z-index: 1;
-}
 #next-button {
     height: 5em;
     width: 11em;
@@ -134,13 +122,51 @@ span {
     top: 45%;
 }
 #logout-button {
-    width: 11em;
-    height: 5em;
-    left: 45%;
-    top: 10%;
-    width: 13em;
-    border: 2px solid #696969;
+    position: absolute;
+    text-align: center;
+    display: inline;
 }
+.card {
+    width: 20em;
+    display: inline-block;
+    margin-top: 3em;
+}
+.card-question {
+    padding-top: 4em !important;
+}
+.card-question div {
+    padding: 0 !important;
+    height: 5em;
+}
+.card-question span {
+    font-size: 2em !important;
+}
+.card-answer div {
+    padding: 0 !important;
+}
+.card-answer span {
+    font-size: 2em !important;
+}
+.card-feedback {
+    padding-top: 4em !important;
+}
+.card-feedback div {
+    padding: 0 !important;
+}
+.card-feedback span {
+    font-size: 1.5em !important;
+}
+.card-next div {
+    padding: 0 !important;
+    opacity: 1 !important;
+}
+.card-next span {
+    font-size: 2em !important;
+}
+.card-next input {
+  background-color: white !important;
+}
+
 /*MEDIA QUERIES*/
 /* ----------- iPhone 5 and 5S ----------- */
 @media only screen 
