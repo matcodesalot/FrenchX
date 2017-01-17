@@ -10,10 +10,12 @@ header {
   width: 100%;
 }
 
-#footer {
+#footer,
+.footer {
     bottom: 0;
-    font-size: 1em;
+    font-size: 1.375em;
     font-family: 'Josefin Slab', serif;
+    font-weight: 900;
     left: 0;
     padding: 1rem;
     position: absolute;
@@ -21,6 +23,7 @@ header {
     text-align: center;
     z-index: 1;
 }
+
 #top-level-component > h1 {
     font-family: 'IM Fell French Canon', serif;
     position: fixed;
@@ -29,8 +32,9 @@ header {
 }
 /*HOME PAGE*/
 #homepage {
-    background:  linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
-    background-size: cover;
+    background:  linear-gradient(to bottom right,#b22222, #fffff0, #000080);
+    /*linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
+    background-size: cover;*/
 }
 #register-login {
     text-align: center;
