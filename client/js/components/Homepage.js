@@ -1,6 +1,7 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HomepageText from './Title';
+import Footer from './Footer';
 import RaisedButton from 'material-ui/RaisedButton';
 const FontAwesome = require('react-fontawesome');
 
@@ -17,6 +18,7 @@ export default () => {
                         icon={<FontAwesome name='google'/>}
                     />
                 </div>
+                <Footer />
             </div>
         </MuiThemeProvider>
     )
