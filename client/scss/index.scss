@@ -61,7 +61,10 @@ span {
 #homepage h2 {
     font-size: 2em;
     font-weight: 900;
+    letter-spacing: 0.01em;
+    text-align: center;
     top: 45%;
+    width: 100%;
 }
 #register-login-button {
     border: 0.1em solid black;
@@ -182,22 +185,27 @@ span {
 }
 
 /*MEDIA QUERIES*/
+@media only screen and (max-device-width: 472px) {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 /* ----------- iPhone 5 and 5S ----------- */
-@media only screen 
+/*@media only screen 
   and (min-device-width: 320px) 
   and (max-device-width: 568px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
        #homepage h2 {
-          padding-top: 5em;
+          padding: 15em;
       }
       
       #register-login-button {
           margin-top: 45%;
       }
-}
+}*/
 /* ----------- iPhone 6 ----------- */
-@media only screen 
+/*@media only screen 
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2)
@@ -209,10 +217,10 @@ span {
       #register-login-button {
           margin-top: 35%;
       }
-}
+}*/
 /* ----------- iPhone 6+ ----------- */
 /* Portrait */
-@media only screen 
+/*@media only screen 
   and (min-device-width: 414px) 
   and (max-device-width: 736px) 
   and (-webkit-min-device-pixel-ratio: 3)
@@ -224,4 +232,4 @@ span {
       #register-login-button {
           margin-top: 30%;
       }
-}
+}*/
