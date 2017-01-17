@@ -15,8 +15,9 @@ header {
 .footer {
     bottom: 0;
     font-size: 1.375em;
-    font-weight: 900;
+    font-weight: 600;
     left: 0;
+    letter-spacing: 0.01em;
     padding: 1rem;
     position: absolute;
     right: 0;
@@ -60,7 +61,10 @@ span {
 #homepage h2 {
     font-size: 2em;
     font-weight: 900;
+    letter-spacing: 0.01em;
+    text-align: center;
     top: 45%;
+    width: 100%;
 }
 #register-login-button {
     border: 0.1em solid black;
@@ -71,20 +75,18 @@ span {
     color: red;
 }
 /*QUIZ PAGE*/
+#top-level-component {
+    background-image:  linear-gradient(to bottom right,#b22222, #fffff0, #000080);
+    min-height: 100vh;
+}
+
 .half-width {
+    background: transparent;
     float: left;
     display: inline-block;
     height: 100vh;
     width: 50%;
     text-align: center;
-}
-#french {
-    background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
-    background-size: cover;
-}
-#english {
-    background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/american-flag.jpg') no-repeat center;
-    background-size: cover;
 }
 .language {
     font-size: 2.5em;
@@ -126,7 +128,12 @@ span {
     text-align: center;
     display: inline;
 }
+
+.logout-button {
+    box-shadow: 0 0 1em #000;
+}
 .card {
+    box-shadow: 0 0 1em #000;
     width: 20em;
     display: inline-block;
     margin-top: 3em;
@@ -170,6 +177,7 @@ span {
     display: inline-block;
 }
 .card-score {
+  box-shadow: 0 0 1em #000;    
   margin-bottom: 5em;
 }
 .card-score div {
@@ -177,22 +185,27 @@ span {
 }
 
 /*MEDIA QUERIES*/
+@media only screen and (max-device-width: 472px) {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 /* ----------- iPhone 5 and 5S ----------- */
-@media only screen 
+/*@media only screen 
   and (min-device-width: 320px) 
   and (max-device-width: 568px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
        #homepage h2 {
-          padding-top: 5em;
+          padding: 15em;
       }
       
       #register-login-button {
           margin-top: 45%;
       }
-}
+}*/
 /* ----------- iPhone 6 ----------- */
-@media only screen 
+/*@media only screen 
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2)
@@ -204,10 +217,10 @@ span {
       #register-login-button {
           margin-top: 35%;
       }
-}
+}*/
 /* ----------- iPhone 6+ ----------- */
 /* Portrait */
-@media only screen 
+/*@media only screen 
   and (min-device-width: 414px) 
   and (max-device-width: 736px) 
   and (-webkit-min-device-pixel-ratio: 3)
@@ -219,4 +232,4 @@ span {
       #register-login-button {
           margin-top: 30%;
       }
-}
+}*/
