@@ -2,6 +2,8 @@ import 'babel-polyfill';
 import express from 'express';
 import passport from 'passport';
 import User from '../schemas/user';
+import bodyParser from 'body-parser';
+const jsonParser = bodyParser.json();
 
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { Strategy as BearerStrategy } from 'passport-http-bearer';
