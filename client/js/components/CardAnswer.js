@@ -30,7 +30,7 @@ class CardAnswer extends Component {
 			    <English />
 			    <form onSubmit={ this.onSubmitAnswer }>
 			        <div className="card">
-			            <Card zDepth={5}>
+			            <Card>
 			                <CardHeader
 			                    className="card-answer"
 			                >
