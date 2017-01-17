@@ -185,51 +185,28 @@ span {
 }
 
 /*MEDIA QUERIES*/
-@media only screen and (max-device-width: 472px) {
-    padding-left: 10px;
-    padding-right: 10px;
+/*iphone 5, 6, 6 Plus*/
+@media only screen and (min-device-width: 320px) and (max-device-width: 413px) {
+	//code here
 }
 
-/* ----------- iPhone 5 and 5S ----------- */
-/*@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-       #homepage h2 {
-          padding: 15em;
-      }
-      
-      #register-login-button {
-          margin-top: 45%;
-      }
-}*/
-/* ----------- iPhone 6 ----------- */
-/*@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) { 
-      #homepage h2 {
-          padding-top: 4em;
-      }
-      
-      #register-login-button {
-          margin-top: 35%;
-      }
-}*/
-/* ----------- iPhone 6+ ----------- */
-/* Portrait */
-/*@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) { 
-      #homepage h2 {
-          padding-top: 3em;
-      }
-      
-      #register-login-button {
-          margin-top: 30%;
-      }
-}*/
+/*iphone 6 plus and above*/
+@media only screen and (min-device-width: 414px) and (max-device-width: 767px) {
+	//code here
+}
+
+//WEB
+
+@media (min-width: 320px) and (max-width: 629px) {
+    #homepage h2 {
+        padding: 5px;
+    }
+    #register-login {
+        margin-top: 10px;
+    }
+    
+    
+}
+@media (min-width : 630px) and (max-width : 1056px) {}
+@media (min-width: 1057px) and (max-width: 1600px) {}
+@media (min-width: 1600px) {}
