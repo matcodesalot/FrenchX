@@ -11,8 +11,8 @@ header {
   width: 100%;
 }
 
-#footer p,
-.footer p {
+#footer,
+.footer {
     bottom: 0;
     font-size: 1.375em;
     font-weight: 600;
@@ -23,6 +23,14 @@ header {
     right: 0;
     text-align: center;
     z-index: 1;
+}
+
+#footer p,
+.footer p {
+    font-size: 1.375em;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-align: center;
 }
 
 #top-level-component > h1 {
@@ -178,7 +186,7 @@ span {
 }
 .card-score {
   box-shadow: 0 0 1em #000;    
-  margin-bottom: 5em;
+  margin-bottom: 1em;
 }
 .card-score div {
     padding: 0 !important;
@@ -210,7 +218,6 @@ span {
     }
     footer p {
         font-size: 0.9em;
-        
     }
     
     
