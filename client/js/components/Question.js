@@ -19,7 +19,7 @@ export default ({ currentQuestion, showNextQuestionButton, currentFeedback, isCo
                 <h1 id = "french-heading" className = "language">French</h1>
                     <div>
                         <div className="card">
-                            <Card>
+                            <Card zDepth={5}>
                                 <CardHeader
                                   className="card-question"
                                   title={currentQuestion}
