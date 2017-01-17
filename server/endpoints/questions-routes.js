@@ -2,16 +2,16 @@ import express from 'express';
 import bodyParser from 'body-parser';
 const jsonParser = bodyParser.json();
 import User from '../schemas/user';
-import {errorHandler} from '../factories/utils';
+import { errorHandler } from '../factories/utils';
 import passport from 'passport';
 
 let questionsRouter = express.Router();
 
 //GET the current question the user is on
-questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: false }), function(req, res) {
+questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: false }), (req, res) => {
 	const accessToken = req.params.accessToken;
 
-	User.findOne({access_token: accessToken}, function(err, user) {
+	User.findOne({ access_token: accessToken }, (err, user) => {
 		if(errorHandler(err, res)) return;
 
 		//returns the first question in the list
@@ -23,11 +23,11 @@ questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: 
 });
 
 //This handles the algorithm and moves the question back the appropriate amount of space
-questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer', { session: false }), function(req, res) {
+questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer', { session: false }), (req, res) => {
 	const accessToken = req.params.accessToken;
 	const isCorrect = req.body.isCorrect === true;
 
-	User.findOne({access_token: accessToken}, function(err, user) {
+	User.findOne({access_token: accessToken}, (err, user) => {
 		if(errorHandler(err, res)) return;
 
 		let question = user.queue.shift(); //the current question
@@ -48,7 +48,7 @@ questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer'
 		else {
 			user.queue.splice(question.weight, 0, question);
 		}
-		user.save(function(err) {
+		user.save((err) => {
 			if(errorHandler(err, res)) return;
 
 			//return res.sendStatus(200);

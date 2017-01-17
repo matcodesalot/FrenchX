@@ -1,24 +1,19 @@
 import 'babel-polyfill';
 import express from 'express';
 import passport from 'passport';
+import User from '../schemas/user';
+
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import { Strategy as BearerStrategy } from 'passport-http-bearer';
+import {errorHandler} from '../factories/utils';
+const googleRouter = express.Router();
 
 let secrets;
 if (!process.env.CLIENT_ID) secrets = require('../secrets');
-import User from '../schemas/user';
-
 import {seedData} from '../factories/utils';
-
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-let BearerStrategy = require('passport-http-bearer').Strategy;
-import {errorHandler} from '../factories/utils';
-import bodyParser from 'body-parser';
-const jsonParser = bodyParser.json();
-
-const googleRouter = express.Router();
 
 googleRouter.use(passport.initialize());
 googleRouter.use(passport.session());
-
 
 // used to serialize the user for the session
 passport.serializeUser(function(user, done) {
@@ -64,23 +59,28 @@ passport.use(new GoogleStrategy(
 					}
 				)
 			} else {
-				User.create({googleId: userInfo.googleId, access_token: userInfo.access_token, queue: seedData(), score: 0}, (err, user) => {
-					if(err) return cb(err);
-					return cb(null, user);
-				});
+				User.create(
+					{
+						googleId: userInfo.googleId, 
+						access_token: userInfo.access_token, 
+						queue: seedData(), score: 0}, 
+						(err, user) => {
+							if(err) return cb(err);
+								return cb(null, user);
+					}
+				);
 			}			
 		});
 	}
 ));
-
 
 googleRouter.get('/', passport.authenticate('google', {scope: ['profile'], session: false}));
 
 googleRouter.get('/callback', passport.authenticate('google', {failureRedirect: '/login', session: false}),
 	(req, res) => {
 		//successful authentication, redirect home
-		const accessToken = req.user.access_token;
-		const redirectLink = '/home?auth=' + accessToken;
+		const accessToken = req.user.access_token,
+			  redirectLink = '/home?auth=' + accessToken;
 		res.redirect(redirectLink);
 	}
 );
