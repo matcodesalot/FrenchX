@@ -22,7 +22,7 @@ app.use('/users', usersRoutes);
 app.use('/questions', questionsRoutes);
 app.use('/auth/google', googleRoutes);
 
-app.get('/*', function(req, res){
+app.get('/*', (req, res) => {
     res.sendFile(path.resolve(process.env.CLIENT_PATH,'index.html'))
 })
 
@@ -31,7 +31,7 @@ let runServer = () => {
         let databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/frenchapp';
         mongoose
         .connect(databaseUri)
-        .then(function() {
+        .then(() => {
             console.log('db connected...');
 
             app.listen(PORT, HOST, (err) => {
