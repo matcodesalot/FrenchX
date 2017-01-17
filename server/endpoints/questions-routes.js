@@ -1,9 +1,10 @@
 import express from 'express';
+import passport from 'passport';
 import bodyParser from 'body-parser';
 const jsonParser = bodyParser.json();
+
 import User from '../schemas/user';
 import { errorHandler } from '../factories/utils';
-import passport from 'passport';
 
 let questionsRouter = express.Router();
 
@@ -67,4 +68,4 @@ questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer'
 });
 
 
-module.exports = questionsRouter;
+export default questionsRouter;
