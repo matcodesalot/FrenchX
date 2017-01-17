@@ -9,6 +9,7 @@ import English from './English';
 import CardAnswer from './CardAnswer';
 import CardNext from './CardNext';
 import Logout from './Logout';
+import Score from './Score';
 
 //google material UI theme provider 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -52,6 +53,9 @@ class App extends Component {
             <MuiThemeProvider>
                 <div id="main-page">
                     <div id="top-level-component">
+                        <Score 
+                            score={this.props.score}
+                        />
                         <Logout 
                             onClickLogout={ this.onClickLogout }
                         />
@@ -72,5 +76,5 @@ class App extends Component {
 };
 
 export default connect(
-    ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer }) => ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer })
+    ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer, score }) => ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer, score })
 )(App);

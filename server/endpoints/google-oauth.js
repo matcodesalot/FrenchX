@@ -63,12 +63,12 @@ passport.use(new GoogleStrategy(
 						return cb(null, user)
 					}
 				)
-			}
-
-			User.create({googleId: userInfo.googleId, access_token: userInfo.access_token, queue: seedData()}, (err, user) => {
-				if(err) return cb(err);
-				return cb(null, user);
-			});
+			} else {
+				User.create({googleId: userInfo.googleId, access_token: userInfo.access_token, queue: seedData(), score: 0}, (err, user) => {
+					if(err) return cb(err);
+					return cb(null, user);
+				});
+			}			
 		});
 	}
 ));

@@ -12,6 +12,9 @@ let UserSchema = new mongoose.Schema({
 		required: true,
 		unique: true
 	},
+	score: {
+		type: Number
+	},
 	//handles each user queue as well as weight
 	queue: [{
 		question: String,

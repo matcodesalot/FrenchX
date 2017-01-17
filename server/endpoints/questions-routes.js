@@ -15,7 +15,10 @@ questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: 
 		if(errorHandler(err, res)) return;
 
 		//returns the first question in the list
-		return res.json(user.queue[0]);
+		return res.json({
+			queue: user.queue[0],
+			score: user.score
+		});
 	});
 });
 
@@ -27,11 +30,12 @@ questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer'
 	User.findOne({access_token: accessToken}, function(err, user) {
 		if(errorHandler(err, res)) return;
 
-		const question = user.queue.shift(); //the current question
+		let question = user.queue.shift(); //the current question
 
-		if (isCorrect) {
+		if (isCorrect === true) {
 			//improve weight!
 			question.weight *= 2;
+			user.score += 10;
 		}
 		else {
 			//reset weight to 1
