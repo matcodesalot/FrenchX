@@ -19,6 +19,7 @@ let initialState = {
 	currentAnswerInput: null, 
 	currentFeedback: null,
 	isCorrect: false,
+	score: 0,
 	showNextQuestionButton: false,
 	fetchQuestionError: false,
 	nextQuestion: null,
@@ -31,8 +32,9 @@ function questionsReducer (state, action) {
 		
 		case 'FETCH_QUESTION_SUCESS':
 			newState = Object.assign({}, state, {
-				currentQuestion: action.payload.question,
-				correctAnswer: action.payload.answer
+				currentQuestion: action.payload.queue.question,
+				correctAnswer: action.payload.queue.answer,
+				score: action.payload.score
 			});
 			return newState;
 

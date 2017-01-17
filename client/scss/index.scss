@@ -164,7 +164,16 @@ span {
     font-size: 2em !important;
 }
 .card-next input {
-  background-color: white !important;
+    background-color: white !important;
+}
+.score {
+    display: inline-block;
+}
+.card-score {
+  margin-bottom: 5em;
+}
+.card-score div {
+    padding: 0 !important;
 }
 
 /*MEDIA QUERIES*/
