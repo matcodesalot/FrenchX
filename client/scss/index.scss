@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'IM Fell French Canon', serif;
     margin: 0;
 }
 html, body, #app, #homepage {
@@ -14,7 +15,6 @@ header {
 .footer {
     bottom: 0;
     font-size: 1.375em;
-    font-family: 'Josefin Slab', serif;
     font-weight: 900;
     left: 0;
     padding: 1rem;
@@ -25,7 +25,6 @@ header {
 }
 
 #top-level-component > h1 {
-    font-family: 'IM Fell French Canon', serif;
     position: fixed;
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
     top: 0; width: 100%; margin: auto;
@@ -33,12 +32,16 @@ header {
 /*HOME PAGE*/
 #homepage {
     background:  linear-gradient(to bottom right,#b22222, #fffff0, #000080);
-    /*linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
-    background-size: cover;*/
 }
 #register-login {
     text-align: center;
 }
+
+span {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
 #homepage-text, #register-login {
     height: 50%;
     width: 100%;
@@ -47,17 +50,14 @@ header {
     left: 50%;
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
-    /*text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;*/
     color: #000;
 }
 #homepage h1 {
-    font-family: 'IM Fell French Canon', serif;
     font-size: 3em;
     letter-spacing: 0.05em;
     top: 35%;
 }
 #homepage h2 {
-    font-family: 'Josefin Slab', serif;
     font-size: 2em;
     font-weight: 900;
     top: 45%;
@@ -78,9 +78,6 @@ span {
     width: 50%;
     text-align: center;
 }
-/*.hide {
-    display: none;
-}*/
 #french {
     background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
     background-size: cover;
@@ -90,7 +87,6 @@ span {
     background-size: cover;
 }
 .language {
-    font-family: 'Josefin Slab', serif;
     font-size: 2.5em;
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
 }
