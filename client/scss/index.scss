@@ -199,10 +199,15 @@ span {
 
 @media (min-width: 320px) and (max-width: 629px) {
     #homepage h2 {
+        font-size: 1.5em;
         padding: 5px;
     }
     #register-login {
         margin-top: 10px;
+    }
+    footer p {
+        font-size: 0.9em;
+        font-weight: 600;
     }
     
     
