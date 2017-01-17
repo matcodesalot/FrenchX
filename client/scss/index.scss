@@ -11,8 +11,8 @@ header {
   width: 100%;
 }
 
-#footer,
-.footer {
+#footer p,
+.footer p {
     bottom: 0;
     font-size: 1.375em;
     font-weight: 600;
@@ -198,6 +198,9 @@ span {
 //WEB
 
 @media (min-width: 320px) and (max-width: 629px) {
+    #homepage h1 {
+        font-size: 2em;
+    }
     #homepage h2 {
         font-size: 1.5em;
         padding: 5px;
@@ -207,7 +210,7 @@ span {
     }
     footer p {
         font-size: 0.9em;
-        font-weight: 600;
+        
     }
     
     
