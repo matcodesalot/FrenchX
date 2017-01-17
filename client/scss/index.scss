@@ -72,21 +72,27 @@ span {
     color: red;
 }
 /*QUIZ PAGE*/
+#top-level-component {
+    background-image:  linear-gradient(to bottom right,#b22222, #fffff0, #000080);
+    min-height: 100vh;
+}
+
 .half-width {
+    background: transparent;
     float: left;
     display: inline-block;
     height: 100vh;
     width: 50%;
     text-align: center;
 }
-#french {
+/*#french {
     background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
     background-size: cover;
 }
 #english {
     background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/american-flag.jpg') no-repeat center;
     background-size: cover;
-}
+}*/
 .language {
     font-size: 2.5em;
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
