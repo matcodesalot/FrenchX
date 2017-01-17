@@ -1,5 +1,4 @@
 import React from 'react';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
 import RaisedButton from 'material-ui/RaisedButton';
 const FontAwesome = require('react-fontawesome');
 
