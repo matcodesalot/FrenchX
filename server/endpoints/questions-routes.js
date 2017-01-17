@@ -15,7 +15,10 @@ questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: 
 		if(errorHandler(err, res)) return;
 
 		//returns the first question in the list
-		return res.json(user.queue[0]);
+		return res.json({
+			queue: user.queue[0],
+			score: user.score
+		});
 	});
 });
 
