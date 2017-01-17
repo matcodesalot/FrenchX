@@ -54,7 +54,7 @@ class App extends Component {
                 <div id="main-page">
                     <div id="top-level-component">
                         <Score 
-                            score={this.props.score}
+                            score={ this.props.score }
                         />
                         <Logout 
                             onClickLogout={ this.onClickLogout }
