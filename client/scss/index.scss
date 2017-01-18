@@ -204,6 +204,11 @@ span {
 }
 
 //WEB
+@media (max-width: 720px) {
+    .half-width {
+        display: inline;
+    }
+}
 
 @media (min-width: 320px) and (max-width: 629px) {
     #homepage h1 {
@@ -222,6 +227,8 @@ span {
     
     
 }
+
+
 @media (min-width : 630px) and (max-width : 1056px) {}
 @media (min-width: 1057px) and (max-width: 1600px) {}
 @media (min-width: 1600px) {}
