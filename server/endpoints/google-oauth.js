@@ -3,7 +3,6 @@ import passport from 'passport';
 import User from '../schemas/user';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { Strategy as BearerStrategy } from 'passport-http-bearer';
-import {errorHandler} from '../factories/utils';
 const googleRouter = express.Router();
 
 let secrets;
