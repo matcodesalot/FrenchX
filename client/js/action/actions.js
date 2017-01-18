@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import { browserHistory } from 'react-router';
 
 //fetch query function to handle queries for POST, PUT, and DELETE methods
 const fetchQuery = (url, method, body, accessToken) => fetch(url, {
@@ -83,6 +84,7 @@ const logoutUser = (accessToken) => {
 		const url = '/auth/google/logout';
 		return fetchQuery(url, 'PUT', { accessToken: accessToken }, accessToken)
 		.then((response) => (response.ok === false) ? Promise.reject(response.json()) : response.json())
+		.then((response) => browserHistory.push('/'));
 	}
 }
 
