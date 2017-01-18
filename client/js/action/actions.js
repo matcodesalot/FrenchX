@@ -1,32 +1,27 @@
 import fetch from 'isomorphic-fetch';
-import { browserHistory } from 'react-router';
+
+//fetch query function to handle queries for POST, PUT, and DELETE methods
+const fetchQuery = (url, method, body, accessToken) => fetch(url, {
+	method: method,
+	headers: {
+		'Authorization': `Bearer ${accessToken}`,
+		'Accept': 'application/json',
+		'Content-Type': 'application/json'
+	}, 
+	body: JSON.stringify(body)
+})
 
 const fetchQuestion = (accessToken) => {
 	return (dispatch) => { 
 		const url = '/questions/' + accessToken
 		return fetch(url, {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    }).then((response) => {
-			if (response.status < 200 || response.status >= 300) {
-				const error = new Error(response.statusText);
-				error.response = response;
-				throw error;
-			}
-			return response;
-		})
-		.then((response) => {
-			return response.json();
-		})
-		.then((data) => {
-			dispatch(fetchQuestionSucess(data));
-		})
-		.catch((error) => {
-			return dispatch(
-				fetchQuestionError(error)
-				);
-		})
+			headers: {
+     		'Authorization': `Bearer ${accessToken}`
+      	}
+    })
+	.then((response) => (response.ok === false) ? Promise.reject(response.json()) : response.json())
+	.then((data) => dispatch(fetchQuestionSucess(data)))
+	.catch((error) => dispatch(fetchQuestionError(error)));
 	}
 }
 
@@ -57,40 +52,13 @@ const submitAnswer = (answer) => {
 const fetchNextQuestion = (accessToken, isCorrect) => {
 	return (dispatch) => {
 		const url = '/questions/' + accessToken; 
-		return fetch(url, {
-			method: 'POST',
-			headers: {
-				'Authorization': `Bearer ${accessToken}`,
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				isCorrect: isCorrect
-			}),
-
-		})
-		.then((response) => {
-			if (response.status < 200 || response.status >= 300) {
-				const error = new Error(response.statusText);
-				error.response = response;
-				throw error;
-			}
-			return response;
-		})
-		.then((response) => {
-
-			return response.json();
-			
-		})
+		return fetchQuery(url, 'POST', { isCorrect: isCorrect }, accessToken)
+		.then((response) => (response.ok === false) ? Promise.reject(response.json()) : response.json())
 		.then((data) => {
-			 
 			dispatch(fetchNextQuestionSucess(data));
 			return dispatch(fetchQuestion(accessToken));
 		})
-		.catch((error) => {
- 
-			return  dispatch(fetchNextQuestionError(error));
-		})
+		.catch((error) => dispatch(fetchNextQuestionError(error)));
 	}
 }
 
@@ -110,30 +78,11 @@ const fetchNextQuestionError = (error) => {
 	}
 }
 
-
 const logoutUser = (accessToken) => {
-		return (dispatch) => { 
-			const url = '/auth/google/logout';
-			return fetch(url, {
-		  method: 'PUT',
-	      headers: {
-	        'Authorization': `Bearer ${accessToken}`,
-	        'Accept': 'application/json',
-			'Content-Type': 'application/json'
-	      }, 
-	      body: JSON.stringify({
-				accessToken: accessToken
-		  })
-	    })
-		.then((response) => {
-			if (response.status < 200 || response.status >= 300) {
-				const error = new Error(response.statusText);
-				error.response = response;
-				throw error;
-			}
-
-			return response.json();
-		})
+	return (dispatch) => { 
+		const url = '/auth/google/logout';
+		return fetchQuery(url, 'PUT', { accessToken: accessToken }, accessToken)
+		.then((response) => (response.ok === false) ? Promise.reject(response.json()) : response.json())
 	}
 }
 
