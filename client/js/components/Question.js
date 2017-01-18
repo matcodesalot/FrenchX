@@ -5,48 +5,36 @@ import FlatButton from 'material-ui/FlatButton';
 
 
 export default ({ currentQuestion, showNextQuestionButton, currentFeedback, isCorrect, correctAnswer }) => {
-    console.log(typeof isCorrect)
-    if (!currentQuestion) {
+    const renderQuestionOrFeedback = () => {
+        if (!currentQuestion) return;
+        if (!showNextQuestionButton) {
+            return (
+                <CardHeader
+                  className="card-question"
+                  title={currentQuestion}
+                />
+            );
+        } 
         return (
-            <div id = "french" className = "top-half half-width">
-                <h1 id = "french-heading" className = "language">French</h1>
-            </div>
-        )
-    }
-    if (!showNextQuestionButton) {
-        return (
-            <div id = "french" className = "top-half half-width">
-                <h1 id = "french-heading" className = "language">French</h1>
-                    <div>
-                        <div className="card">
-                            <Card>
-                                <CardHeader
-                                  className="card-question"
-                                  title={currentQuestion}
-                                />
-                            </Card>
-                        </div>
-                    </div>
+            <div id="feedback">
+                <CardHeader
+                    className="card-feedback"
+                    title={currentFeedback}
+                />
+                <CardText>
+                  {(isCorrect === false) ? "Correct Answer: " + correctAnswer : ""}
+                </CardText>
             </div>
         );
-    } 
+    }
     return (
         <div id = "french" className = "top-half half-width">
             <h1 id = "french-heading" className = "language">French</h1>
-                <div>
-                    <div className="card">
-                        <Card>
-                            <CardHeader
-                                className="card-feedback"
-                                title={currentFeedback}
-                            />
-                            <CardText>
-                              {(isCorrect === false) ? "Correct Answer: " + correctAnswer : ""}
-                            </CardText>
-                        </Card>
-                    </div>
-                </div>
+            <div className="card">
+                <Card>
+                    {renderQuestionOrFeedback()}
+                </Card>
+             </div>
         </div>
-    );
-
+    )
 }
