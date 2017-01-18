@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import express from 'express';
 import passport from 'passport';
 import User from '../schemas/user';
