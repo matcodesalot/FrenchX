@@ -25,6 +25,14 @@ header {
     z-index: 1;
 }
 
+#footer p,
+.footer p {
+    font-size: 1.175em;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-align: center;
+}
+
 #top-level-component > h1 {
     position: fixed;
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
@@ -178,58 +186,49 @@ span {
 }
 .card-score {
   box-shadow: 0 0 1em #000;    
-  margin-bottom: 5em;
+  margin-bottom: 1em;
 }
 .card-score div {
     padding: 0 !important;
 }
 
 /*MEDIA QUERIES*/
-@media only screen and (max-device-width: 472px) {
-    padding-left: 10px;
-    padding-right: 10px;
+/*iphone 5, 6, 6 Plus*/
+@media only screen and (min-device-width: 320px) and (max-device-width: 413px) {
+	//code here
 }
 
-/* ----------- iPhone 5 and 5S ----------- */
-/*@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-       #homepage h2 {
-          padding: 15em;
-      }
-      
-      #register-login-button {
-          margin-top: 45%;
-      }
-}*/
-/* ----------- iPhone 6 ----------- */
-/*@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) { 
-      #homepage h2 {
-          padding-top: 4em;
-      }
-      
-      #register-login-button {
-          margin-top: 35%;
-      }
-}*/
-/* ----------- iPhone 6+ ----------- */
-/* Portrait */
-/*@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) { 
-      #homepage h2 {
-          padding-top: 3em;
-      }
-      
-      #register-login-button {
-          margin-top: 30%;
-      }
-}*/
+/*iphone 6 plus and above*/
+@media only screen and (min-device-width: 414px) and (max-device-width: 767px) {
+	//code here
+}
+
+//WEB
+@media (max-width: 720px) {
+    .half-width {
+        display: inline;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 629px) {
+    #homepage h1 {
+        font-size: 2em;
+    }
+    #homepage h2 {
+        font-size: 1.5em;
+        padding: 5px;
+    }
+    #register-login {
+        margin-top: 10px;
+    }
+    footer p {
+        font-size: 0.9em;
+    }
+    
+    
+}
+
+
+@media (min-width : 630px) and (max-width : 1056px) {}
+@media (min-width: 1057px) and (max-width: 1600px) {}
+@media (min-width: 1600px) {}
