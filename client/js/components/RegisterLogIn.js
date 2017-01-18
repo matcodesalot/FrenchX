@@ -10,10 +10,6 @@ export default () => {
 		        label={"Sign in with"}
 		        labelPosition="before"
 		        icon={<FontAwesome name='google'/>}
-		        style={{
-    				boxShadow: "0 0 1em #000",
-    				marginTop: "2%",
-    			}}
 		    />
 		</div>
 	);
