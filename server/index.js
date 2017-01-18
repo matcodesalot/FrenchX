@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import express from 'express';
+import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import usersRoutes from './endpoints/users-routes';
 import questionsRoutes from './endpoints/questions-routes';
 import googleRoutes from './endpoints/google-oauth';
 import path from 'path';
@@ -18,17 +18,17 @@ exports.app = app;
 
 app.use(express.static(process.env.CLIENT_PATH));
 
-app.use('/users', usersRoutes);
+// initiate middlewares
+app.use('*', bodyParser.json());
 app.use('/questions', questionsRoutes);
 app.use('/auth/google', googleRoutes);
-
 app.get('/*', (req, res) => {
     res.sendFile(path.resolve(process.env.CLIENT_PATH,'index.html'))
 })
 
-let runServer = () => {
+const runServer = () => {
     return new Promise((resolve, reject) => {
-        let databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/frenchapp';
+        const databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/frenchapp';
         mongoose
         .connect(databaseUri)
         .then(() => {
@@ -39,7 +39,6 @@ let runServer = () => {
                     console.error(err);
                     reject(err);
                 }
-
                 const host = HOST || 'localhost';
                 console.log(`Listening on ${host}:${PORT}`);
             });

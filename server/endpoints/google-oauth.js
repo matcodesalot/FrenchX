@@ -2,9 +2,6 @@ import 'babel-polyfill';
 import express from 'express';
 import passport from 'passport';
 import User from '../schemas/user';
-import bodyParser from 'body-parser';
-const jsonParser = bodyParser.json();
-
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { Strategy as BearerStrategy } from 'passport-http-bearer';
 import {errorHandler} from '../factories/utils';
@@ -12,7 +9,7 @@ const googleRouter = express.Router();
 
 let secrets;
 if (!process.env.CLIENT_ID) secrets = require('../secrets');
-import {seedData} from '../factories/utils';
+import { seedData } from '../factories/utils';
 
 googleRouter.use(passport.initialize());
 googleRouter.use(passport.session());
@@ -40,7 +37,8 @@ passport.use(new GoogleStrategy(
 	(request, accessToken, refreshToken, profile, cb) => {
 		let userInfo = {
 			googleId: profile.id,
-			access_token: accessToken
+			access_token: accessToken,
+			name: profile.name
 		}
 
 		User.findOne({googleId: userInfo.googleId}, (err, user) => {
@@ -65,6 +63,7 @@ passport.use(new GoogleStrategy(
 					{
 						googleId: userInfo.googleId, 
 						access_token: userInfo.access_token, 
+						name: userInfo.name,
 						queue: seedData(), score: 0}, 
 						(err, user) => {
 							if(err) return cb(err);
@@ -95,14 +94,13 @@ let bearerStrategy = new BearerStrategy((token, done) => {
         if (!user) {
             return done(null, false);
         }
-
         return done(null, user, {scope: 'all'});
     });
 });
 
 passport.use(bearerStrategy);
 
-googleRouter.put('/logout', jsonParser, passport.authenticate('bearer', {session: false}), (req, res) => {
+googleRouter.put('/logout', passport.authenticate('bearer', {session: false}), (req, res) => {
 	const accessToken = req.body.accessToken;
 	User.findOneAndUpdate(
 		{access_token: accessToken}, 
@@ -112,6 +110,5 @@ googleRouter.put('/logout', jsonParser, passport.authenticate('bearer', {session
 		}
 	);	
 });
-
 
 export default googleRouter;

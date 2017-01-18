@@ -20,6 +20,7 @@ const UserSchema = new mongoose.Schema({
 	score: {
 		type: Number
 	},
+	name: Object, 
 	queue: [questionSchema]
 });
 
