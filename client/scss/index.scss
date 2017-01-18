@@ -74,11 +74,6 @@ span {
     top: 45%;
     width: 100%;
 }
-#register-login-button {
-    border: 0.1em solid black;
-    margin-top: 2%;
-}
-
 span {
     color: red;
 }
@@ -106,6 +101,9 @@ span {
 }
 #english-heading {
     margin-top: 25%;
+}
+input:required {
+    box-shadow: none;
 }
 #answer-input, #submit {
     font-size: 1.2em;
@@ -218,11 +216,8 @@ span {
         font-size: 1.5em;
         padding: 5px;
     }
-    #register-login {
-        margin-top: 10px;
-    }
     footer p {
-        font-size: 0.9em;
+        font-size: 0.9em !important;
     }
     
     
