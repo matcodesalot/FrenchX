@@ -1,9 +1,8 @@
 import express from 'express';
-import bodyParser from 'body-parser';
-const jsonParser = bodyParser.json();
+import passport from 'passport';
+
 import User from '../schemas/user';
 import { errorHandler } from '../factories/utils';
-import passport from 'passport';
 
 let questionsRouter = express.Router();
 
@@ -23,7 +22,7 @@ questionsRouter.get('/:accessToken', passport.authenticate('bearer', { session: 
 });
 
 //This handles the algorithm and moves the question back the appropriate amount of space
-questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer', { session: false }), (req, res) => {
+questionsRouter.post('/:accessToken', passport.authenticate('bearer', { session: false }), (req, res) => {
 	const accessToken = req.params.accessToken;
 	const isCorrect = req.body.isCorrect === true;
 
@@ -33,13 +32,11 @@ questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer'
 		let question = user.queue.shift(); //the current question
 
 		if (isCorrect === true) {
-			//improve weight!
-			question.weight *= 2;
+			question.weight *= 2; //improve weight
 			user.score += 10;
 		}
 		else {
-			//reset weight to 1
-			question.weight = 1;
+			question.weight = 1; //reset weight to 1
 		}
 
 		if (question.weight >= user.queue.length) {
@@ -50,12 +47,10 @@ questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer'
 		}
 		user.save((err) => {
 			if(errorHandler(err, res)) return;
-
-			//return res.sendStatus(200);
+			
 			return res.status(200).json({response: 'OK'});
 		});
 	});
-
 	/*
 		if question === correct:
 		double the value of weight
@@ -67,4 +62,4 @@ questionsRouter.post('/:accessToken', jsonParser, passport.authenticate('bearer'
 });
 
 
-module.exports = questionsRouter;
+export default questionsRouter;
