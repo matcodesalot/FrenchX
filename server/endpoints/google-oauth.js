@@ -15,13 +15,13 @@ googleRouter.use(passport.initialize());
 googleRouter.use(passport.session());
 
 // used to serialize the user for the session
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
 // used to deserialize the user
-passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
+passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
         done(err, user);
     });
 });
@@ -86,7 +86,7 @@ googleRouter.get('/callback', passport.authenticate('google', {failureRedirect: 
 	}
 );
 
-let bearerStrategy = new BearerStrategy((token, done) => {
+const bearerStrategy = new BearerStrategy((token, done) => {
     User.findOne({ access_token: token }, (err, user) => {
         if (err) {
             return done(err);
