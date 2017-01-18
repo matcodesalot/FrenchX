@@ -13,7 +13,6 @@ export default ({ onClickLogout }) => {
 		    <h1>French X</h1>
 		    <RaisedButton
 		        label="Logout"
-		        href="/"
 		        labelPosition="before"
 		        containerElement="label"
 		        className="hide show"

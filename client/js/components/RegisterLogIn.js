@@ -12,5 +12,5 @@ export default () => {
 		        icon={<FontAwesome name='google'/>}
 		    />
 		</div>
-	)
+	);
 };
