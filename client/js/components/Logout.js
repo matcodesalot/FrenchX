@@ -3,7 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const styles = {
 	button: {
-		'margin-top': '5vw'
+		'marginTop': '5vw'
 	}
 }
 

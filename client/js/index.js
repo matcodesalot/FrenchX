@@ -6,6 +6,9 @@ import { Provider } from 'react-redux';
 import actions from './action/actions';
 import store from './store';
 import { Router, Route, browserHistory, IndexRoute} from 'react-router';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+//use with material-ui to prevent "Unknown prop 'onTouchTap' on <label> tag error"
+injectTapEventPlugin();
 
 const getRoutes = (
 		<Router history={browserHistory}>
