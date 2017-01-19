@@ -10,7 +10,7 @@ export default ({ currentQuestion, showNextQuestionButton, currentFeedback, isCo
         if (!showNextQuestionButton) {
             return (
                 <CardHeader
-                  className="card-question"
+                  className="card-header card-question"
                   title={currentQuestion}
                 />
             );
@@ -31,7 +31,7 @@ export default ({ currentQuestion, showNextQuestionButton, currentFeedback, isCo
         <div id = "french" className = "top-half half-width">
             <h1 id = "french-heading" className = "language">French</h1>
             <div className="card">
-                <Card>
+                <Card className="card-header">
                     {renderQuestionOrFeedback()}
                 </Card>
              </div>
