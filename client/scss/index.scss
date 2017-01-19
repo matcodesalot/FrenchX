@@ -221,6 +221,7 @@ span#move-on {
 /*FIREFOX BROWSER COMPATIBLE ONLY*/
 @-moz-document url-prefix() {
     .half-width {
+        display: table;
         height: 1vh;
     }
     #logout-button {
@@ -238,12 +239,14 @@ span#move-on {
         font-size: 1.5em;
         padding: 5px;
     }
-    footer p {
-        font-size: 0.3em;
+    .footer p,
+    #footer p {
+        font-size: 0.9em;
     }
     .card {
-        width: 10em;
+        padding: 0;
     }
+    
     
     }
 }
@@ -295,7 +298,3 @@ span#move-on {
     }   
 }
 
-
-/*@media (min-width : 630px) and (max-width : 1056px) {}
-@media (min-width: 1057px) and (max-width: 1600px) {}
-@media (min-width: 1600px) {}*/
