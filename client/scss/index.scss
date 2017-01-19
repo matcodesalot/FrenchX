@@ -144,6 +144,9 @@ input:required {
     display: inline-block;
     margin-top: 3em;
 }
+.card-header {
+    height: 11em;
+}
 .card-question {
     padding-top: 4em !important;
 }
@@ -154,10 +157,10 @@ input:required {
 .card-question span {
     font-size: 2em !important;
 }
-.card-answer div {
+.card-submit div {
     padding: 0 !important;
 }
-.card-answer span {
+.card-submit span {
     font-size: 2em !important;
 }
 .card-feedback {
@@ -169,6 +172,9 @@ input:required {
 .card-feedback span {
     font-size: 1.5em !important;
 }
+#feedback {
+    height: 156px;
+}
 .card-next div {
     padding: 0 !important;
     opacity: 1 !important;
@@ -177,7 +183,7 @@ input:required {
     font-size: 2em !important;
 }
 .card-next input {
-    background-color: white !important;
+    background-color: transparent !important;
 }
 .score {
     display: inline-block;
@@ -188,6 +194,29 @@ input:required {
 }
 .card-score div {
     padding: 0 !important;
+}
+input[type="button"] {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    height: 36px;
+    border-radius: 2px;
+    width: 88px;
+    position: absolute;
+    display: inherit;
+    bottom: 0px;
+}
+
+input[type="button"]:focus {
+    outline: none;
+}
+
+span#move-on {
+    padding-top: 5px;
+    font-size: 11px;
+    color: grey;
+    display: block;
+    font-weight: 100;
 }
 
 /*MEDIA QUERIES*/
@@ -220,9 +249,7 @@ input:required {
     }
     footer p {
         font-size: 0.9em !important;
-    }
-    
-    
+    }   
 }
 
 
