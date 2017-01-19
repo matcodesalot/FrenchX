@@ -221,6 +221,7 @@ span#move-on {
 /*FIREFOX BROWSER COMPATIBLE ONLY*/
 @-moz-document url-prefix() {
     .half-width {
+        display: table;
         height: 1vh;
     }
     #logout-button {
@@ -229,6 +230,24 @@ span#move-on {
     }
     #english-heading, #french-heading {
         margin-top: 10%;
+    }
+     @media (max-width: 720px) {
+    #homepage h1 {
+        font-size: 2em;
+    }
+    #homepage h2 {
+        font-size: 1.5em;
+        padding: 5px;
+    }
+    .footer p,
+    #footer p {
+        font-size: 0.9em;
+    }
+    .card {
+        padding: 0;
+    }
+    
+    
     }
 }
 
@@ -254,6 +273,9 @@ span#move-on {
     .card {
         width: 18em;
     }
+    #french-heading {
+        margin-top: 120px;
+    }
     #english-heading {
         margin: 0;
     }
@@ -276,7 +298,3 @@ span#move-on {
     }   
 }
 
-
-/*@media (min-width : 630px) and (max-width : 1056px) {}
-@media (min-width: 1057px) and (max-width: 1600px) {}
-@media (min-width: 1600px) {}*/
