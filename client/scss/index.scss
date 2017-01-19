@@ -230,6 +230,22 @@ span#move-on {
     #english-heading, #french-heading {
         margin-top: 10%;
     }
+     @media (max-width: 720px) {
+    #homepage h1 {
+        font-size: 2em;
+    }
+    #homepage h2 {
+        font-size: 1.5em;
+        padding: 5px;
+    }
+    footer p {
+        font-size: 0.3em;
+    }
+    .card {
+        width: 10em;
+    }
+    
+    }
 }
 
 /*MEDIA QUERIES*/
