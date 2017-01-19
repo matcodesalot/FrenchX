@@ -11,8 +11,7 @@ header {
   width: 100%;
 }
 
-#footer,
-.footer {
+footer {
     bottom: 0;
     font-size: 1.375em;
     font-weight: 600;
@@ -233,9 +232,20 @@ span#move-on {
 //WEB
 @media (max-width: 720px) {
     .half-width {
-        display: inline;
+        display: table;
         max-height: 30vh;
         width: 100%;
+        margin-bottom: 3em;
+    }
+    .card {
+        width: 18em;
+    }
+    #english-heading {
+        margin: 0;
+    }
+    #footer {
+        margin: 0;
+        position: relative;
     }
 }
 

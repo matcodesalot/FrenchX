@@ -36,9 +36,6 @@ class App extends Component {
             <MuiThemeProvider>
                 <div id="main-page">
                     <div id="top-level-component">
-                        <Score 
-                            score={ this.props.score }
-                        />
                         <Logout 
                             onClickLogout={ this.onClickLogout }
                         />
@@ -55,6 +52,9 @@ class App extends Component {
                             currentAnswerInput={this.props.currentAnswerInput}
                             query={this.props.location.query.auth}
 
+                        />
+                        <Score 
+                            score={ this.props.score }
                         />
                     </div>
                 </div>
