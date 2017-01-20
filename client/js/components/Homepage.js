@@ -1,9 +1,8 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HomepageText from './Title';
-import Footer from './Footer';
 import RaisedButton from 'material-ui/RaisedButton';
-const FontAwesome = require('react-fontawesome');
+import FontAwesome from 'react-fontawesome';
 
 export default () => {
     return (
@@ -15,11 +14,13 @@ export default () => {
                         href="/auth/google"
                         label={"Sign in with"}
                         labelPosition="before"
-                        icon={<FontAwesome name='google'/>}
+                        icon={ <FontAwesome name='google'/> }
                     />
                 </div>
-                <Footer />
+                <footer className="footer">
+                    <p>Made by world class developers and patriots for the Republic, Lavie, Mat, and Beatrix</p>
+                </footer>
             </div>
         </MuiThemeProvider>
-    )
+    );
 };

@@ -13,8 +13,8 @@ injectTapEventPlugin();
 const getRoutes = (
 		<Router history={browserHistory}>
 			<Route path="/">
-					<IndexRoute component={Homepage}/>
-					<Route path="home" component={App}/>
+				<IndexRoute component={Homepage}/>
+				<Route path="home" component={App}/>
 			</Route>
 		</Router>	
 );

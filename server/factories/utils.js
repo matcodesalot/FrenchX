@@ -44,14 +44,14 @@ export let seedData = () => {
         }
     ];
 
-    for (var i = 0; i < questions.length; i++) {
+    for (let i = 0; i < questions.length; i++) {
         questions[i].weight = 1;
     }
 
     return questions;
 }
 
-export let errorHandler = (err, res) => {
+export const errorHandler = (err, res) => {
     if(!err) return false;
     console.error(err);
     res.status(500).json({message: 'Internal server error :('});

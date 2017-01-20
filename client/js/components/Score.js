@@ -8,12 +8,12 @@ export default ({ score }) => {
 	            <Card>
 	                <CardHeader
 	                    className="card-score"
-	                    title={"Score : " + score}
+	                    title={ "Score : " + score }
 	                >
 	                </CardHeader>
 	            </Card>
 			</div>
-		    <p>Made by world class developers and patriots for the Republic, Lavie, Mat, and Beatrix</p>
+            <p>Made by world class developers and patriots for the Republic, Lavie, Mat, and Beatrix</p>
 		</footer>
-	)
+	);
 }

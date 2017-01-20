@@ -20,5 +20,5 @@ export default ({ onClickLogout }) => {
 		        style={ styles.button }
 		    />
 		</header>
-	)
+	);
 }

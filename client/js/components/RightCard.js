@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import English from './English';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -69,7 +68,7 @@ class RightCard extends Component {
 		            </Card>
 				</div>
 			</form>
-		)
+		);
     }
     checkShowNextOrAnswerInput() {
         if(this.props.showNextQuestionButton === true) {
@@ -82,10 +81,10 @@ class RightCard extends Component {
 	render () {
 		return (
 			<div id="english" className="bottom-half half-width">
-			    <English />
+			    <h1 id = "english-heading" className = "language">English</h1>
 			    { this.checkShowNextOrAnswerInput() }
 			</div>
-		)
+		);
 	}
 }
 
