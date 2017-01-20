@@ -81,7 +81,7 @@ class RightCard extends Component {
 	render () {
 		return (
 			<div id="english" className="bottom-half half-width">
-			    <h1 id = "english-heading" className = "language">English</h1>
+			    <h1 id="english-heading" className="language">English</h1>
 			    { this.checkShowNextOrAnswerInput() }
 			</div>
 		);

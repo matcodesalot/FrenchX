@@ -26,8 +26,8 @@ export default ({ currentQuestion, showNextQuestionButton, currentFeedback, isCo
         );
     }
     return (
-        <div id = "french" className = "top-half half-width">
-            <h1 id = "french-heading" className = "language">French</h1>
+        <div id="french" className="top-half half-width">
+            <h1 id="french-heading" className="language">French</h1>
             <div className="card">
                 <Card className="card-header">
                     { renderQuestionOrFeedback() }
