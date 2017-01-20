@@ -10,7 +10,6 @@ header {
   display: inline;
   width: 100%;
 }
-
 footer {
     bottom: 0;
     font-size: 1.375em;
@@ -31,7 +30,6 @@ footer {
     letter-spacing: 0.01em;
     text-align: center;
 }
-
 #top-level-component > h1 {
     position: fixed;
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
@@ -44,12 +42,10 @@ footer {
 #register-login {
     text-align: center;
 }
-
 span {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
 }
-
 #homepage-text, #register-login {
     height: 50%;
     width: 100%;
@@ -81,7 +77,6 @@ span {
     background-image:  linear-gradient(to bottom right,#b22222, #fffff0, #000080);
     min-height: 100vh;
 }
-
 .half-width {
     background: transparent;
     float: left;
@@ -121,7 +116,6 @@ input:required {
     width: 11em;
     border: 2px solid #696969;
 }
-
 #next-button {
     height: 5em;
     width: 11em;
@@ -133,7 +127,6 @@ input:required {
     text-align: center;
     display: inline;
 }
-
 .logout-button {
     box-shadow: 0 0 1em #000;
 }
@@ -205,11 +198,9 @@ input[type="button"] {
     display: inherit;
     bottom: 0px;
 }
-
 input[type="button"]:focus {
     outline: none;
 }
-
 span#move-on {
     padding-top: 5px;
     font-size: 11px;
@@ -217,7 +208,6 @@ span#move-on {
     display: block;
     font-weight: 100;
 }
-
 /*FIREFOX BROWSER COMPATIBLE ONLY*/
 @-moz-document url-prefix() {
     .half-width {
@@ -253,16 +243,6 @@ span#move-on {
 }
 
 /*MEDIA QUERIES*/
-/*iphone 5, 6, 6 Plus*/
-@media only screen and (min-device-width: 320px) and (max-device-width: 413px) {
-	//code here
-}
-
-/*iphone 6 plus and above*/
-@media only screen and (min-device-width: 414px) and (max-device-width: 767px) {
-	//code here
-}
-
 //WEB
 @media (max-width: 720px) {
     .half-width {
