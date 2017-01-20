@@ -6,13 +6,11 @@ import * as actions from '../action/actions';
 //child components
 import LeftCard from './LeftCard';
 import RightCard from './RightCard';
-import English from './English';
 import Logout from './Logout';
 import Score from './Score';
 
 //google material UI theme provider 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 
 class App extends Component {
     constructor(props) {

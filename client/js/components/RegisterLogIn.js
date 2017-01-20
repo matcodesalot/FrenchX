@@ -1,6 +1,6 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-const FontAwesome = require('react-fontawesome');
+import FontAwesome from 'react-fontawesome';
 
 export default () => {
 	return (
@@ -9,7 +9,7 @@ export default () => {
 		        href="/auth/google"
 		        label={"Sign in with"}
 		        labelPosition="before"
-		        icon={<FontAwesome name='google'/>}
+		        icon={ <FontAwesome name='google'/> }
 		    />
 		</div>
 	);

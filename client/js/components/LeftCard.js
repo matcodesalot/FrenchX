@@ -2,8 +2,6 @@ import React from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-
-
 export default ({ currentQuestion, showNextQuestionButton, currentFeedback, isCorrect, correctAnswer }) => {
     const renderQuestionOrFeedback = () => {
         if (!currentQuestion) return;
@@ -11,7 +9,7 @@ export default ({ currentQuestion, showNextQuestionButton, currentFeedback, isCo
             return (
                 <CardHeader
                   className="card-header card-question"
-                  title={currentQuestion}
+                  title={ currentQuestion }
                 />
             );
         } 
@@ -19,10 +17,10 @@ export default ({ currentQuestion, showNextQuestionButton, currentFeedback, isCo
             <div id="feedback">
                 <CardHeader
                     className="card-feedback"
-                    title={currentFeedback}
+                    title={ currentFeedback }
                 />
                 <CardText>
-                  {(isCorrect === false) ? "Correct Answer: " + correctAnswer : ""}
+                  { (isCorrect === false) ? "Correct Answer: " + correctAnswer : "" }
                 </CardText>
             </div>
         );
@@ -32,9 +30,9 @@ export default ({ currentQuestion, showNextQuestionButton, currentFeedback, isCo
             <h1 id = "french-heading" className = "language">French</h1>
             <div className="card">
                 <Card className="card-header">
-                    {renderQuestionOrFeedback()}
+                    { renderQuestionOrFeedback() }
                 </Card>
              </div>
         </div>
-    )
+    );
 }

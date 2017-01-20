@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
 //fetch query function to handle queries for POST, PUT, and DELETE methods
-const fetchQuery = (url, method, body, accessToken) => fetch(url, {
+export const fetchQuery = (url, method, body, accessToken) => fetch(url, {
 	method: method,
 	headers: {
 		'Authorization': `Bearer ${accessToken}`,
@@ -12,7 +12,7 @@ const fetchQuery = (url, method, body, accessToken) => fetch(url, {
 	body: JSON.stringify(body)
 })
 
-const fetchQuestion = (accessToken) => {
+export const fetchQuestion = (accessToken) => {
 	return (dispatch) => { 
 		const url = '/questions/' + accessToken
 		return fetch(url, {
@@ -26,31 +26,31 @@ const fetchQuestion = (accessToken) => {
 	}
 }
 
-const FETCH_QUESTION_SUCESS = 'FETCH_QUESTION_SUCESS';
-const fetchQuestionSucess = (questionArray) => {
+export const FETCH_QUESTION_SUCESS = 'FETCH_QUESTION_SUCESS';
+export const fetchQuestionSucess = (questionArray) => {
 	return {
 		type: FETCH_QUESTION_SUCESS,
 		payload: questionArray
 	}
 }
 
-const FETCH_QUESTION_ERROR = 'FETCH_QUESTION_ERROR';
-const fetchQuestionError = (error) => {
+export const FETCH_QUESTION_ERROR = 'FETCH_QUESTION_ERROR';
+export const fetchQuestionError = (error) => {
 	return {
 		type: FETCH_QUESTION_ERROR,
 		payload: error
 	}
 }
 
-const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
-const submitAnswer = (answer) => {
+export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
+export const submitAnswer = (answer) => {
 	return {
 		type: SUBMIT_ANSWER,
 		answer: answer
 	}
 }
 
-const fetchNextQuestion = (accessToken, isCorrect) => {
+export const fetchNextQuestion = (accessToken, isCorrect) => {
 	return (dispatch) => {
 		const url = '/questions/' + accessToken; 
 		return fetchQuery(url, 'POST', { isCorrect: isCorrect }, accessToken)
@@ -63,23 +63,23 @@ const fetchNextQuestion = (accessToken, isCorrect) => {
 	}
 }
 
-const FETCH_NEXT_QUESTION_SUCESS = 'FETCH_NEXT_QUESTION_SUCESS';
-const fetchNextQuestionSucess = (data) => {
+export const FETCH_NEXT_QUESTION_SUCESS = 'FETCH_NEXT_QUESTION_SUCESS';
+export const fetchNextQuestionSucess = (data) => {
 	return {
 		type: FETCH_NEXT_QUESTION_SUCESS,
 		payload: data
 	}
 }
 
-const FETCH_NEXT_QUESTION_ERROR = 'FETCH_NEXT_QUESTION_ERROR';
-const fetchNextQuestionError = (error) => {
+export const FETCH_NEXT_QUESTION_ERROR = 'FETCH_NEXT_QUESTION_ERROR';
+export const fetchNextQuestionError = (error) => {
 	return {
 		type: FETCH_NEXT_QUESTION_ERROR,
 		payload: error
 	}
 }
 
-const logoutUser = (accessToken) => {
+export const logoutUser = (accessToken) => {
 	return (dispatch) => { 
 		const url = '/auth/google/logout';
 		return fetchQuery(url, 'PUT', { accessToken: accessToken }, accessToken)
@@ -87,24 +87,3 @@ const logoutUser = (accessToken) => {
 		.then((response) => browserHistory.push('/'));
 	}
 }
-
-exports.fetchQuestion = fetchQuestion;
-
-exports.FETCH_QUESTION_SUCESS = FETCH_QUESTION_SUCESS;
-exports.fetchQuestionSucess = fetchQuestionSucess;
-
-exports.FETCH_QUESTION_ERROR = FETCH_QUESTION_ERROR;
-exports.fetchQuestionError = fetchQuestionError;
-
-exports.SUBMIT_ANSWER = SUBMIT_ANSWER;
-exports.submitAnswer = submitAnswer;
-
-exports.fetchNextQuestion = fetchNextQuestion;
-
-exports.FETCH_NEXT_QUESTION_SUCESS = FETCH_NEXT_QUESTION_SUCESS;
-exports.fetchQuestionSucess = fetchNextQuestionSucess;
-
-exports.FETCH_NEXT_QUESTION_ERROR = FETCH_NEXT_QUESTION_ERROR;
-exports.fetchNextQuestionError = fetchNextQuestionError;
-
-exports.logoutUser = logoutUser;

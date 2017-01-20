@@ -27,7 +27,7 @@ app.get('/*', (req, res) => {
 
 const runServer = () => {
     return new Promise((resolve, reject) => {
-        const databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/frenchapp';
+        const databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost/frenchapp1';
         mongoose
         .connect(databaseUri)
         .then(() => {

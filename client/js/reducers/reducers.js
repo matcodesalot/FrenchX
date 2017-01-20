@@ -21,11 +21,8 @@ const initialState = {
 	submitBoxShow: true
 }
 
-export default (state, action) => {
-	state = state || initialState;
-
+export default (state = initialState, action) => {
 	switch (action.type) {
-		
 		case 'FETCH_QUESTION_SUCESS':
 			return Object.assign({}, state, {
 				currentQuestion: action.payload.queue.question,
@@ -47,7 +44,7 @@ export default (state, action) => {
 					isCorrect: true,
 					showNextQuestionButton: true,
 					submitBoxShow: false
-				})
+				});
 			}	
 			else {
 				return Object.assign({}, state, {
@@ -56,16 +53,14 @@ export default (state, action) => {
 					isCorrect: false,
 					showNextQuestionButton: true,
 					submitBoxShow: false
-				})
+				});
 			}
 
 		case 'FETCH_NEXT_QUESTION_SUCESS':
 			//reset the state again
 			return Object.assign({}, state, initialState);
 
-
 		case 'FETCH_NEXT_QUESTION_ERROR':
-
 			return Object.assign({}, state, {
 				fetchQuestionError: action.payload
 			});
