@@ -244,10 +244,11 @@ span#move-on {
         font-size: 0.9em;
     }
     .card {
-        padding: 0;
+        width: 16em !important;
     }
-    
-    
+    .card-submit div:nth-child(2) {
+        width: 200px !important;
+    }
     }
 }
 
