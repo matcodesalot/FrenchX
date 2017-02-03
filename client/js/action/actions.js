@@ -1,159 +1,89 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
-const fetchQuestion = (accessToken) => {
+//fetch query function to handle queries for POST, PUT, and DELETE methods
+export const fetchQuery = (url, method, body, accessToken) => fetch(url, {
+	method: method,
+	headers: {
+		'Authorization': `Bearer ${accessToken}`,
+		'Accept': 'application/json',
+		'Content-Type': 'application/json'
+	}, 
+	body: JSON.stringify(body)
+})
+
+export const fetchQuestion = (accessToken) => {
 	return (dispatch) => { 
 		const url = '/questions/' + accessToken
 		return fetch(url, {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    }).then((response) => {
-			if (response.status < 200 || response.status >= 300) {
-				const error = new Error(response.statusText);
-				error.response = response;
-				throw error;
-			}
-			return response;
-		})
-		.then((response) => {
-			return response.json();
-		})
-		.then((data) => {
-			dispatch(fetchQuestionSucess(data));
-		})
-		.catch((error) => {
-			return dispatch(
-				fetchQuestionError(error)
-				);
-		})
+			headers: {
+     		'Authorization': `Bearer ${accessToken}`
+      	}
+    })
+	.then((response) => (response.ok === false) ? Promise.reject(response.json()) : response.json())
+	.then((data) => dispatch(fetchQuestionSucess(data)))
+	.catch((error) => dispatch(fetchQuestionError(error)));
 	}
 }
 
-const FETCH_QUESTION_SUCESS = 'FETCH_QUESTION_SUCESS';
-const fetchQuestionSucess = (questionArray) => {
+export const FETCH_QUESTION_SUCESS = 'FETCH_QUESTION_SUCESS';
+export const fetchQuestionSucess = (questionArray) => {
 	return {
 		type: FETCH_QUESTION_SUCESS,
 		payload: questionArray
 	}
 }
 
-const FETCH_QUESTION_ERROR = 'FETCH_QUESTION_ERROR';
-const fetchQuestionError = (error) => {
+export const FETCH_QUESTION_ERROR = 'FETCH_QUESTION_ERROR';
+export const fetchQuestionError = (error) => {
 	return {
 		type: FETCH_QUESTION_ERROR,
 		payload: error
 	}
 }
 
-const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
-const submitAnswer = (answer) => {
+export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
+export const submitAnswer = (answer) => {
 	return {
 		type: SUBMIT_ANSWER,
 		answer: answer
 	}
 }
 
-const fetchNextQuestion = (accessToken, isCorrect) => {
+export const fetchNextQuestion = (accessToken, isCorrect) => {
 	return (dispatch) => {
 		const url = '/questions/' + accessToken; 
-		return fetch(url, {
-			method: 'POST',
-			headers: {
-				'Authorization': `Bearer ${accessToken}`,
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				isCorrect: isCorrect
-			}),
-
-		})
-		.then((response) => {
-			if (response.status < 200 || response.status >= 300) {
-				const error = new Error(response.statusText);
-				error.response = response;
-				throw error;
-			}
-			return response;
-		})
-		.then((response) => {
-
-			return response.json();
-			
-		})
+		return fetchQuery(url, 'POST', { isCorrect: isCorrect }, accessToken)
+		.then((response) => (response.ok === false) ? Promise.reject(response.json()) : response.json())
 		.then((data) => {
-			 
 			dispatch(fetchNextQuestionSucess(data));
 			return dispatch(fetchQuestion(accessToken));
 		})
-		.catch((error) => {
- 
-			return  dispatch(fetchNextQuestionError(error));
-		})
+		.catch((error) => dispatch(fetchNextQuestionError(error)));
 	}
 }
 
-const FETCH_NEXT_QUESTION_SUCESS = 'FETCH_NEXT_QUESTION_SUCESS';
-const fetchNextQuestionSucess = (data) => {
+export const FETCH_NEXT_QUESTION_SUCESS = 'FETCH_NEXT_QUESTION_SUCESS';
+export const fetchNextQuestionSucess = (data) => {
 	return {
 		type: FETCH_NEXT_QUESTION_SUCESS,
 		payload: data
 	}
 }
 
-const FETCH_NEXT_QUESTION_ERROR = 'FETCH_NEXT_QUESTION_ERROR';
-const fetchNextQuestionError = (error) => {
+export const FETCH_NEXT_QUESTION_ERROR = 'FETCH_NEXT_QUESTION_ERROR';
+export const fetchNextQuestionError = (error) => {
 	return {
 		type: FETCH_NEXT_QUESTION_ERROR,
 		payload: error
 	}
 }
 
-
-const logoutUser = (accessToken) => {
-		return (dispatch) => { 
-			const url = '/auth/google/logout';
-			return fetch(url, {
-		  method: 'PUT',
-	      headers: {
-	        'Authorization': `Bearer ${accessToken}`,
-	        'Accept': 'application/json',
-			'Content-Type': 'application/json'
-	      }, 
-	      body: JSON.stringify({
-				accessToken: accessToken
-		  })
-	    })
-		.then((response) => {
-			if (response.status < 200 || response.status >= 300) {
-				const error = new Error(response.statusText);
-				error.response = response;
-				throw error;
-			}
-
-			return response.json();
-		})
+export const logoutUser = (accessToken) => {
+	return (dispatch) => { 
+		const url = '/auth/google/logout';
+		return fetchQuery(url, 'PUT', { accessToken: accessToken }, accessToken)
+		.then((response) => (response.ok === false) ? Promise.reject(response.json()) : response.json())
+		.then((response) => browserHistory.push('/'));
 	}
 }
-
-exports.fetchQuestion = fetchQuestion;
-
-exports.FETCH_QUESTION_SUCESS = FETCH_QUESTION_SUCESS;
-exports.fetchQuestionSucess = fetchQuestionSucess;
-
-exports.FETCH_QUESTION_ERROR = FETCH_QUESTION_ERROR;
-exports.fetchQuestionError = fetchQuestionError;
-
-exports.SUBMIT_ANSWER = SUBMIT_ANSWER;
-exports.submitAnswer = submitAnswer;
-
-exports.fetchNextQuestion = fetchNextQuestion;
-
-exports.FETCH_NEXT_QUESTION_SUCESS = FETCH_NEXT_QUESTION_SUCESS;
-exports.fetchQuestionSucess = fetchNextQuestionSucess;
-
-exports.FETCH_NEXT_QUESTION_ERROR = FETCH_NEXT_QUESTION_ERROR;
-exports.fetchNextQuestionError = fetchNextQuestionError;
-
-exports.logoutUser = logoutUser;

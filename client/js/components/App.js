@@ -4,21 +4,18 @@ import { connect } from 'react-redux';
 import * as actions from '../action/actions';
 
 //child components
-import Question from './Question';
-import English from './English';
-import CardAnswer from './CardAnswer';
-import CardNext from './CardNext';
+import LeftCard from './LeftCard';
+import RightCard from './RightCard';
 import Logout from './Logout';
+import Score from './Score';
 
 //google material UI theme provider 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.onClickLogout = this.onClickLogout.bind(this);
-        this.onSubmitNextQuestion = this.onSubmitNextQuestion.bind(this);
     }
 
     componentDidMount () {
@@ -32,21 +29,6 @@ class App extends Component {
     onClickLogout() {
         this.props.dispatch(actions.logoutUser(this.props.location.query.auth));
     }
-    onSubmitNextQuestion (event) {
-        event.preventDefault();
-        this.props.dispatch(actions.fetchNextQuestion(this.props.location.query.auth, this.props.isCorrect));
-    }
-    showResult() {
-        if(this.props.showNextQuestionButton === true) {
-            return <CardNext 
-                    onSubmitNextQuestion={ this.onSubmitNextQuestion }
-                    currentAnswerInput={ this.props.currentAnswerInput }
-                    />
-        }
-        else {
-            return <CardAnswer/>;
-        }
-    }
     render() {
         return (
             <MuiThemeProvider>
@@ -55,14 +37,23 @@ class App extends Component {
                         <Logout 
                             onClickLogout={ this.onClickLogout }
                         />
-                        <Question 
+                        <LeftCard 
                             currentQuestion={ this.props.currentQuestion }
                             showNextQuestionButton={ this.props.showNextQuestionButton }
                             currentFeedback={ this.props.currentFeedback }
                             correctAnswer={ this.props.correctAnswer }
                             isCorrect={ this.props.isCorrect }
                         />
-                        { this.showResult() }
+                        <RightCard 
+                            showNextQuestionButton={this.props.showNextQuestionButton}
+                            isCorrect={this.props.isCorrect}
+                            currentAnswerInput={this.props.currentAnswerInput}
+                            query={this.props.location.query.auth}
+
+                        />
+                        <Score 
+                            score={ this.props.score }
+                        />
                     </div>
                 </div>
             </MuiThemeProvider>
@@ -72,5 +63,5 @@ class App extends Component {
 };
 
 export default connect(
-    ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer }) => ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer })
+    ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer, score }) => ({ currentQuestion, currentAnswerInput, showNextQuestionButton, currentFeedback, isCorrect, submitBoxShow, correctAnswer, score })
 )(App);

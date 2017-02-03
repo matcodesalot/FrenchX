@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'IM Fell French Canon', serif;
     margin: 0;
 }
 html, body, #app, #homepage {
@@ -9,31 +10,41 @@ header {
   display: inline;
   width: 100%;
 }
-
-#footer {
+footer {
     bottom: 0;
-    font-size: 1em;
-    font-family: 'Josefin Slab', serif;
+    font-size: 1.375em;
+    font-weight: 600;
     left: 0;
+    letter-spacing: 0.01em;
     padding: 1rem;
     position: absolute;
     right: 0;
     text-align: center;
     z-index: 1;
 }
+
+#footer p,
+.footer p {
+    font-size: 1.175em;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-align: center;
+}
 #top-level-component > h1 {
-    font-family: 'IM Fell French Canon', serif;
     position: fixed;
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
     top: 0; width: 100%; margin: auto;
 }
 /*HOME PAGE*/
 #homepage {
-    background:  linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
-    background-size: cover;
+    background:  linear-gradient(to bottom right,#b22222, #fffff0, #000080);
 }
 #register-login {
     text-align: center;
+}
+span {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
 }
 #homepage-text, #register-login {
     height: 50%;
@@ -43,50 +54,38 @@ header {
     left: 50%;
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
-    /*text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;*/
     color: #000;
 }
 #homepage h1 {
-    font-family: 'IM Fell French Canon', serif;
     font-size: 3em;
     letter-spacing: 0.05em;
     top: 35%;
 }
 #homepage h2 {
-    font-family: 'Josefin Slab', serif;
     font-size: 2em;
     font-weight: 900;
+    letter-spacing: 0.01em;
+    text-align: center;
     top: 45%;
+    width: 100%;
 }
-#register-login-button {
-    border: 0.1em solid black;
-    margin-top: 2%;
-}
-
 span {
     color: red;
 }
 /*QUIZ PAGE*/
+#top-level-component {
+    background-image:  linear-gradient(to bottom right,#b22222, #fffff0, #000080);
+    min-height: 100vh;
+}
 .half-width {
+    background: transparent;
     float: left;
     display: inline-block;
     height: 100vh;
     width: 50%;
     text-align: center;
 }
-/*.hide {
-    display: none;
-}*/
-#french {
-    background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/french-x-header.jpg') no-repeat center;
-    background-size: cover;
-}
-#english {
-    background: linear-gradient(#dcdcdc, transparent 45%), linear-gradient(0deg, #dcdcdc, transparent),#fff url('../assets/img/american-flag.jpg') no-repeat center;
-    background-size: cover;
-}
 .language {
-    font-family: 'Josefin Slab', serif;
     font-size: 2.5em;
     text-shadow: 1px 1px 2px #fff, 0 0 1em #fff, 0 0 0.2em #fff;
 }
@@ -96,6 +95,9 @@ span {
 }
 #english-heading {
     margin-top: 25%;
+}
+input:required {
+    box-shadow: none;
 }
 #answer-input, #submit {
     font-size: 1.2em;
@@ -114,7 +116,6 @@ span {
     width: 11em;
     border: 2px solid #696969;
 }
-
 #next-button {
     height: 5em;
     width: 11em;
@@ -126,10 +127,17 @@ span {
     text-align: center;
     display: inline;
 }
+.logout-button {
+    box-shadow: 0 0 1em #000;
+}
 .card {
+    box-shadow: 0 0 1em #000;
     width: 20em;
     display: inline-block;
     margin-top: 3em;
+}
+.card-header {
+    height: 11em;
 }
 .card-question {
     padding-top: 4em !important;
@@ -141,10 +149,10 @@ span {
 .card-question span {
     font-size: 2em !important;
 }
-.card-answer div {
+.card-submit div {
     padding: 0 !important;
 }
-.card-answer span {
+.card-submit span {
     font-size: 2em !important;
 }
 .card-feedback {
@@ -156,6 +164,9 @@ span {
 .card-feedback span {
     font-size: 1.5em !important;
 }
+#feedback {
+    height: 156px;
+}
 .card-next div {
     padding: 0 !important;
     opacity: 1 !important;
@@ -164,50 +175,107 @@ span {
     font-size: 2em !important;
 }
 .card-next input {
-  background-color: white !important;
+    background-color: transparent !important;
+}
+.score {
+    display: inline-block;
+}
+.card-score {
+  box-shadow: 0 0 1em #000;    
+  margin-bottom: 1em;
+}
+.card-score div {
+    padding: 0 !important;
+}
+input[type="button"] {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    height: 36px;
+    border-radius: 2px;
+    width: 88px;
+    position: absolute;
+    display: inherit;
+    bottom: 0px;
+}
+input[type="button"]:focus {
+    outline: none;
+}
+span#move-on {
+    padding-top: 5px;
+    font-size: 11px;
+    color: grey;
+    display: block;
+    font-weight: 100;
+}
+/*FIREFOX BROWSER COMPATIBLE ONLY*/
+@-moz-document url-prefix() {
+    .half-width {
+        display: table;
+        height: 1vh;
+    }
+    #logout-button {
+        position: inherit;
+        display: block;
+    }
+    #english-heading, #french-heading {
+        margin-top: 10%;
+    }
+     @media (max-width: 720px) {
+    #homepage h1 {
+        font-size: 2em;
+    }
+    #homepage h2 {
+        font-size: 1.5em;
+        padding: 5px;
+    }
+    .footer p,
+    #footer p {
+        font-size: 0.9em;
+    }
+    .card {
+        width: 16em !important;
+    }
+    .card-submit div:nth-child(2) {
+        width: 200px !important;
+    }
+    }
 }
 
 /*MEDIA QUERIES*/
-/* ----------- iPhone 5 and 5S ----------- */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-       #homepage h2 {
-          padding-top: 5em;
-      }
-      
-      #register-login-button {
-          margin-top: 45%;
-      }
+//WEB
+@media (max-width: 720px) {
+    .half-width {
+        display: table;
+        max-height: 30vh;
+        width: 100%;
+        margin-bottom: 3em;
+    }
+    .card {
+        width: 18em;
+    }
+    #french-heading {
+        margin-top: 120px;
+    }
+    #english-heading {
+        margin: 0;
+    }
+    #footer {
+        margin: 0;
+        position: relative;
+    }
 }
-/* ----------- iPhone 6 ----------- */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) { 
-      #homepage h2 {
-          padding-top: 4em;
-      }
-      
-      #register-login-button {
-          margin-top: 35%;
-      }
+
+@media (min-width: 320px) and (max-width: 629px) {
+    #homepage h1 {
+        font-size: 2em;
+    }
+    #homepage h2 {
+        font-size: 1.5em;
+        padding: 5px;
+    }
+    footer p {
+        font-size: 0.9em !important;
+    }   
 }
-/* ----------- iPhone 6+ ----------- */
-/* Portrait */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) { 
-      #homepage h2 {
-          padding-top: 3em;
-      }
-      
-      #register-login-button {
-          margin-top: 30%;
-      }
-}
+

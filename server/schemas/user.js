@@ -1,7 +1,12 @@
-// import {seedData} from '../factories/utils';
+import mongoose from 'mongoose';
 
-let mongoose = require('mongoose');
-let UserSchema = new mongoose.Schema({
+const questionSchema = {
+	question: String,
+	answer: String,
+	weight: Number
+}
+
+const UserSchema = new mongoose.Schema({
 	googleId: {
 		type: String,
 		required: true,
@@ -12,14 +17,11 @@ let UserSchema = new mongoose.Schema({
 		required: true,
 		unique: true
 	},
-	//handles each user queue as well as weight
-	queue: [{
-		question: String,
-		answer: String,
-		weight: Number
-	}]
+	score: {
+		type: Number
+	},
+	name: Object, 
+	queue: [questionSchema]
 });
-
-
 
 export default mongoose.model('User', UserSchema);

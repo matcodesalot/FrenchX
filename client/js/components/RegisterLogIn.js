@@ -1,17 +1,16 @@
 import React from 'react';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
 import RaisedButton from 'material-ui/RaisedButton';
-const FontAwesome = require('react-fontawesome');
+import FontAwesome from 'react-fontawesome';
 
 export default () => {
 	return (
-		<div id = "register-login">
+		<div id="register-login">
 		    <RaisedButton
 		        href="/auth/google"
 		        label={"Sign in with"}
 		        labelPosition="before"
-		        icon={<FontAwesome name='google'/>}
+		        icon={ <FontAwesome name='google'/> }
 		    />
 		</div>
-	)
+	);
 };
