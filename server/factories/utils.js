@@ -1,5 +1,3 @@
-import User from '../schemas/user';
-
 export let seedData = () => {
     let questions = [
         {
